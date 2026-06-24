@@ -1,0 +1,4 @@
+# /etc/cron.d/nvac-evo-observatory
+# Hourly commit + push of wedge events and gzipped daily baselines.
+PATH=/usr/local/bin:/usr/bin:/bin
+17 * * * * neo /home/neo/nvac-evo-observatory/commit-push.sh >> /home/neo/nvac-evo-observatory/commit-push.log 2>&1
