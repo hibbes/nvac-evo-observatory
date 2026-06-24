@@ -111,11 +111,13 @@ def capture_event(rd, wedged, ts):
     path = os.path.join(EVENTDIR, "wedge-%s.txt" % safe)
     try:
         dmesg = subprocess.run(["dmesg"], capture_output=True, text=True, timeout=5).stdout
-        ctx = "\n".join(l for l in dmesg.splitlines()
+        lines = dmesg.splitlines()
+        ctx = "\n".join(l for l in lines
                         if any(k in l for k in ("nv50_dmac_wait", "base-1: timeout",
                                                 "MMIO read", "nv50_bus_intr", "notifier timeout")))[-4000:]
+        full = "\n".join(lines[-300:])   # full tail: do not lose the compositor/modeset context
     except Exception as e:
-        ctx = "(dmesg failed: %s)" % e
+        ctx = full = "(dmesg failed: %s)" % e
     with open(path, "w") as e:
         e.write("# WEDGE episode begin %s\n" % ts)
         e.write("# wedged channels (PUT advanced, GET frozen >= %d samples):\n" % STUCK_K)
@@ -127,8 +129,10 @@ def capture_event(rd, wedged, ts):
             line = " ".join("%s=%08x" % (name, rd(o)) for o, name in REGS)
             e.write("+%.1fs %s\n" % (i * 0.1, line))
             time.sleep(0.1)
-        e.write("\n# dmesg wedge context:\n")
+        e.write("\n# dmesg wedge keyword lines:\n")
         e.write(ctx + "\n")
+        e.write("\n# dmesg full tail (last 300 lines, for compositor/modeset correlation):\n")
+        e.write(full + "\n")
 
 if __name__ == "__main__":
     main()
