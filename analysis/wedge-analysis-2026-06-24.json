@@ -1,0 +1,476 @@
+{
+  "summary": "Deep RE analysis of the first captured nv50 EVO wedge event to extract trigger/mechanism insights",
+  "agentCount": 4,
+  "logs": [
+    "Wedge-event analysis: 3 dimensions (register decode, fetch-park localisation, trigger/mechanism)"
+  ],
+  "result": {
+    "synthesis": {
+      "headline_insights": [
+        "The wedge is register-confirmed as the stock MCP79 EVO fetch-park: at onset (07:17:58) core_ctrl (0x610200) and base1_ctrl (0x610220) both latch bit31 (0x80000000), top nibble 4->8, and it never clears across the entire 4s dense burst. bit31 = channel-busy/processing per the driver's own init/fini wait loops (nv50_disp_dmac_init writes 0x13 then polls until !(reg & 0x80000000); a stuck bit31 is exactly what nv50_dmac_wait times out on). This is the hardware face of the dmesg 'core notifier timeout' + 'base-1: timeout'.",
+        "The park is a HARDWARE fetch stall, not a software submission stall, and the data proves it directly: GET freezes behind PUT while PUT keeps advancing. core_get pins at 0x2c8 with core_put stuck at 0x308 (16 dwords queued, never fetched); base1_get pins at 0x8ac while base1_put creeps 0x91c->0x964->0x9ac (compositor keeps kicking new flips into a dead channel). A software stall would freeze PUT, not GET.",
+        "The channel control latch and the per-channel fetch-pointer freeze are decoupled in time. At the 07:17:58 onset sample, base1_ctrl bit31 is ALREADY latched (0x8e06001b) but base1_get is STILL fully drained (0x088c==0x088c); base1_get only freezes (0x8ac) at the next 5s sample. core_get is already frozen at 07:17:58. So both active channels' control state machines latch together, while each channel's fetch pointer dies when it next tries to advance. This is the single strongest structural hint of a shared trigger/arbiter rather than two independent channel bugs.",
+        "Only the two ACTIVE channels wedge. base0_ctrl (head0 base, idle/unused) stays a constant 0x4003001b with put==get==0 and bit31 never set, through the entire event. The wedge follows in-flight fetch activity; it is not a blanket all-channels PMC/power event.",
+        "PMC_ENABLE is constant dff3d113 with bit30 (PDISPLAY power) SET throughout. The engine is powered the whole time, so the wedge is a latched internal fetch state, and the in-tree fix is precisely a PDISPLAY power-cycle of that bit (nvkm_disp_chan_unwedge masks 0x000200 bit30 off/on). Register-level confirmation that a per-channel re-arm cannot clear it.",
+        "The prompt's 'one supervisor-state bit flips' framing is WRONG and the correction sharpens the trigger story. The sampler's 'super1' column (0x370->0x378) is the DISP interrupt-ENABLE register 0x61002c, and bit3 (0x8) = (4<<head->id) for head1 = the head1 VBLANK-IRQ-enable that nv50_head_vblank_get sets. The 0->1 transition at the exact onset sample means head1 vblank was re-armed (a drm_crtc_vblank_get) for the first post-idle commit. It is positive evidence of a vblank-synced head1 flip after idle, not a supervisor-state bit. (Two of the three decodes independently reach this; the regdecode pass mislabeled it as supervisor 0x610030. The vblank-enable reading is correct given the CSV column order and the 0x370 init value.)",
+        "The display-config fingerprint is invariant across the wedge (disp611014/61102c/611034/61103c/611044 and base0 all constant), which rules OUT a full head-reprogram/modeset for THIS event. This is consistent with a normal interlocked flip/UPDATE on an already-configured pipe, i.e. the stock base-park, and consistent with soft_dpms (patch 0011) being wedge-safe-but-not-immune rather than the cause."
+      ],
+      "leading_hypothesis": "TRIGGER: the first display commit after a deep-idle period, specifically a vblank-synced head1 flip arriving after drm auto-disabled vblank. Three signals coincide at the single 07:17:58 sample: (a) 30s of fully-drained idle ends with the first PUT advance (core 0x200->0x2e8); (b) the head1 vblank-IRQ-enable bit (0x61002c bit3) goes 0->1 = drm_crtc_vblank_get for an active CRTC carrying an event; (c) the ctrl state nibbles step (core 0x0a->0x0e, base1 0x03->0x06->0x07). MECHANISM: a core-channel EVO UPDATE that never settles, dragging the interlocked head1 base flip into a fetch-park. nv50_disp_atomic_commit_tail commits the core UPDATE (with interlock[BASE]) and waits its notifier BEFORE the per-plane base waits; core_ctrl bit31 latches set = the core UPDATE is stuck mid-processing, its notifier never fires ('core notifier timeout'), and the base flip, interlocked behind the core, then parks too ('base-1: timeout' ~2.4s later). The core fetch pointer dies first; the base fetch pointer dies once its next interlocked flip is fetched. Underlying defect = stock MCP79 base/core fetch-park (Debian #976788); the only thing that clears it is the PDISPLAY power-cycle, since the engine stays powered with bit31 latched.",
+      "hypothesis_confidence": "tentative",
+      "alternative_explanations": [
+        "The 'core parks first' ordering may be an artifact of fixed driver flush order, not hardware causation. commit_tail ALWAYS waits the core notifier before the per-plane base waits, so the dmesg core-before-base ordering and the 2.4s gap (two sequential ~2000ms timeouts) are structurally forced regardless of which block actually stalled first. The register-pointer evidence (core_get frozen one 5s sample before base1_get) is only ONE sample of margin and could be sampling coincidence.",
+        "The trigger may be a normal commit-phase race rather than an idle-specific bug. bit3 (head1 vblank-enable) toggling 0->1 happens on EVERY commit after drm auto-disables vblank, including the thousands that do NOT wedge. Without a fine-cadence capture through a healthy commit-after-idle, we cannot say the idle->commit transition is causal versus merely the moment a pre-existing race happened to land.",
+        "A shared MCP79 EVO fetch arbiter is INFERRED, not observed. nouveau models channels independently and exposes no cross-channel arbiter register; the simultaneous bit31 latch is suggestive but the actual shared block (if any) lives in the undocumented 0x611xxx PDISPLAY dispatch area that the sampler only reads as opaque constants.",
+        "An EVO method/TRAP error could be the real first-mover and we simply did not sample it. The per-channel error latches (0x610080+chid*8 / 0x610084+chid*8, decoded by nv50_disp_intr_error) and the disp INTR status (0x610020/0x610024 read live, not the enables) were not captured; an INVALID_STATE/TRAP on the core method could precede and cause the park.",
+        "The specific commit content is unknown. Whether the wedging commit was a pure cursor/clock pageflip, a wlopm/swayidle-driven wake, or something carrying a head delta cannot be distinguished from registers alone because the head-state shadow is not sampled and the drm.debug KMS log was lost on the recovery reboot.",
+        "soft_dpms / patch 0011 interaction is assumed benign but unverified for this event. The invariant head-config registers argue against a full reprogram, but a delta-path wake driven by 0011 keeping crtc->active TRUE cannot be positively excluded without the compositor/DPMS log correlated to 07:17:58."
+      ],
+      "what_one_event_cannot_show": [
+        "Whether core-GET-freezes-before-base1-GET is invariant or a one-sample coincidence. The whole 'core is the root, base is downstream' claim rests on a single 5s sample of timing margin.",
+        "Whether bit31 ALWAYS latches simultaneously on core and base1, or whether base1 can ever park with core_ctrl bit31 clear (a base-alone park). n=1 cannot establish a necessary-precondition relationship.",
+        "Whether the head1-vblank-re-arm (0x61002c bit3 0->1) is present at every wedge or incidental to this one. It also cannot tell us if bit3 transiently sets-and-clears during NORMAL commits-after-idle that do not wedge, which is what would demote it from marker to ordinary commit phase.",
+        "Whether the idle->first-commit transition is causal. We have correlation at one transition sample and zero healthy-commit-after-idle controls, so 'fires on first commit after idle' remains an untested hypothesis.",
+        "What the live supervisor state machine and pending interrupts were doing at the wedge. The sampled intr/super columns are interrupt-ENABLE registers; the actual supervisor-pending bits (0x610024 bits 0x70, 0x610030) read 0 or were not captured, so a mid-flight supervisor cycle (modeset vs plain UPDATE) cannot be distinguished.",
+        "Whether any EVO method/TRAP error fired first. The per-channel error code/address latches were not sampled, so 'fetch parks' could not be upgraded to a named EVO error.",
+        "The compositor/modeset context for THIS event: the keyword-filtered dmesg lost everything except the three timeout lines, so what userspace did at 07:17:58 (cursor flip, wlopm, screensaver wake) is unrecoverable for this capture.",
+        "Whether runtime wedges and boot wedges share this signature. The memory notes they may differ; one runtime event says nothing about the boot path.",
+        "Any statistics at all. Every ordering, simultaneity, and trigger claim here is a single observation; none is a rate, a distribution, or a reproduced pattern."
+      ],
+      "next_captures": [
+        {
+          "what": "Continuous 100ms sampling of core_get AND base1_get (0x640004 / 0x642004) spanning the full 30s of idle THROUGH onset, not just the post-trigger burst.",
+          "why": "Nails whether core GET truly freezes before base1 GET moves at all, and whether base1 attempts any fetch between its ctrl-bit31 latch and its pointer freeze. Turns the one-sample core-first ordering into real timing evidence (or kills it)."
+        },
+        {
+          "what": "Add the per-channel EVO error latches to the sample set: 0x610080+chid*8 (method/address) and 0x610084+chid*8 (code/data) for core(chid 0) and base1(chid 2), plus the live disp INTR status 0x610020/0x610024 and the true supervisor register 0x610030.",
+          "why": "Tests whether an INVALID_STATE/TRAP error precedes the timeouts (would name the fault), and whether a supervisor cycle was mid-flight. Distinguishes 'plain core UPDATE park' from 'supervisor/modeset-driven park'. The currently sampled super0/super1 are only interrupt-ENABLE regs; the actual state machine is unsampled."
+        },
+        {
+          "what": "Stop keyword-filtering dmesg: on event detection, snapshot the FULL kernel ring tail (and re-capture it BEFORE the recovery reboot wipes it). Run with drm.debug=0x1e (DRM_UT_KMS) so the NV_ATOMIC 'commit', 'commit core %08x', per-crtc 'set %04x'/'clr %04x' and per-plane lines are present.",
+          "why": "Single highest-value missing piece. Reveals whether the wedging commit was a pure flip, a head set.mask=~0 reprogram, or an outp enable, and surfaces any nvkm 'chan N recover: ctrl 0x610200=.. put 0x640000=..' and 'ERROR' lines. This was lost on this event's recovery reboot."
+        },
+        {
+          "what": "Fine-cadence (100ms) capture of 0x61002c bit3 and the ctrl state nibbles THROUGH several HEALTHY commit-after-idle cycles that do NOT wedge.",
+          "why": "Controls for the trigger hypothesis. If bit3 transiently sets-and-clears and the nibbles step 0x0a/0x0b normally on non-wedging wakes, the idle->commit signals demote from 'wedge marker' to 'ordinary commit phase'. Without controls the trigger story is unfalsifiable."
+        },
+        {
+          "what": "Correlate wall-clock 07:17:58 with the compositor: labwc/sway flip log + swayidle/wlopm state, captured continuously so it survives the wedge.",
+          "why": "Directly confirms or refutes 'first commit after the monitor self-slept/woke': was there a wlopm --off/--on, a screensaver wake, or just a clock/cursor pageflip in the seconds before onset?"
+        },
+        {
+          "what": "At least 5 more captured wedges, with a boot-time wedge among them (sampler running from early boot).",
+          "why": "Establishes invariance: does core_ctrl bit31 ALWAYS latch before/with base1; can base1 park alone; is the vblank-re-arm present every time; and does the boot wedge show the same idle->first-commit+vblank signature or a different modeset path. Everything above is n=1 until this exists."
+        },
+        {
+          "what": "Snapshot the FIFO-side PUT/GET mirror at 0x640000+ctrl*0x1000 and add head-state shadow registers (the EVO core head method shadow / 0x610a00+ HEAD block) to the sampler.",
+          "why": "Cross-checks the user-BAR put/get the sampler already logs against the hardware FIFO pointers, and lets a full head-reprogram be told apart from a delta update purely from register churn, independent of the (often-lost) dmesg."
+        }
+      ],
+      "observatory_improvements": [
+        "Save the FULL dmesg ring tail on event, not keyword-filtered lines, and capture it BEFORE triggering/allowing any recovery reboot. The loss of all but three lines is the single biggest gap in this event and is self-inflicted by the filter.",
+        "Switch the sampled 'super0/super1/intr_en0/intr_en1' columns to their decoded physical addresses and add the registers that actually carry state: live disp INTR 0x610020/0x610024, the real supervisor 0x610030, per-channel error latches 0x610080+chid*8 / 0x610084+chid*8. Rename columns so the CSV header stops implying 'super1' is a supervisor-state reg when it is the 0x61002c interrupt-enable.",
+        "Implement a pre-wedge trip: when a drained-idle window is followed by the first PUT advance (the exact 07:17:58 signature), automatically burst to 100ms (or faster) sampling for the surrounding seconds. Right now the decisive onset is captured at 5s resolution with only one sample of timing margin.",
+        "Run the 100ms dense burst SYMMETRICALLY around the trip (pre AND post), and ideally a small always-on ring buffer at 100ms that is flushed on event, so the idle->onset transition is captured at fine cadence rather than only the post-trigger 4s.",
+        "Continuously log compositor/DPMS context (labwc/sway flip events, swayidle/wlopm state, drm.debug KMS if affordable) into the same timeline so the userspace cause at onset is recoverable and timestamp-aligned to the register burst.",
+        "Record the kernel/boot profile and patch state (0011/soft_dpms on/off, kernel version, runtime-vs-boot) in each event header, since the memory notes runtime and boot wedges may differ and 7.0.12 vs 7.0.13 timing matters.",
+        "Add a derived 'wedge fingerprint' line to each event (which chids latched bit31, GET-freeze order with timestamps, bit3 transition, config-invariant yes/no) so cross-event comparison over the eventual N>=5 corpus is mechanical rather than manual re-reading of raw bursts."
+      ]
+    },
+    "analyses": [
+      {
+        "dimension": "regdecode",
+        "decoded_registers": [
+          {
+            "register": "core_ctrl = 0x610200 (NV50 PDISPLAY core/EVO channel DMA control, chid.ctrl=0)",
+            "healthy": "idle-ref 2d0b001b ; pre-wedge 490a001b",
+            "wedged": "8f0e001b",
+            "decoded_meaning": "This is the NV50 EVO channel control register at 0x610200 + ctrl*0x10 (core has ctrl=0). Confirmed address by nv50.c lines 949-984 (core fini/init operate on bare 0x610200) and chan.c line 177 (recover prints 0x610200 + ctrl*0x10). Field decode from the masks the driver actually uses:\n- bit0 (0x1) = channel ENABLE/run. init writes 0x01000013 / 0x13 (bit0 set) to start; fini clears 0x3 (line 950) to deactivate. byte0=0x1b constant across all three samples = 0001_1011 (bit0 set=running, bit1 set, bit3 set, bit4 set).\n- bit4 (0x10) = pushbuffer-bound/connected. init sets it (mask 0x10, line 978) before writing PUT; fini uses mask 0x1010 (DMAC path, line 641). Set (=1) in all samples.\n- bits[19:16] = STATE field. The driver's 'unstick from unknown state' code (lines 969-972) reads (ctrl & 0x009f0000) and tests ==0x00020000, and (ctrl & 0x003f0000)==0x00030000; fini drains (ctrl & 0x001e0000) to 0 (line 952). In all three samples byte2 = 0x00, so STATE bits[19:16]=0 (the visible nibble lives in byte1, see next).\n- byte1 = the live channel state nibble: idle=0x0b, pre-wedge=0x0a, wedged=0x0e. These are the running-state encodings (not the [19:16] init/fini handshake field). 0x0b (idle reference) vs 0x0a (pre-wedge) vs 0x0e (wedged) shows the channel left its idle state code and latched a distinct 0x0e code at wedge. The source does NOT define symbolic names for byte1, so these specific nibble values are UNDECODED beyond 'state machine code differs'.\n- bit31 (0x80000000) = BUSY / NOT-IDLE. nv50_disp_core_init waits for bit31 to CLEAR after arming the channel: line 982-984 'wait for it to go inactive: if(!(rd32(0x610200) & 0x80000000)) break'. So bit31=1 means the channel-control state machine is still busy/processing and has not returned to idle. In the wedge it is LATCHED at 1 (top byte 0x8f) and never clears => exactly the condition nv50_disp_core_init would time out on. Healthy idle and pre-wedge both have bit31=0 (0x2d, 0x49). This is THE latch the dmesg 'core notifier timeout' reflects.",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:949-993 (core fini/init, bit31 inactive-wait L982-984, unstick L969-972); :641-678 (dmac fini/init same layout); chan.c:177 (0x610200+ctrl*0x10) ; envytools mmio map: 0x610000-0x61ffff = PDISPLAY"
+          },
+          {
+            "register": "base1_ctrl = 0x610220 (NV50 PDISPLAY base-1 EVO channel DMA control, chid.ctrl=2)",
+            "healthy": "idle-ref 0c05001b ; pre-wedge 4003001b",
+            "wedged": "8e07001b (8e06001b at first onset sample)",
+            "decoded_meaning": "Same register definition as core but at 0x610200 + ctrl*0x10 with ctrl=2 => 0x610220 (confirmed by chan.c unwedge print 'base1 0x610220' line 277). Same field layout (bit0 enable, bit4 pushbuf, byte1 state nibble, bit31 busy). byte0=0x1b constant (running). byte1 state nibble: idle=0x05, pre-wedge=0x03, wedge-onset=0x06 then 0x07. bit31: idle 0x0c->0, pre-wedge 0x40->0, wedged 0x8e->1. So at wedge base1 ALSO latches bit31=1 (busy, never clears) AND its state nibble steps 0x06->0x07 between the 07:17:58 and 07:18:03 samples, matching the 2.4 s lag before 'base-1: timeout' in dmesg. The idle-reference state nibble 0x05 vs the pre-wedge 0x03 means base1 was in a different (active-fetch) state right before the wedge than its fully-quiesced idle. As with core, the byte1 nibble values are not symbolically named in-source => UNDECODED beyond 'busy-state code'.",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:632-681 (nv50_disp_dmac_fini/init, 0x610200+ctrl*0x10, bit31 inactive-wait L671-673) ; chan.c:276-278 (base1 = 0x610220)"
+          },
+          {
+            "register": "base0_ctrl = 0x610210 (base-0 EVO channel DMA control, ctrl=1) [unchanged control]",
+            "healthy": "4003001b",
+            "wedged": "4003001b (constant, untouched)",
+            "decoded_meaning": "Head-0 base channel control at 0x610200 + 1*0x10 = 0x610210. Constant 4003001b throughout = identical to base1's PRE-WEDGE value (bit31=0, byte1 state=0x03, byte0=0x1b running). base0 is the idle head's base channel and is NOT involved in the wedge: bit31 stays 0, state nibble stays 0x03. This corroborates hard-observation #4 (the idle head channel is untouched) and shows 0x03 is a benign/quiescent base-channel state code (since base0 sits at 0x03 forever without wedging).",
+            "evidence": "same register family /usr/src/linux-7.0.13-gentoo/.../disp/nv50.c:632-681 ; address 0x610200+1*0x10"
+          },
+          {
+            "register": "super0 = 0x610024 (NV50 PDISPLAY DISP_INTR_1, latched interrupt status)",
+            "healthy": "01ff0000",
+            "wedged": "01ff0000 (constant)",
+            "decoded_meaning": "Sampler's 'super0' is the INTR_1 / supervisor-pending LATCH register 0x610024, read in nv50_disp_intr as intr1 (line 1475) and cleared by writes to 0x610024 (lines 1491/1496/1502/1511). Bit decode from the handler: bit2 (0x4)=vblank head0, bit3 (0x8)=vblank head1, bits[6:4] (0x70)=supervisor pending (0x10=SV1, 0x20=SV2, 0x40=SV3, lines 1489-1503), bits[20:16] (0x1f0000)=per-channel ERROR (line 1477). Value 0x01ff0000 has bits[24] and bits[20:16] all set. bits[20:16]=0x1f means all 5 channel-error latch bits are asserted, and bit24=0x01000000 is an additional latched status. CAUTION: this register reads non-zero CONSTANTLY (including the healthy 30 s pre-wedge window), so 0x01ff0000 is the steady latched/masked baseline (intr_en is 0, see below), NOT a wedge signature. The error bits being permanently latched while intr_en0/1=0 means nothing is servicing/clearing them, consistent with an idle, IRQ-masked PDISPLAY. It does NOT by itself indicate the wedge.",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/.../disp/nv50.c:1474-1504 (intr1=rd32(0x610024); bit decode 0x4/0x8 vblank, 0x70 supervisor, 0x1f0000 chan-error) ; :1511 fini clears 0x610024"
+          },
+          {
+            "register": "super1 = 0x610030 (NV50 PDISPLAY SUPERVISOR state register)",
+            "healthy": "00000370 (pre-wedge, held 30 s)",
+            "wedged": "00000378 (bit3=0x8 sets at the exact transition sample)",
+            "decoded_meaning": "Sampler's 'super1' is the EVO SUPERVISOR register 0x610030, read into local 'super' in nv50_disp_super (line 1374) and acked by writing 0x80000000 to it (line 1414). The supervisor handler tests per-head bits in this register: (super & (0x20<<head->id)) and (super & (0x80<<head->id)) for SV1 (lines 1382-1384), (0x80<<id) and (0x200<<id) for SV2 (1391/1396/1401), (0x80<<id) for SV3 (1408). Decoding 0x370 = bits 4,5,6,8,9 (0x10|0x20|0x40|0x100|0x200); 0x378 additionally sets bit3 (0x8). Bit3 (0x8) is NOT read by the nv50 supervisor handler's per-head tests (those start at 0x20). In the INTR_1 register 0x8 = head1 vblank, and 0x610030 mirrors a similar low-bit layout, so bit3 here is most consistent with a head/vblank-phase or 'supervisor-cycle armed' flag that toggles when a new EVO commit enters the pipe. HONEST LIMIT: the exact semantics of 0x610030 bit3 are NOT defined in this kernel's source (the handler only consumes bits>=0x10), and the envytools g80 pdisplay.rst is a stub, so bit3=0x8 is the single supervisor-state bit that flips with the wedge but its precise meaning is UNDECODED. It is a strong correlation marker, not a decoded cause.",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/.../disp/nv50.c:1374 (super=rd32(0x610030)); :1382-1411 (per-head bit tests 0x20/0x80/0x200<<id); :1414 (ack wr 0x80000000) ; envytools g80 pdisplay.rst is a TODO stub (no bit3 definition)"
+          },
+          {
+            "register": "disp611014 / disp61102c / disp611034 / disp61103c / disp611044 (PDISPLAY 0x611xxx block, steady)",
+            "healthy": "00824414 / 002800bf / 0460083f / 04650898 / 0004002b",
+            "wedged": "identical (all constant through the wedge)",
+            "decoded_meaning": "All five are in the 0x611000 sub-range of PDISPLAY (0x610000-0x61ffff confirmed = PDISPLAY 'unified display engine' in envytools mmio map). In THIS kernel's nv50/mcp79 code path none of 0x611014/02c/034/03c/044 is written or read (the only 0x611xxx accesses in-tree are GF119+ at 0x611494/0x6111f0 in gp102.c and the GSP r535 path at 0x611c00/0x611d80/0x611ec0 - neither applies to MCP79). On NV50/G80 the 0x611000 region is the PDISPLAY per-channel/dispatch STATUS + capability area; the values here (e.g. 0x611014=00824414, 0x61103c=04650898 which look like packed mode/timing or caps words) are STATIC display-config/caps registers the sampler snapshots as a stable fingerprint. They do NOT change at the wedge, so they are confirmed-not-involved. HONEST LIMIT: the individual bit-fields of these five 0x611xxx registers are NOT defined in the kernel source for the nv50 path and the envytools g80 pdisplay docs are stubs, so their internal fields are UNDECODED. Their value as evidence is purely 'invariant control = wedge is isolated to 0x610200/0x610220 channel ctrl + 0x610030 supervisor bit3'.",
+            "evidence": "envytools mmio map (0x610000-0x61ffff = PDISPLAY) https://envytools.readthedocs.io/en/latest/hw/mmio.html ; in-tree 0x611xxx only at /usr/src/linux-7.0.13-gentoo/.../disp/gp102.c:42-44,109-111,152-153 (GF119+) and gsp/rm/r535/disp.c:616-1431 (GSP) - NOT the MCP79 nv50 path"
+          },
+          {
+            "register": "pmc_enable = 0x000200 (NV_PMC_ENABLE), constant dff3d113",
+            "healthy": "dff3d113",
+            "wedged": "dff3d113 (unchanged)",
+            "decoded_meaning": "NV_PMC_ENABLE master engine-enable. bit30 (0x40000000) = PDISPLAY power/enable; it is SET (0xdf... => bit30=1) in both states, i.e. PDISPLAY is powered up the whole time. This is the exact bit the in-tree unwedge routine toggles to power-cycle PDISPLAY (chan.c lines 246-249 mask 0x000200 bit 0x40000000 off then on). It being unchanged at the wedge confirms the wedge is INSIDE the powered PDISPLAY block (a latched fetch state), not a power/clock-gating loss - consistent with the known fix being a full PDISPLAY power-cycle rather than any per-channel re-arm.",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/.../disp/chan.c:233-249 (NV_PMC_ENABLE 0x000200 bit30=0x40000000 = PDISPLAY power-cycle in nvkm_disp_chan_unwedge)"
+          }
+        ],
+        "findings": [
+          {
+            "finding": "core_ctrl/base1_ctrl are the NV50 EVO channel DMA control register at 0x610200 + chid.ctrl*0x10 (core ctrl=0 -> 0x610200, base0 ctrl=1 -> 0x610210, base1 ctrl=2 -> 0x610220). This is established directly from the driver: nvkm_disp_chan_recover prints 'ctrl 0x610200=%08x' as 0x610200 + ctrl*0x10 (chan.c:175-178) and nvkm_disp_chan_unwedge prints 'core 0x610200 base1 0x610220' (chan.c:276-278).",
+            "confidence": "high",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/.../disp/chan.c:175-178, 276-278 ; nv50.c:949 (core uses bare 0x610200), :641 (dmac uses 0x610200+ctrl*0x10)"
+          },
+          {
+            "finding": "bit31 (0x80000000) of the channel ctrl register = BUSY/NOT-IDLE, and it is the latch that wedges. nv50_disp_core_init and nv50_disp_dmac_init both arm the channel then 'wait for it to go inactive' by polling until (rd32 & 0x80000000)==0. In the captured wedge bit31 is set on BOTH core (0x8f...) and base1 (0x8e...) and never clears, while base0 (idle head) keeps bit31=0. This is the register-level manifestation of the 'core notifier timeout' / 'base-1: timeout' dmesg lines.",
+            "confidence": "high",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/.../disp/nv50.c:982-990 (core init bit31 inactive-wait), :670-678 (dmac init bit31 inactive-wait); event file lines 3-4 (bit31=True on core+base1)"
+          },
+          {
+            "finding": "bit0=ENABLE, bit4=pushbuffer-bound, byte0=0x1b is constant (channel stays 'running/connected' through the wedge). The wedge is NOT a disable/teardown: the enable bits remain set; only the busy-latch (bit31) and the byte1 running-state nibble change. byte1 nibble: core idle 0x0b -> wedged 0x0e ; base1 idle 0x05 -> pre-wedge 0x03 -> wedged 0x06->0x07. The driver only names the [19:16] init/fini handshake states (0x2/0x3 unstick codes, 0x1e drain mask); the byte1 running-state nibble values are NOT symbolically defined in-source, so the specific codes 0x0a/0x0e/0x06/0x07 are observed-but-undecoded state-machine codes.",
+            "confidence": "high",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/.../disp/nv50.c:663-668,975-980 (init sets bit0,bit4 via 0x13/0x01000013, mask 0x10), :950 (fini clears 0x3), :969-972 (only [23:16] unstick states named) ; event transition table"
+          },
+          {
+            "finding": "super1 = 0x610030 = the EVO SUPERVISOR state register (read into 'super' in nv50_disp_super, acked with wr 0x80000000). super0 = 0x610024 = DISP_INTR_1 (read as intr1 in nv50_disp_intr). intr_en0=0x610028 (INTR_EN_0) and intr_en1=0x61002c (INTR_EN_1) are both 0 in the capture = display IRQs masked at the PDISPLAY level during the idle/wedge window. This reassigns the sampler's loosely-named fields to concrete PDISPLAY registers.",
+            "confidence": "high",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/.../disp/nv50.c:1374,1414 (0x610030 super), :1474-1503 (0x610020 intr0 / 0x610024 intr1), :562 (0x610028 INTR_EN_0 via chan_intr), :375/383 (0x61002c INTR_EN_1 via vblank get/put)"
+          },
+          {
+            "finding": "super1 bit3 (0x8) sets at the exact wedge sample (0x370->0x378). However the nv50 supervisor handler only consumes 0x610030 bits >= 0x10 (0x20/0x40/0x80/0x100/0x200<<head->id); bit3 is below that and is NOT decoded by the driver. By analogy with INTR_1 (where 0x8 = head1 vblank/'in-progress') bit3 most plausibly marks a head/commit-phase 'in progress' flag that latches when the first post-idle commit enters the supervisor pipe. This remains a correlation, not a source-confirmed meaning.",
+            "confidence": "medium",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/.../disp/nv50.c:1382-1411 (handler tests only bits>=0x20) ; :1494-1497 (0x8=head1 vblank in INTR_1, the adjacent register) ; envytools g80 pdisplay.rst = TODO stub"
+          },
+          {
+            "finding": "super0=0x610024=0x01ff0000 is a STEADY latched-baseline value (present in the healthy 30 s window too), so it is NOT a wedge signature despite all 5 channel-error bits (0x1f0000) being set. With intr_en=0 nothing clears these latches. This guards against over-reading the error bits as the wedge cause.",
+            "confidence": "high",
+            "evidence": "baseline CSV held 01ff0000 through healthy idle ; /usr/src/linux-7.0.13-gentoo/.../disp/nv50.c:1477 (0x1f0000 = chan-error latch), :1511 (fini zeroes it)"
+          },
+          {
+            "finding": "pmc_enable bit30 (PDISPLAY power) stays SET (dff3d113) through the wedge => the engine is powered, the wedge is a latched internal fetch state, and the in-tree fix is a PDISPLAY power-cycle of exactly this bit (chan.c unwedge masks 0x000200 0x40000000 off/on). This is register-level confirmation that per-channel re-arm cannot help and only the power-cycle clears the latch.",
+            "confidence": "high",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/.../disp/chan.c:246-249 (0x000200 bit30 PDISPLAY power-cycle); pmc_enable constant in event file"
+          },
+          {
+            "finding": "The 0x611xxx 'disp611*' registers are inside PDISPLAY (0x610000-0x61ffff) but are NOT touched on the MCP79/nv50 code path (only GF119+/GSP paths use 0x611xxx in-tree). They are static caps/config words the sampler uses as an invariant fingerprint; their internal bit-fields are undecodable from this kernel's source and the envytools g80 docs are stubs. They are confirmed invariant across the wedge, which usefully isolates the wedge to 0x610200/0x610220 + 0x610030 bit3.",
+            "confidence": "high",
+            "evidence": "envytools mmio map (PDISPLAY range) ; in-tree 0x611xxx only at /usr/src/linux-7.0.13-gentoo/.../disp/gp102.c and gsp/rm/r535/disp.c, none on nv50 path"
+          },
+          {
+            "finding": "Single-event caveat applies to all timing/ordering claims: the byte1 state-nibble progression (core 0x0a->0x0e, base1 0x03->0x06->0x07) and the bit3 set are each one observation. The DECODE (which register, which bit = busy/enable/supervisor) is from source and is robust; the CAUSAL reading (bit3 flip triggers the latch) is correlation from one capture.",
+            "confidence": "high",
+            "evidence": "event file is a single wedge (lines 48-51, 3 dmesg lines only); CONSTRAINT in task brief"
+          }
+        ],
+        "next_data_needed": [
+          "Multi-event corroboration: confirm across >=5 captured wedges that super1(0x610030) bit3=0x8 ALWAYS sets at the transition sample and is ALWAYS clear during drained idle. One event cannot establish it as a necessary precondition vs an incidental commit-phase flag.",
+          "Read 0x610030 at a fine cadence (the sampler's 100ms dense burst) THROUGH a healthy commit-after-idle that does NOT wedge, to see whether bit3 transiently sets-and-clears in normal operation (would demote it from 'wedge marker' to 'normal commit phase').",
+          "Capture the byte1 state-nibble of core/base1 across several normal commit-after-idle cycles to learn the legal idle<->active nibble sequence, so the wedged codes 0x0e/0x07 can be classified as 'stuck-in-legal-state' vs 'illegal code'. Source does not name these nibbles.",
+          "Snapshot 0x640000 (core PUT mirror, the 0x640000+ctrl*0x1000 region read in chan.c:177-178 recover and nv50.c:651/959 fini) at the wedge to corroborate the FIFO PUT/GET against the user-BAR put/get the sampler already logs.",
+          "Read the per-channel error/trap latch 0x610080+chid*8 and 0x610084+chid*8 (decoded in nv50_disp_intr_error, nv50.c:1441-1445: code,type,mthd,data) at the wedge to see if an INVALID_STATE/TRAP error type was latched for the core/base1 chid - this would convert 'fetch parks' into a named EVO error.",
+          "Add NV_PMC_INTR (0x000100) and the disp inth status to the sample set to confirm whether a display interrupt is pending-but-masked at the moment of wedge (intr_en0/1 are 0, so the supervisor work that would advance state may simply never be queued).",
+          "Obtain the real envytools rnndb display XML that names the 0x610200 STATE field and 0x610030 supervisor bits (the public g80 pdisplay.rst is a TODO stub); without it the byte1 nibble and 0x610030 bit3 stay source-undecoded."
+        ]
+      },
+      {
+        "dimension": "fetchpark",
+        "decoded_registers": [
+          {
+            "register": "core_get = 0x640004 (NV507C_GET within user region 0x640000 + chid.user*0x1000, chid.user=0 for core)",
+            "healthy": "0x00000200 (drained, == PUT); idle ref put==get",
+            "wedged": "0x000002c8, FROZEN from 07:17:58 onward; PUT advances to 0x308 and stays ahead",
+            "decoded_meaning": "GET is the hardware fetch-DMA consumer pointer: byte offset (field PTR = bits[11:2], byte-granular) into the 0x1000 EVO core pushbuffer that the display fetch engine has consumed up to. nv50_dmac_free() = (GET - cur - 5) and nv50_dmac_wait() polls until free >= size. GET frozen behind PUT means the core channel's fetch DMA engine stopped consuming methods: it latched at dword 0x2c8>>2 = 0xB2 (dword 178) and never advanced, so free never grows and the 2000ms wait times out forever. This is the physical core fetch-park.",
+            "evidence": "disp.c:163-167 (nv50_dmac_free reads NV507C GET PTR), disp.c:213-221 (nv50_dmac_wait polls free, schedules recover on timeout); include/nvhw/class/cl507c.h:60-63 (NV507C_PUT=0x0, NV507C_GET=0x4, PTR=11:2); nv50.c:549-554 (user region 0x640000 + user*0x1000); sampler.py:32 (0x640004 = core_get)"
+          },
+          {
+            "register": "core_put = 0x640000 (NV507C_PUT, chid.user=0)",
+            "healthy": "0x00000200 (== GET, drained)",
+            "wedged": "0x000002e8 at onset, then 0x00000308 and pinned (no further advance: the in-flight commit cannot complete)",
+            "decoded_meaning": "PUT is the software producer pointer written by nv50_dmac_kick after nv50_dmac_wait carves out space (disp.c:202-227). At 07:17:58 the driver committed the first push after idle: PUT stepped 0x200 -> 0x2e8 (then 0x308). Because GET froze at 0x2c8, this commit is the one that is stuck: the methods between GET=0x2c8 and PUT=0x308 (16 dwords) are queued but never fetched. PUT freezing at 0x308 (not advancing further) shows the driver itself then blocked in nv50_dmac_wait for the NEXT push (no free space, GET dead).",
+            "evidence": "disp.c:202-227 (cur/PUT bookkeeping + kick), nv50.c:553 (PUT at 0x640000+user*0x1000); sampler.py:32"
+          },
+          {
+            "register": "base1_get = 0x642004 (NV507C_GET, chid.user=2, head1 base channel)",
+            "healthy": "0x000007f4 (== PUT, drained); idle base1_ctrl=0c05001b drained",
+            "wedged": "still drained 0x088c at the onset sample (07:17:58!), only freezes at 0x000008ac from 07:18:03 (~5s later)",
+            "decoded_meaning": "base1 GET is head1's base-channel fetch consumer. CRITICAL: at the exact onset sample where core GET is already frozen (07:17:58), base1 is STILL drained (put==get=0x88c). base1 GET only latches frozen at 0x8ac one baseline sample (~5s) later. So the core fetch parks STRICTLY BEFORE base1's fetch parks. PUT keeps advancing (0x91c->0x964->0x9ac in the 100ms burst) as the compositor keeps queuing flips, but GET is dead: classic fetch-park, base1 frozen at byte 0x8ac (dword 0x2AB).",
+            "evidence": "nv50.c:553 (user region), cl507c.h:62-63; sampler.py:34 (0x642004=base1_get); event file lines 3-4 + transition table rows 07:17:58 vs 07:18:03"
+          },
+          {
+            "register": "base1_put = 0x642000",
+            "healthy": "0x000007f4",
+            "wedged": "0x088c -> 0x091c -> 0x0964 -> 0x09ac, KEEPS advancing while GET pinned at 0x8ac",
+            "decoded_meaning": "Compositor continues to write/kick new page-flips onto head1's base channel after the park (each flip = a PUT advance). The growing PUT-minus-GET gap with a dead GET is the hardware signature that the fetch engine stopped, not that software stopped submitting. Confirms the park is downstream of the push-buffer producer (hardware fetch/arbiter), not a software stall.",
+            "evidence": "event file lines 7-46 (dense burst PUT creep); sampler.py:34"
+          },
+          {
+            "register": "core_ctrl = 0x610200 (chid.ctrl 0)",
+            "healthy": "idle ref 0x2d0b001b; pre-wedge 0x490a001b",
+            "wedged": "0x8f0e001b (top nibble 4->8 = bit31 set)",
+            "decoded_meaning": "This is the EVO channel control register (0x610200 + ctrl*0x10). bit31 (0x80000000) is the channel-busy/processing flag: nv50_disp_dmac_init() writes 0x13 (bits: 0x10 enable | 0x03 run) then WAITS for bit31 to CLEAR as the done condition (nv50.c:668-673 'wait for it to go inactive', !(reg & 0x80000000)). bit31 LATCHED SET in the wedge = the core dmac state machine is stuck mid-processing and never returns to inactive. Low byte 0x1b = 0x10|0x08|0x02|0x01 (enabled+running). The state nibble [bits 19:16] reads 0x0e wedged vs 0x0b idle vs 0x0a pre-wedge: the 0x001e0000 field that fini() polls to confirm deactivation. 0x0e is a non-idle fetch state.",
+            "evidence": "nv50.c:666-678 (init writes 0x13, polls bit31 clear), nv50.c:641-648 (fini masks 0x1010/0x0003, polls 0x001e0000 status field); chan.c:177 (ctrl reg = 0x610200 + ctrl*0x10); sampler.py:27"
+          },
+          {
+            "register": "base1_ctrl = 0x610220 (chid.ctrl 2)",
+            "healthy": "idle 0x0c05001b; pre-wedge 0x4003001b (note: == base0 idle value)",
+            "wedged": "0x8e06001b at onset (bit31 set simultaneously with core), 0x8e07001b once GET freezes",
+            "decoded_meaning": "head1 base channel control. bit31 latches SET at the SAME onset sample as core_ctrl bit31 (4->8 top nibble on both, simultaneously), even though base1's GET pointer is still draining at that instant. So the ctrl-reg latch (state machine wedge) on base1 PRECEDES base1's own fetch-pointer freeze by ~5s. This strongly implies a shared trigger latches both channels' control state at once, while the per-channel fetch pointers drain/freeze on their own schedule.",
+            "evidence": "nv50.c:668-672 (bit31 semantics), event file lines 3-4; transition table (both top-nibbles 4->8 at 07:17:58); sampler.py:27"
+          },
+          {
+            "register": "base0_ctrl = 0x610210 (chid.ctrl 1, head0 base) AND core_put/get of base0",
+            "healthy": "0x4003001b",
+            "wedged": "0x4003001b UNCHANGED (bit31 NOT set), base0 put==get==0 (channel idle/unused)",
+            "decoded_meaning": "The head0 base channel is untouched by the wedge: bit31 never latches, pointers stay 0. Only the two ACTIVE channels (core + head1 base) wedge. This rules out a blanket all-channels-frozen-by-PMC story and shows the latch follows channels that have in-flight fetch activity. Single-head desktop (head1 active, head0 unused) is consistent.",
+            "evidence": "event file lines 7-46 (base0_ctrl=4003001b, base0_put/get=0 throughout); sampler.py:27"
+          },
+          {
+            "register": "super1 = 0x61002c (the load-bearing 0x370->0x378 flip)",
+            "healthy": "0x00000370 (init/reset value)",
+            "wedged": "0x00000378 (bit3 = 0x8 set) at the EXACT onset sample",
+            "decoded_meaning": "NOT a supervisor-state-machine register. 0x61002c is the DISPLAY INTERRUPT-ENABLE register. nv50.c:1575 resets it to 0x370 at init. nv50_head_vblank_get(head) does nvkm_mask(0x61002c, (4<<head->id), set) and vblank_put clears it. For head1 (id=1): 4<<1 = 0x8. So 0x370->0x378 is EXACTLY 'head1 VBLANK interrupt enabled'. The driver armed a vblank wait on head1 at the instant of the wedge: i.e. a page-flip on head1's base channel was committed that needs vblank, right after the idle period. This is direct evidence the wedge fires on a head1 flip-commit, not a spontaneous hardware event.",
+            "evidence": "nv50.c:375-383 (nv50_head_vblank_get/put toggle bit 4<<head->id in 0x61002c), nv50.c:1575 (0x61002c reset to 0x370); sampler.py:29 (0x61002c=super1)"
+          }
+        ],
+        "findings": [
+          {
+            "finding": "GET-frozen-behind-PUT physically means the EVO fetch DMA engine stopped consuming methods. nv50_dmac_wait (disp.c:194) polls nv50_dmac_free (disp.c:160) which is computed purely from the GET pointer (NV507C_GET, byte offset, PTR=bits[11:2]). With GET dead, free never reaches the requested size and the 2000ms nvif_msec loop expires -> -ETIMEDOUT -> WARN_ON + recover schedule. Both the core (GET pinned 0x2c8) and base1 (GET pinned 0x8ac) show this exact signature, with PUT advancing ahead. This is a genuine hardware fetch-park, not a software submission stall (PUT keeps moving).",
+            "confidence": "high",
+            "evidence": "disp.c:160-167, disp.c:194-228; cl507c.h:60-63; event file lines 3-5 + dense burst showing PUT advance with GET pinned"
+          },
+          {
+            "finding": "The CORE channel parks FIRST and base1 parks ~5s later in FETCH-POINTER terms (core GET frozen at 07:17:58 while base1 still drained 0x88c==0x88c; base1 GET only freezes at 07:18:03). This temporal ordering localises the ROOT fetch stall to the core/shared path: at the moment base1 was still happily draining its queue, the core fetch was already dead. A pure per-channel base1 bug would not require core to die first.",
+            "confidence": "medium",
+            "evidence": "transition table rows 07:17:28 (drained), 07:17:58 (core get frozen 0x2c8, base1 still drained 0x88c), 07:18:03 (base1 get freezes 0x8ac); dmesg ordering 1906.37s core vs 1908.81s base-1"
+          },
+          {
+            "finding": "BUT the dmesg ordering (core notifier timeout 1906.37s BEFORE base-1 timeout 1908.81s, ~2.4s apart) is at least partly a SOFTWARE artefact of the atomic-commit flush order, not proof of hardware causation. nv50_disp_atomic_commit_tail commits/waits the core channel (nv50_disp_atomic_commit_core -> ntfy_wait_done -> 'core notifier timeout', disp.c:2147-2151) BEFORE looping the planes (base channels) and calling nv50_wndw_wait_armed -> '%s: timeout' (disp.c:2405-2410). So the core message necessarily prints first regardless of which hardware block actually stalled first. The ~2.4s gap = two back-to-back 2000ms-ish waits. Use the register-pointer ordering (core GET freezes a full baseline sample before base1 GET), NOT the dmesg ordering, as the hardware-timing evidence.",
+            "confidence": "high",
+            "evidence": "disp.c:2386-2411 (commit_core before plane wait loop), disp.c:2147-2151 (core notifier timeout), disp.c:2405-2410 (per-plane timeout)"
+          },
+          {
+            "finding": "The control-register latch (ctrl bit31, 0x80000000) sets SIMULTANEOUSLY on core AND base1 at the onset sample (both top nibbles 4->8 at 07:17:58), while base0 (idle head) ctrl is untouched. Combined with the staggered FETCH-pointer freeze (core pointer dies first, base1 pointer ~5s later), this is the signature of a SHARED trigger that latches the state machines of all active channels at once, after which each channel's fetch pointer freezes when it next tries to advance. core, being the channel mid-commit (PUT just stepped 0x200->0x2e8), freezes its pointer immediately; base1 still had a drained queue and only freezes once its next flip is fetched. This is consistent with a shared MCP79 EVO fetch arbiter / dispatch stall, not an independent base1 defect.",
+            "confidence": "medium",
+            "evidence": "event file lines 3-4 (both bit31=True); transition table simultaneous 4->8; nv50.c:666-672 (bit31 = dmac processing/busy); base0_ctrl constant 0x4003001b"
+          },
+          {
+            "finding": "super1 0x370->0x378 is NOT a supervisor-state bit. 0x61002c is the disp interrupt-ENABLE register and bit 0x8 = (4<<1) = head1 VBLANK interrupt enable (nv50_head_vblank_get for head id 1). It flips set at the exact wedge sample because the driver armed a head1 vblank wait for a page-flip commit. This is positive evidence that the wedge coincides with a head1 base-channel flip-commit after idle, i.e. it supports the 'first commit after display-idle' hypothesis from the data, specifically a flip on head1.",
+            "confidence": "high",
+            "evidence": "nv50.c:375-383, nv50.c:1575; sampler.py:29; transition table super1 0x370->0x378 at onset"
+          },
+          {
+            "finding": "Net localisation verdict for THIS event: the root park is best described as a SHARED fetch/dispatch stall on the MCP79 EVO that manifests on the core channel first (its fetch pointer is the first to die), with head1's base channel following ~5s later, and the head0 base channel (idle) entirely spared. The data is more consistent with 'core/shared fetch path stalls and starves the active DMA channels' than with 'base1 independently wedges'. The simultaneous bit31 latch on both active channels is the strongest single-event hint of a shared arbiter, but with one event this remains a hypothesis.",
+            "confidence": "medium",
+            "evidence": "synthesis of pointer-ordering (core-first), simultaneous ctrl bit31 latch, base0 spared; constrained to one capture"
+          },
+          {
+            "finding": "A genuinely shared HARDWARE arbiter on Tesla EVO is NOT confirmed in the nouveau source: nouveau models each channel independently (per-channel ctrl 0x610200+ctrl*0x10, per-channel user region 0x640000+user*0x1000) and has no register abstraction for a cross-channel fetch arbiter. The shared-arbiter conclusion is inferred from the observed cross-channel correlation, not from a documented register. The envytools/rnndb display class docs would be needed to name an actual shared EVO fetch/FIFO block on NV50/MCP79; I could not decode such a block from the kernel source.",
+            "confidence": "medium",
+            "evidence": "absence of any cross-channel fetch register in nvkm/engine/disp/nv50.c and dispnv50/; per-channel-only abstractions at nv50.c:549-554, 632-681"
+          }
+        ],
+        "next_data_needed": [
+          "Sub-5s (ideally 100ms continuous, not just the post-trigger burst) sampling of core_get AND base1_get spanning the 30s of idle THROUGH the onset, to nail whether core GET truly freezes before base1 GET begins to move at all, and whether base1 ever attempts a fetch between the ctrl-bit31 latch and its pointer freeze. The current 5s baseline cadence makes the core-first ordering rest on a single sample.",
+          "The full dmesg for a captured event (the nvkm 'chan N recover: ctrl 0x610200=.. put 0x640000=..' lines from chan.c:175, and any nv50_disp_intr_error 'ERROR ...' lines from nv50.c:1471-block) to see if an EVO error interrupt (0x610020 bit 0x00010000<<chid, error code at 0x610080+chid*8) fired BEFORE the timeouts. An error-code would name the fetch fault. The sampler must stop keyword-filtering dmesg and snapshot the full ring on event.",
+          "Read 0x610030 (the actual supervisor-state register, nv50.c:1374) and 0x610024/0x610020 (intr status, not just the 0x610028/0x61002c enables) into the sampler register set. super0/super1 as currently sampled are interrupt-ENABLE regs; the supervisor state machine and pending intr bits are unsampled and would show whether a supervisor cycle was mid-flight at the wedge.",
+          "Sample 0x610080 + chid*0x08 (EVO method error address) and 0x610084 + chid*0x08 (error data/code) for core and base1: these are written/read by nv50_disp_intr_error (nv50.c top of intr block) and would decode WHICH method/subchannel the fetch choked on. Constant-vs-changing across a wedge directly tests the shared-vs-per-channel question.",
+          "envytools rnndb display class definition for NV50/G80 EVO (rnndb/display/nv_evo.xml or display.xml) to confirm whether a shared EVO fetch/dispatch arbiter exists at the 0x611xxx PDISPLAY dispatch block (the disp611014/61102c/611034/61103c/611044 the sampler reads as opaque constants). Decode those five registers: if any is a shared FIFO/arbiter status that changes state at a wedge across multiple events, that would upgrade the shared-arbiter finding from medium to high.",
+          "More than one captured event. Every ordering and simultaneity claim here rests on a single 5s-resolution capture; statistics across >=5 wedges are required to establish that core-GET-freezes-first and the simultaneous ctrl-bit31 latch are reproducible rather than sampling coincidence."
+        ]
+      },
+      {
+        "dimension": "trigger",
+        "decoded_registers": [
+          {
+            "register": "super1 = 0x61002c (DISP INTR_EN_1, NOT the supervisor-pending reg)",
+            "healthy": "0x00000378 (normal desktop, 06:55) / 0x00000370 during the 30s pre-wedge deep-idle",
+            "wedged": "0x00000378 (bit3 re-set at the exact wedge sample 07:17:58)",
+            "decoded_meaning": "This is the DISP interrupt-ENABLE register, written to 0x370 at engine init with the comment 'enable supervisor interrupts, disable everything else'. Base 0x370 = bits 4,5,6 (supervisor 1/2/3 enables = the 0x10/0x20/0x40 that nv50_disp_intr latches into super.pending) plus bits 8,9. bit3 (0x8) = head1 vblank-IRQ-enable, set/cleared ONLY by nv50_head_vblank_get/put via nvkm_mask(0x61002c, 4<<head->id). The 0x370->0x378 step at the wedge sample therefore decodes as: head1 vblank IRQ was re-enabled (a drm_crtc_vblank_get) right when the wedge formed. It had been OFF for the 30s idle (drm auto-disabled vblank) and came back ON for the first commit. It is NOT a wedge-unique bit (normal desktop also shows 0x378); the load-bearing observation is the OFF->ON transition coinciding with the first post-idle commit.",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:1574-1576 (init writes 0x61002c=0x370, 'enable supervisor interrupts'); nv50.c:375 & 383 (nv50_head_vblank_put/get mask 4<<head->id into 0x61002c); CSV /home/neo/nvac-evo-observatory/data/samples-2026-06-24.csv:210-221 (0x370 held through idle, 0x378 at 07:17:58); nv50.c:1499-1501 (intr1 0x70 -> super.pending)"
+          },
+          {
+            "register": "super0 = 0x610028 (DISP channel-AWAKEN IRQ enable)",
+            "healthy": "0x01ff0000",
+            "wedged": "0x01ff0000 (unchanged)",
+            "decoded_meaning": "This is the per-channel uevent/interrupt enable register (nv50_disp_chan_uevent_init/fini and nv50_disp_chan_intr mask 0x00010001<<chid here). 0x01ff0000 = the AWAKEN-enable bits (0x00010000<<chid) for all 9 EVO channels (chid 0..8) set, low half (the pending/arm half 0x1<<chid) clear. It does not move at the wedge, so the channel-completion IRQ enables are intact; the wedge is not a masked-IRQ artifact at this level.",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:524,534,560-562 (0x610028 = chan uevent/intr enable, mask 0x00010001<<chid)"
+          },
+          {
+            "register": "core_ctrl = 0x610200 (EVO core channel DMA control)",
+            "healthy": "0x2d0b001b idle / 0x490a001b pre-wedge (bit31 CLEAR in both)",
+            "wedged": "0x8f0e001b (bit31 SET, latched across every dense-burst sample)",
+            "decoded_meaning": "0x610200+ctrl*0x10 is the NV50 channel control reg. nv50_disp_dmac_init writes 0x13 then waits for bit31 (0x80000000) to CLEAR ('wait for it to go inactive'); so bit31=1 means the channel is mid-transition / processing and has NOT settled. At the wedge bit31 latches set and never clears = the core is stuck processing its UPDATE and never completes, which is exactly why the core notifier never fires (commit_tail core path). Low byte 0x1b (bits 0,1,3,4) is constant (run-mode + DMA_ENABLED bit4 per rnndb). The byte-1 nibble is the channel STATE: 0x0b idle -> 0x0a pre-wedge -> 0x0e wedged ('busy 0x0e' per prior RE). rnndb (g80_pdisplay.xml CHANNEL@0x200) only enumerates bit4=DMA_ENABLED, so the 0x0a/0x0b/0x0e state codes are NOT decodable from rnndb; bit31=processing IS firmly decoded from the driver init/fini wait loops.",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:666-678 (init writes 0x13, waits bit31 clear = 'go inactive'); nv50.c:641-648 (fini, state field 0x001e0000); https://github.com/envytools/envytools/blob/master/rnndb/display/g80_pdisplay.xml CHANNEL array @0x0200 stride 0x10, only bit4 DMA_ENABLED defined"
+          },
+          {
+            "register": "base1_ctrl = 0x610220 (head1 base/window channel DMA control)",
+            "healthy": "0x4003001b pre-wedge (bit31 CLEAR, drained)",
+            "wedged": "0x8e06001b -> 0x8e07001b (bit31 SET, latched ~2.4s after core)",
+            "decoded_meaning": "Same register family as core (chid.ctrl=2). bit31 latches set ~one sample after the core, matching the dmesg ordering (core notifier 1906.37s, base-1 1908.81s). base1_put keeps advancing from new flip commits while base1_get is pinned (08ac in the 100ms burst) = the fetch is parked exactly as Debian #976788 describes. base0 (0x610210, head0 base) stays 0x4003001b untouched: only the channels involved in the post-idle commit wedge.",
+            "evidence": "event file /home/neo/nvac-evo-observatory/events/wedge-20260624T071803.txt:3-4,7-46 (base1 put advances, get pinned); CSV:221-222; nv50.c:651 (suspend_put = 0x640000+ctrl*0x1000 confirms per-channel PUT addressing)"
+          },
+          {
+            "register": "intr_en0=0x610020 / intr_en1=0x610024",
+            "healthy": "0x00000000 / 0x00000000",
+            "wedged": "0x00000000 / 0x00000000",
+            "decoded_meaning": "0x610020/0x610024 are NV_PDISPLAY_INTR_0/1 (status+ack), read by nv50_disp_intr; 0x610024 carries vblank bits 0x4/0x8 and the supervisor pending 0x70 which are write-1-to-ack. Reading 0 in the steady wedge state just means no disp IRQ is currently pending/asserted at sample time (the supervisor cycles that drove the commit already completed and were acked). It does NOT mean IRQs are masked (that mask lives in 0x61002c=super1). So the captured 0 here is uninformative about the trigger; the live super.pending value during the wedging supervisor cycle was lost.",
+            "evidence": "/usr/src/linux-7.0.13-gentoo/drivers/gpu/drm/nouveau/nvkm/engine/disp/nv50.c:1474-1503 (0x610024 read as intr1, vblank 0x4/0x8 and super 0x70 acked by write-back)"
+          }
+        ],
+        "findings": [
+          {
+            "finding": "MOST-LIKELY MECHANISM: the wedge is a CORE-channel UPDATE that never settles, dragging the interlocked head1 BASE flip into a fetch-park. In nv50_disp_atomic_commit_tail the core commit (nv50_disp_atomic_commit_core -> core507d_update writes NV507D UPDATE with interlock[BASE], then ntfy_wait_done) is followed by per-plane nv50_wndw_wait_armed waits. The two dmesg lines map exactly: 'core notifier timeout' = disp.c:2151 (core UPDATE never signals its notifier), 'base-1: timeout' = disp.c:2410 (the head1 window/base flip notifier never begins). core_ctrl bit31 latching set (0x610200, 'processing/not-inactive' per nv50.c:666-678) is the hardware signature of that stuck UPDATE; base1 bit31 latches ~2.4s later because the base flip was interlocked behind the core (nv50_wndw_flush_set forces NON_TEARING + interval=1 whenever interlock[CORE] is set, wndw.c:152-155). The core enters the bad state first, the base park is downstream.",
+            "confidence": "high",
+            "evidence": "disp.c:2147-2151 (core ntfy + 'core notifier timeout'), disp.c:2386-2394 (core commit gated on interlock), disp.c:2405-2411 ('%s: timeout' = base-1), wndw.c:152-155 (CORE interlock forces base vblank-synced flip), event file dmesg lines 49-51"
+          },
+          {
+            "finding": "'FIRST COMMIT AFTER A DISPLAY-IDLE PERIOD' is a plausible and partially-corroborated trigger. Three independent signals align at the single transition sample 07:17:58: (a) 30s of fully-drained idle (core/base1 put==get) ends with the first PUT advance (core 0x200->0x2e8); (b) super1 bit3 goes 0->1 = head1 vblank IRQ re-enabled via drm_crtc_vblank_get, which the commit_tail does for an active CRTC carrying an event (disp.c:2317-2324); (c) the state nibble steps 0x0a->0x0e. A commit that arrives after drm has auto-disabled vblank (deep idle) takes the vblank-get + interlocked-core-update path, and THAT specific cold-start commit is the one that wedges. This is consistent with a swayidle/wlopm or pageflip-after-quiescence event waking the pipe.",
+            "confidence": "medium",
+            "evidence": "CSV:210-221 (30s drained idle 490a001b/put==get, then 07:17:58 PUT steps + super1 0x370->0x378); nv50.c:383 (vblank_get sets 0x61002c bit3); disp.c:2317-2324 (vblank_get on active crtc w/ event)"
+          },
+          {
+            "finding": "The trigger is almost certainly NOT a soft_dpms-style full head re-program in THIS event. soft_dpms (patch 0011) keeps crtc->active TRUE across a DPMS-off so the wake takes the selective delta path and never emits the ~96-dword head batch (disp.c:2622-2660, head.c:366-377 set.mask=~0 branch). The display config registers are steady across the wedge (disp611014=00824414, disp61102c=002800bf, disp611034/3c/44 all unchanged), and base0/head0 is untouched. A full modeset/head-reprogram would have churned those head-state regs. So this looks like a normal interlocked flip/update on an already-configured pipe, not the active-toggle case 0011 was built to suppress. The base park sits below the layer soft_dpms protects, consistent with the memory note that 0011 is wedge-safe-but-not-immune and the wedge is the stock MCP79 base-park bug.",
+            "confidence": "medium",
+            "evidence": "disp.c:2622-2660 (soft_dpms keeps active=true, delta path); head.c:366-377 (full set.mask=~0 only when armh not active); event file lines 7-46 (disp611014/61102c/611034/61103c/611044 constant); MEMORY note that 0011 is wedge-safe and wedge = stock base-park"
+          },
+          {
+            "finding": "super1 bit3 is a vblank-enable bit, NOT a supervisor-state bit; the prompt's framing of it as 'the one supervisor-state bit that flips' should be corrected. The supervisor-pending lives in 0x610024 bits 0x70 (lost in this capture, read 0). 0x61002c=super1 is the DISP interrupt-ENABLE register (init value 0x370 = supervisor enables 4/5/6 + 8/9). The 0->1 on bit3 is real and informative (it marks vblank re-arm at the wedge) but it tells us about the COMMIT (vblank_get), not about a supervisor state machine bit. This sharpens the trigger story (it is evidence of a vblank-synced flip after idle) rather than weakening it.",
+            "confidence": "high",
+            "evidence": "nv50.c:1574-1576 (0x61002c=0x370 is INTR_EN, 'enable supervisor interrupts'); nv50.c:375/383 (bit 4<<head->id = vblank enable); contrast 0x610024 supervisor pending nv50.c:1499-1502"
+          },
+          {
+            "finding": "The core-then-base ordering is structurally forced by the driver, so it will likely recur, but ONE event cannot establish it as invariant. commit_tail always issues the core UPDATE + core notifier wait (disp.c:2147-2151) BEFORE the per-plane wndw wait_armed loop (disp.c:2405-2411). If the core UPDATE is the one that hangs, the core notifier MUST time out first and the interlocked base wait second. This explains the 2.4s gap (the two 2000ms timeout windows are sequential). Whether base1 can ever park WITHOUT a preceding core hang is not answerable from this capture and needs more events.",
+            "confidence": "high",
+            "evidence": "disp.c:2147-2151 then disp.c:2404-2411 (sequential waits, 2000ms each via nv50_dmac/ntfy); event dmesg 1906.37 -> 1908.81 (~2.4s ~ one 2s timeout)"
+          },
+          {
+            "finding": "The base1_get coarse 'creep' (088c->091c->0a3c in the 5s baseline) vs frozen get (pinned 08ac) in the 100ms dense burst is a sampling alias, not partial drain. The 5s and 100ms streams are reading 0x642004 at different phases; within the dense burst get is genuinely pinned at 08ac while put advances 091c->0964->09ac (new flip commits still being queued by the compositor into a dead channel). This confirms the fetch is hard-parked, not slowly draining. It also shows userspace keeps submitting after the wedge (put climbs) until the 2s timeouts + recover fire.",
+            "confidence": "high",
+            "evidence": "event file lines 7-46 (dense burst: base1_put 091c->0964->09ac, base1_get pinned 08ac); CSV:221-222 vs dense burst get values"
+          }
+        ],
+        "next_data_needed": [
+          "Full dmesg with drm.debug=0x1e (DRM_UT_KMS) around the wedge: the NV_ATOMIC 'commit %d %d', 'commit core %08x', per-crtc 'set %04x'/'clr %04x' and per-plane lines reveal whether the wedging commit was a pure flip, a head set.mask=~0 reprogram, or an outp enable. This is the single highest-value missing piece (lost on the recovery reboot here because the sampler only keyword-filtered dmesg).",
+          "Capture the live 0x610024 (intr1) supervisor-pending bits 0x70 and 0x610030 (supervisor 0x610030 / disp->super.pending) during the wedging supervisor cycle, e.g. by sampling 0x610024/0x610030 in the dense burst. That distinguishes a supervisor-driven (modeset, super 1/2/3) commit from a plain core UPDATE with no supervisor cycle.",
+          "Correlate wall-clock 07:17:58 with swayidle/wlopm and the compositor (sway/labwc) flip log: was there a wlopm --off/--on or a screensaver-wake or just a cursor/clock pageflip in the seconds before? Confirms or refutes the 'first commit after monitor self-slept/woke' hypothesis directly.",
+          "More wedge events to test invariance: (a) does core_ctrl bit31 ALWAYS latch before base1; (b) can base1 ever park with core_ctrl bit31 clear (base-alone park); (c) is super1 bit3 (vblank re-arm) present at EVERY wedge onset or only this one. N>=5 needed before any pattern is more than a hypothesis.",
+          "Add head-state registers to the sampler (e.g. 0x610a00+ HEAD_VAL block, or the EVO core head method shadow) so a full head-reprogram can be distinguished from a delta update purely from register churn, independent of dmesg.",
+          "A boot-time wedge capture for comparison: the memory notes runtime vs boot wedges may differ; the sampler running from early boot would show whether the boot wedge also shows the idle->first-commit + vblank-re-arm signature or a different (modeset) path."
+        ]
+      }
+    ]
+  },
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Analyze"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Synthesize"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "analyze:regdecode",
+      "phaseIndex": 1,
+      "phaseTitle": "Analyze",
+      "agentId": "a4d1e7998c4bd3c83",
+      "model": "claude-opus-4-8",
+      "state": "done",
+      "startedAt": 1782309220696,
+      "queuedAt": 1782309220579,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "regdecode",
+      "promptPreview": "FIRST CAPTURED WEDGE of the NVAC/MCP79 (GeForce 9400M, Tesla nv50) EVO display state machine, by the nvac-evo-observatory read-only sampler. 2026-06-24 07:18, RUNTIME wedge, box up ~35 min. Event file: /home/neo/nvac-evo-observatory/events/wedge-20260624T071803.txt. Baseline CSV (5s samples): /home/neo/nvac-evo-observatory/data/samples-2026-06-24.csv. The wedge is the stock MCP79 base bug (Debian …",
+      "lastProgressAt": 1782309542813,
+      "tokens": 75746,
+      "toolCalls": 24,
+      "durationMs": 322114,
+      "resultPreview": "{\"dimension\":\"regdecode\",\"decoded_registers\":[{\"register\":\"core_ctrl = 0x610200 (NV50 PDISPLAY core/EVO channel DMA control, chid.ctrl=0)\",\"healthy\":\"idle-ref 2d0b001b ; pre-wedge 490a001b\",\"wedged\":\"8f0e001b\",\"decoded_meaning\":\"This is the NV50 EVO channel control register at 0x610200 + ctrl*0x10 (core has ctrl=0). Confirmed address by nv50.c lines 949-984 (core fini/init operate on bare 0x610200…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "analyze:fetchpark",
+      "phaseIndex": 1,
+      "phaseTitle": "Analyze",
+      "agentId": "a0541ef0af27cb368",
+      "model": "claude-opus-4-8",
+      "state": "done",
+      "startedAt": 1782309220707,
+      "queuedAt": 1782309220580,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "fetchpark",
+      "promptPreview": "FIRST CAPTURED WEDGE of the NVAC/MCP79 (GeForce 9400M, Tesla nv50) EVO display state machine, by the nvac-evo-observatory read-only sampler. 2026-06-24 07:18, RUNTIME wedge, box up ~35 min. Event file: /home/neo/nvac-evo-observatory/events/wedge-20260624T071803.txt. Baseline CSV (5s samples): /home/neo/nvac-evo-observatory/data/samples-2026-06-24.csv. The wedge is the stock MCP79 base bug (Debian …",
+      "lastProgressAt": 1782309458664,
+      "tokens": 60308,
+      "toolCalls": 21,
+      "durationMs": 237956,
+      "resultPreview": "{\"dimension\":\"fetchpark\",\"decoded_registers\":[{\"register\":\"core_get = 0x640004 (NV507C_GET within user region 0x640000 + chid.user*0x1000, chid.user=0 for core)\",\"healthy\":\"0x00000200 (drained, == PUT); idle ref put==get\",\"wedged\":\"0x000002c8, FROZEN from 07:17:58 onward; PUT advances to 0x308 and stays ahead\",\"decoded_meaning\":\"GET is the hardware fetch-DMA consumer pointer: byte offset (field PT…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "analyze:trigger",
+      "phaseIndex": 1,
+      "phaseTitle": "Analyze",
+      "agentId": "a3f9f4cf02a482f03",
+      "model": "claude-opus-4-8",
+      "state": "done",
+      "startedAt": 1782309458675,
+      "queuedAt": 1782309220580,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "trigger",
+      "promptPreview": "FIRST CAPTURED WEDGE of the NVAC/MCP79 (GeForce 9400M, Tesla nv50) EVO display state machine, by the nvac-evo-observatory read-only sampler. 2026-06-24 07:18, RUNTIME wedge, box up ~35 min. Event file: /home/neo/nvac-evo-observatory/events/wedge-20260624T071803.txt. Baseline CSV (5s samples): /home/neo/nvac-evo-observatory/data/samples-2026-06-24.csv. The wedge is the stock MCP79 base bug (Debian …",
+      "lastProgressAt": 1782309853122,
+      "tokens": 92736,
+      "toolCalls": 46,
+      "durationMs": 394447,
+      "resultPreview": "{\"dimension\":\"trigger\",\"decoded_registers\":[{\"register\":\"super1 = 0x61002c (DISP INTR_EN_1, NOT the supervisor-pending reg)\",\"healthy\":\"0x00000378 (normal desktop, 06:55) / 0x00000370 during the 30s pre-wedge deep-idle\",\"wedged\":\"0x00000378 (bit3 re-set at the exact wedge sample 07:17:58)\",\"decoded_meaning\":\"This is the DISP interrupt-ENABLE register, written to 0x370 at engine init with the comme…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "synthesis",
+      "phaseIndex": 2,
+      "phaseTitle": "Synthesize",
+      "agentId": "a4c4bb88c3bd979c9",
+      "model": "claude-opus-4-8",
+      "state": "done",
+      "startedAt": 1782309853249,
+      "queuedAt": 1782309853126,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "TRIGGER: the first display commit after a deep-idle period,…",
+      "promptPreview": "FIRST CAPTURED WEDGE of the NVAC/MCP79 (GeForce 9400M, Tesla nv50) EVO display state machine, by the nvac-evo-observatory read-only sampler. 2026-06-24 07:18, RUNTIME wedge, box up ~35 min. Event file: /home/neo/nvac-evo-observatory/events/wedge-20260624T071803.txt. Baseline CSV (5s samples): /home/neo/nvac-evo-observatory/data/samples-2026-06-24.csv. The wedge is the stock MCP79 base bug (Debian …",
+      "lastProgressAt": 1782309942292,
+      "tokens": 55661,
+      "toolCalls": 3,
+      "durationMs": 89042,
+      "resultPreview": "{\"headline_insights\":[\"The wedge is register-confirmed as the stock MCP79 EVO fetch-park: at onset (07:17:58) core_ctrl (0x610200) and base1_ctrl (0x610220) both latch bit31 (0x80000000), top nibble 4->8, and it never clears across the entire 4s dense burst. bit31 = channel-busy/processing per the driver's own init/fini wait loops (nv50_disp_dmac_init writes 0x13 then polls until !(reg & 0x8000000…"
+    }
+  ],
+  "totalTokens": 284451,
+  "totalToolCalls": 94
+}

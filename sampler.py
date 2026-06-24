@@ -25,8 +25,13 @@ STUCK_K = 3             # consecutive frozen-GET samples => wedge
 REGS = [
     (0x000200, "pmc_enable"),
     (0x610200, "core_ctrl"), (0x610210, "base0_ctrl"), (0x610220, "base1_ctrl"),
-    (0x610020, "intr_en0"), (0x610024, "intr_en1"),
-    (0x610028, "super0"), (0x61002c, "super1"),
+    # v2: relabelled per the wedge analysis (the old super0/super1/intr_en names were wrong)
+    (0x610020, "intr0"), (0x610024, "intr1"),          # live DISP INTR status (latched, w1c)
+    (0x610028, "chan_awaken_en"),                       # per-channel awaken-IRQ enable
+    (0x61002c, "intr_en"),                              # DISP INTR enable; bit3 = head1 vblank
+    (0x610030, "supervisor"),                           # NEW: real EVO supervisor state register
+    (0x610080, "core_err_m"), (0x610084, "core_err_d"),   # NEW: core(chid0) error latch method/data
+    (0x610090, "base1_err_m"), (0x610094, "base1_err_d"), # NEW: base1(chid2) error latch (0x610080+chid*8)
     (0x611014, "disp611014"), (0x61102c, "disp61102c"), (0x611034, "disp611034"),
     (0x61103c, "disp61103c"), (0x611044, "disp611044"),
     (0x640000, "core_put"), (0x640004, "core_get"),
