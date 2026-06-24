@@ -1,0 +1,15 @@
+#!/sbin/openrc-run
+# NVAC/MCP79 EVO display state-machine observatory sampler.
+# Read-only BAR0 mmap; runs as root (mmap of the PCI resource needs it).
+name="nvac-evo-sampler"
+description="Continuous read-only sampler of the nv50 EVO display state machine"
+command="/usr/bin/python3"
+command_args="/home/neo/nvac-evo-observatory/sampler.py"
+command_background="yes"
+pidfile="/run/${RC_SVCNAME}.pid"
+output_log="/var/log/nvac-evo-sampler.log"
+error_log="/var/log/nvac-evo-sampler.log"
+
+depend() {
+	after localmount
+}

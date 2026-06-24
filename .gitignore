@@ -1,0 +1,5 @@
+# Raw baseline firehose stays local; the wedge events + analysis are the payload.
+# A daily job gzips and commits the previous day's baseline as a compact summary.
+data/*.csv
+*.pyc
+__pycache__/
