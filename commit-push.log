@@ -139,3 +139,6 @@
 [90m1:17PM[0m [32mINF[0m 1 commits scanned.
 [90m1:17PM[0m [32mINF[0m scan completed in 34.1ms
 [90m1:17PM[0m [32mINF[0m no leaks found
+[90m2:17PM[0m [32mINF[0m 1 commits scanned.
+[90m2:17PM[0m [32mINF[0m scan completed in 41ms
+[90m2:17PM[0m [32mINF[0m no leaks found
