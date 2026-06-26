@@ -1,0 +1,350 @@
+# WEDGE episode begin 2026-06-26T20:04:10
+# wedged channels (PUT advanced, GET frozen >= 3 samples):
+#   base1 ctrl=8e06001b put=00000504 get=00000504 bit31=True stuck=0
+
+# dense burst (full register set, ~100ms cadence):
++0.0s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000504 base1_get=00000504
++0.1s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000594 base1_get=00000594
++0.2s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=000006fc base1_get=000006fc
++0.3s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000864 base1_get=00000864
++0.4s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=000009cc base1_get=000009cc
++0.5s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=000000c0 base1_err_d=fb00007a disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000aa4 base1_get=00000a9c
++0.6s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=000000c0 base1_err_d=fb00007a disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000c54 base1_get=00000c4c
++0.7s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000d2c base1_get=00000d2c
++0.8s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000edc base1_get=00000edc
++0.9s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000fb4 base1_get=00000fb4
++1.0s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=000001a4 base1_get=000001a4
++1.1s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=000001ec base1_get=000001ec
++1.2s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000234 base1_get=00000234
++1.3s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000354 base1_get=00000354
++1.4s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=000004bc base1_get=000004bc
++1.5s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=0000066c base1_get=0000066c
++1.6s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=0000078c base1_get=0000078c
++1.7s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=000008ac base1_get=000008ac
++1.8s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=0000093c base1_get=0000093c
++1.9s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000a5c base1_get=00000a5c
++2.0s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000b7c base1_get=00000b7c
++2.1s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000d2c base1_get=00000d2c
++2.2s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000e94 base1_get=00000e94
++2.3s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=0000003c base1_get=0000003c
++2.4s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=000001a4 base1_get=000001a4
++2.5s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000354 base1_get=00000354
++2.6s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=000000c0 base1_err_d=fb00007a disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000474 base1_get=0000046c
++2.7s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000624 base1_get=00000624
++2.8s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000744 base1_get=00000744
++2.9s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000864 base1_get=00000864
++3.0s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=000009cc base1_get=000009cc
++3.1s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000b34 base1_get=00000b34
++3.2s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000ce4 base1_get=00000ce4
++3.3s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000e4c base1_get=00000e4c
++3.4s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000fb4 base1_get=00000fb4
++3.5s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=0000015c base1_get=0000015c
++3.6s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=000000c0 base1_err_d=fb00007a disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=0000027c base1_get=0000027c
++3.7s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=0000039c base1_get=0000039c
++3.8s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=000004bc base1_get=000004bc
++3.9s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000000 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000e20 core_get=00000e20 base0_put=00000000 base0_get=00000000 base1_put=00000594 base1_get=00000594
+
+# dmesg wedge keyword lines:
+
+
+# dmesg full tail (last 300 lines, for compositor/modeset correlation):
+[27534.600465] Loading firmware: nouveau/nvac_fuc084
+[27538.300507] Loading firmware: nouveau/nvac_fuc084
+[27541.833130] Loading firmware: nouveau/nvac_fuc084
+[27545.581609] Loading firmware: nouveau/nvac_fuc084
+[27902.819107] nouveau 0000:02:00.0: drm: soft-dpms: head-1 kept armed across DPMS-off
+[54316.979437] usb 1-7: new full-speed USB device number 76 using ohci-pci
+[54317.204495] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[54317.204507] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[54317.204511] usb 1-7: Product: USB JTAG/serial debug unit
+[54317.204514] usb 1-7: Manufacturer: Espressif
+[54317.204517] usb 1-7: SerialNumber: [redacted]
+[54317.210621] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[54320.070505] usb 1-7: USB disconnect, device number 76
+[54334.666145] usb 1-7: new full-speed USB device number 77 using ohci-pci
+[54334.885955] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[54334.885968] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[54334.885972] usb 1-7: Product: USB JTAG/serial debug unit
+[54334.885975] usb 1-7: Manufacturer: Espressif
+[54334.885978] usb 1-7: SerialNumber: [redacted]
+[54334.892893] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[54408.026890] usb 1-7: USB disconnect, device number 77
+[54495.070485] usb 1-7: new full-speed USB device number 78 using ohci-pci
+[54495.298079] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[54495.298091] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[54495.298095] usb 1-7: Product: USB JTAG/serial debug unit
+[54495.298098] usb 1-7: Manufacturer: Espressif
+[54495.298101] usb 1-7: SerialNumber: [redacted]
+[54495.307277] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[54735.596839] usb 1-7: USB disconnect, device number 78
+[54745.399398] usb 1-7: new full-speed USB device number 79 using ohci-pci
+[54745.617482] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[54745.617495] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[54745.617499] usb 1-7: Product: USB JTAG/serial debug unit
+[54745.617502] usb 1-7: Manufacturer: Espressif
+[54745.617505] usb 1-7: SerialNumber: [redacted]
+[54745.623580] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[54893.678336] usb 1-7: USB disconnect, device number 79
+[54923.739380] usb 1-7: new full-speed USB device number 80 using ohci-pci
+[54923.958068] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[54923.958081] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[54923.958085] usb 1-7: Product: USB JTAG/serial debug unit
+[54923.958088] usb 1-7: Manufacturer: Espressif
+[54923.958091] usb 1-7: SerialNumber: [redacted]
+[54923.964221] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[55045.443463] usb 1-7: USB disconnect, device number 80
+[55063.922731] usb 1-7: new full-speed USB device number 81 using ohci-pci
+[55064.141392] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[55064.141405] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[55064.141409] usb 1-7: Product: USB JTAG/serial debug unit
+[55064.141412] usb 1-7: Manufacturer: Espressif
+[55064.141415] usb 1-7: SerialNumber: [redacted]
+[55064.146901] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[55069.483041] usb 1-7: USB disconnect, device number 81
+[55075.792713] usb 1-7: new full-speed USB device number 82 using ohci-pci
+[55076.011440] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[55076.011453] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[55076.011457] usb 1-7: Product: USB JTAG/serial debug unit
+[55076.011460] usb 1-7: Manufacturer: Espressif
+[55076.011463] usb 1-7: SerialNumber: [redacted]
+[55076.017537] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[55818.488072] nouveau 0000:02:00.0: drm: soft-dpms: head-1 kept armed across DPMS-off
+[59618.630340] usb 1-7: USB disconnect, device number 82
+[60505.892209] usb 1-7: new full-speed USB device number 83 using ohci-pci
+[60506.114325] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[60506.114340] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[60506.114345] usb 1-7: Product: USB JTAG/serial debug unit
+[60506.114349] usb 1-7: Manufacturer: Espressif
+[60506.114352] usb 1-7: SerialNumber: [redacted]
+[60506.121619] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[60515.216824] usb 1-7: USB disconnect, device number 83
+[62304.948671] usb 1-7: new full-speed USB device number 84 using ohci-pci
+[62305.170941] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[62305.170954] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[62305.170957] usb 1-7: Product: USB JTAG/serial debug unit
+[62305.170960] usb 1-7: Manufacturer: Espressif
+[62305.170963] usb 1-7: SerialNumber: [redacted]
+[62305.177047] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[62314.274683] usb 1-7: USB disconnect, device number 84
+[64659.741328] nouveau 0000:02:00.0: drm: soft-dpms: head-1 kept armed across DPMS-off
+[65889.911736] usb 1-7: new full-speed USB device number 85 using ohci-pci
+[65890.133090] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[65890.133102] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[65890.133106] usb 1-7: Product: USB JTAG/serial debug unit
+[65890.133110] usb 1-7: Manufacturer: Espressif
+[65890.133113] usb 1-7: SerialNumber: [redacted]
+[65890.139580] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[65899.231850] usb 1-7: USB disconnect, device number 85
+[70502.784692] elogind-daemon[1603]: New session 1740 of user [redacted].
+[70503.435091] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 1"[6231] was attempted by "lsns -t net -p 1545736 -o NETNSID -nr"[1545799]
+[70503.435269] ptrace attach of "spawn-setns                                           "[6239] was attempted by "lsns -t net -p 1545736 -o NETNSID -nr"[1545799]
+[70503.439168] ptrace attach of "/usr/libexec/netdata/plugins.d/cgroup-network --cgroup /sys/fs/cgroup/1740"[1545769] was attempted by "lsns -t net -p 1545736 -o NETNSID -nr"[1545799]
+[70503.439327] ptrace attach of "spawn-unnamed                                                             "[1545770] was attempted by "lsns -t net -p 1545736 -o NETNSID -nr"[1545799]
+[70503.439356] ptrace attach of "spawn-unnamed                                                             "[1545770] was attempted by "lsns -t net -p 1545736 -o NETNSID -nr"[1545799]
+[73048.244258] usb 1-7: new full-speed USB device number 86 using ohci-pci
+[73048.463145] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[73048.463158] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[73048.463163] usb 1-7: Product: USB JTAG/serial debug unit
+[73048.463167] usb 1-7: Manufacturer: Espressif
+[73048.463170] usb 1-7: SerialNumber: [redacted]
+[73048.469810] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[73057.570561] usb 1-7: USB disconnect, device number 86
+[74118.145482] usblp0: removed
+[74130.172058] usblp 4-2:1.0: usblp0: USB Bidirectional printer dev 4 if 0 alt 0 proto 2 vid 0x03F0 pid 0x3917
+[74206.387936] usblp0: removed
+[74217.281731] usblp 4-2:1.0: usblp0: USB Bidirectional printer dev 4 if 0 alt 0 proto 2 vid 0x03F0 pid 0x3917
+[74257.406011] usblp0: removed
+[74267.149079] usblp 4-2:1.0: usblp0: USB Bidirectional printer dev 4 if 0 alt 0 proto 2 vid 0x03F0 pid 0x3917
+[75483.494030] usblp0: removed
+[75484.498262] usblp 4-2:1.0: usblp0: USB Bidirectional printer dev 4 if 0 alt 0 proto 2 vid 0x03F0 pid 0x3917
+[75489.540942] usblp0: removed
+[75500.091831] usblp 4-2:1.0: usblp0: USB Bidirectional printer dev 4 if 0 alt 0 proto 2 vid 0x03F0 pid 0x3917
+[79551.667100] elogind-daemon[1603]: New session 1774 of user [redacted].
+[79552.433209] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 1"[6231] was attempted by "lsns -t net -p 1664516 -o NETNSID -nr"[1664587]
+[79552.433248] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 1"[6231] was attempted by "lsns -t net -p 1664516 -o NETNSID -nr"[1664587]
+[79552.433414] ptrace attach of "spawn-setns                                           "[6239] was attempted by "lsns -t net -p 1664516 -o NETNSID -nr"[1664587]
+[79552.437232] ptrace attach of "/usr/libexec/netdata/plugins.d/cgroup-network --cgroup /sys/fs/cgroup/1774"[1664557] was attempted by "lsns -t net -p 1664516 -o NETNSID -nr"[1664587]
+[79552.437385] ptrace attach of "spawn-unnamed                                                             "[1664558] was attempted by "lsns -t net -p 1664516 -o NETNSID -nr"[1664587]
+[79552.437414] ptrace attach of "spawn-unnamed                                                             "[1664558] was attempted by "lsns -t net -p 1664516 -o NETNSID -nr"[1664587]
+[80217.370268] usb 1-7: new full-speed USB device number 87 using ohci-pci
+[80217.588756] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[80217.588770] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[80217.588775] usb 1-7: Product: USB JTAG/serial debug unit
+[80217.588778] usb 1-7: Manufacturer: Espressif
+[80217.588782] usb 1-7: SerialNumber: [redacted]
+[80217.596064] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[80226.698609] usb 1-7: USB disconnect, device number 87
+[80493.414517] Loading firmware: nouveau/nvac_fuc084
+[80497.009304] Loading firmware: nouveau/nvac_fuc084
+[80648.712749] Loading firmware: nouveau/nvac_fuc084
+[80650.743246] Loading firmware: nouveau/nvac_fuc084
+[80714.849537] Loading firmware: nouveau/nvac_fuc084
+[80864.017082] Loading firmware: nouveau/nvac_fuc084
+[80866.378014] elogind-daemon[1603]: Removed session 1740.
+[87372.089483] usb 1-7: new full-speed USB device number 88 using ohci-pci
+[87372.308027] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[87372.308038] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[87372.308042] usb 1-7: Product: USB JTAG/serial debug unit
+[87372.308045] usb 1-7: Manufacturer: Espressif
+[87372.308048] usb 1-7: SerialNumber: [redacted]
+[87372.316088] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[87381.408583] usb 1-7: USB disconnect, device number 88
+[94175.846540] usblp0: removed
+[94188.801828] usblp 4-2:1.0: usblp0: USB Bidirectional printer dev 4 if 0 alt 0 proto 2 vid 0x03F0 pid 0x3917
+[94540.402110] usb 1-7: new full-speed USB device number 89 using ohci-pci
+[94540.620830] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[94540.620843] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[94540.620848] usb 1-7: Product: USB JTAG/serial debug unit
+[94540.620851] usb 1-7: Manufacturer: Espressif
+[94540.620855] usb 1-7: SerialNumber: [redacted]
+[94540.627266] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[94549.730743] usb 1-7: USB disconnect, device number 89
+[100327.675345] Loading firmware: nouveau/nvac_fuc084
+[100394.260924] Loading firmware: nouveau/nvac_fuc084
+[101148.235530] Loading firmware: nouveau/nvac_fuc084
+[101715.049387] usb 1-7: new full-speed USB device number 90 using ohci-pci
+[101715.270304] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[101715.270318] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[101715.270323] usb 1-7: Product: USB JTAG/serial debug unit
+[101715.270327] usb 1-7: Manufacturer: Espressif
+[101715.270330] usb 1-7: SerialNumber: [redacted]
+[101715.276423] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[101724.403364] usb 1-7: USB disconnect, device number 90
+[102757.344775] nouveau 0000:02:00.0: drm: soft-dpms: head-1 kept armed across DPMS-off
+[103778.121402] Loading firmware: nouveau/nvac_fuc084
+[103778.172661] nouveau 0000:02:00.0: gr: TRAP_PROP - TP 0 - 00000008 [SURF_HEIGHT_OVERRUN] - Address 0000000000
+[103778.172673] nouveau 0000:02:00.0: gr: TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, e1c: 00040000, e20: 00003700, e24: 00000000
+[103778.172678] nouveau 0000:02:00.0: gr: 00200000 [] ch 6 [000f4b4000 ThreadPoolSingl[1980881]] subc 3 class 8397 mthd 1b0c data 1000f010
+[103778.216658] nouveau 0000:02:00.0: gr: TRAP_PROP - TP 0 - 00000008 [SURF_HEIGHT_OVERRUN] - Address 0000000000
+[103778.216687] nouveau 0000:02:00.0: gr: TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, e1c: 00040000, e20: 00003700, e24: 00000000
+[103778.216695] nouveau 0000:02:00.0: gr: 00200000 [] ch 6 [000f4b4000 ThreadPoolSingl[1980881]] subc 3 class 8397 mthd 1b0c data 1000f010
+[103778.275214] nouveau 0000:02:00.0: gr: TRAP_PROP - TP 0 - 00000008 [SURF_HEIGHT_OVERRUN] - Address 0000000000
+[103778.275227] nouveau 0000:02:00.0: gr: TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, e1c: 00040000, e20: 00003700, e24: 00000000
+[103778.275231] nouveau 0000:02:00.0: gr: 00200000 [] ch 6 [000f4b4000 ThreadPoolSingl[1980881]] subc 3 class 8397 mthd 1b0c data 1000f010
+[103778.332944] nouveau 0000:02:00.0: gr: TRAP_PROP - TP 0 - 00000008 [SURF_HEIGHT_OVERRUN] - Address 0000000000
+[103778.332958] nouveau 0000:02:00.0: gr: TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, e1c: 00040000, e20: 00003700, e24: 00000000
+[103778.332963] nouveau 0000:02:00.0: gr: 00200000 [] ch 6 [000f4b4000 ThreadPoolSingl[1980881]] subc 3 class 8397 mthd 1b0c data 1000f010
+[103910.572655] usblp0: removed
+[103932.594795] usblp 4-2:1.0: usblp0: USB Bidirectional printer dev 4 if 0 alt 0 proto 2 vid 0x03F0 pid 0x3917
+[104404.560295] Loading firmware: nouveau/nvac_fuc084
+[104404.589105] nouveau 0000:02:00.0: gr: TRAP_PROP - TP 0 - 00000008 [SURF_HEIGHT_OVERRUN] - Address 0000000000
+[104404.589119] nouveau 0000:02:00.0: gr: TRAP_PROP - TP 0 - e0c: 00000000, e18: 00000000, e1c: 00040000, e20: 00003700, e24: 00000000
+[104404.589124] nouveau 0000:02:00.0: gr: 00200000 [] ch 6 [000f4b4000 ThreadPoolSingl[1990044]] subc 3 class 8397 mthd 1b0c data 1000f010
+[105818.745092] nouveau 0000:02:00.0: drm: soft-dpms: head-1 kept armed across DPMS-off
+[108878.850682] usb 1-7: new full-speed USB device number 91 using ohci-pci
+[108879.069640] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[108879.069653] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[108879.069656] usb 1-7: Product: USB JTAG/serial debug unit
+[108879.069659] usb 1-7: Manufacturer: Espressif
+[108879.069662] usb 1-7: SerialNumber: [redacted]
+[108879.075779] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[108888.163865] usb 1-7: USB disconnect, device number 91
+[110653.877782] /proc/cgroups lists only v1 controllers, use cgroup.controllers of root cgroup for v2 info
+[111313.774619] Loading firmware: nouveau/nvac_fuc084
+[113241.343795] Loading firmware: nouveau/nvac_fuc084
+[113245.534162] Loading firmware: nouveau/nvac_fuc084
+[113533.576419] Loading firmware: nouveau/nvac_fuc084
+[113569.938282] Loading firmware: nouveau/nvac_fuc084
+[113680.035713] Loading firmware: nouveau/nvac_fuc084
+[113970.871146] Loading firmware: nouveau/nvac_fuc084
+[113974.845409] Loading firmware: nouveau/nvac_fuc084
+[113979.234203] Loading firmware: nouveau/nvac_fuc084
+[113983.272165] Loading firmware: nouveau/nvac_fuc084
+[113987.403134] Loading firmware: nouveau/nvac_fuc084
+[115273.326960] nouveau 0000:02:00.0: drm: soft-dpms: head-1 kept armed across DPMS-off
+[116041.449949] usb 1-7: new full-speed USB device number 92 using ohci-pci
+[116041.668602] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[116041.668616] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[116041.668620] usb 1-7: Product: USB JTAG/serial debug unit
+[116041.668624] usb 1-7: Manufacturer: Espressif
+[116041.668628] usb 1-7: SerialNumber: [redacted]
+[116041.674700] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[116050.772931] usb 1-7: USB disconnect, device number 92
+[123203.552674] usb 1-7: new full-speed USB device number 93 using ohci-pci
+[123203.770734] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[123203.770747] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[123203.770751] usb 1-7: Product: USB JTAG/serial debug unit
+[123203.770755] usb 1-7: Manufacturer: Espressif
+[123203.770758] usb 1-7: SerialNumber: [redacted]
+[123203.777849] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[123212.871493] usb 1-7: USB disconnect, device number 93
+[130362.248537] usb 1-7: new full-speed USB device number 94 using ohci-pci
+[130362.467385] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[130362.467400] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[130362.467405] usb 1-7: Product: USB JTAG/serial debug unit
+[130362.467408] usb 1-7: Manufacturer: Espressif
+[130362.467412] usb 1-7: SerialNumber: [redacted]
+[130362.473385] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[130371.566761] usb 1-7: USB disconnect, device number 94
+[137536.924489] usb 1-7: new full-speed USB device number 95 using ohci-pci
+[137537.144342] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[137537.144354] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[137537.144357] usb 1-7: Product: USB JTAG/serial debug unit
+[137537.144361] usb 1-7: Manufacturer: Espressif
+[137537.144363] usb 1-7: SerialNumber: [redacted]
+[137537.150438] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[137546.247041] usb 1-7: USB disconnect, device number 95
+[144691.323745] usb 1-7: new full-speed USB device number 96 using ohci-pci
+[144691.542627] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[144691.542641] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[144691.542645] usb 1-7: Product: USB JTAG/serial debug unit
+[144691.542649] usb 1-7: Manufacturer: Espressif
+[144691.542652] usb 1-7: SerialNumber: [redacted]
+[144691.549112] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[144700.647363] usb 1-7: USB disconnect, device number 96
+[151860.583059] usb 1-7: new full-speed USB device number 97 using ohci-pci
+[151860.801322] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[151860.801333] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[151860.801338] usb 1-7: Product: USB JTAG/serial debug unit
+[151860.801342] usb 1-7: Manufacturer: Espressif
+[151860.801345] usb 1-7: SerialNumber: [redacted]
+[151860.807802] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[151869.906574] usb 1-7: USB disconnect, device number 97
+[159031.475782] usb 1-7: new full-speed USB device number 98 using ohci-pci
+[159031.693931] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[159031.693944] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[159031.693948] usb 1-7: Product: USB JTAG/serial debug unit
+[159031.693952] usb 1-7: Manufacturer: Espressif
+[159031.693956] usb 1-7: SerialNumber: [redacted]
+[159031.700026] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[159040.791625] usb 1-7: USB disconnect, device number 98
+[166209.144961] usb 1-7: new full-speed USB device number 99 using ohci-pci
+[166209.363513] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[166209.363528] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[166209.363533] usb 1-7: Product: USB JTAG/serial debug unit
+[166209.363536] usb 1-7: Manufacturer: Espressif
+[166209.363540] usb 1-7: SerialNumber: [redacted]
+[166209.371686] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[166218.465374] usb 1-7: USB disconnect, device number 99
+[173380.061111] usb 1-7: new full-speed USB device number 100 using ohci-pci
+[173380.275733] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[173380.275747] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[173380.275751] usb 1-7: Product: USB JTAG/serial debug unit
+[173380.275755] usb 1-7: Manufacturer: Espressif
+[173380.275758] usb 1-7: SerialNumber: [redacted]
+[173380.284321] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[173389.384557] usb 1-7: USB disconnect, device number 100
+[180543.413493] usb 1-7: new full-speed USB device number 101 using ohci-pci
+[180543.638430] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[180543.638444] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[180543.638449] usb 1-7: Product: USB JTAG/serial debug unit
+[180543.638452] usb 1-7: Manufacturer: Espressif
+[180543.638456] usb 1-7: SerialNumber: [redacted]
+[180543.644963] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[180552.738075] usb 1-7: USB disconnect, device number 101
+[187727.722806] usb 1-7: new full-speed USB device number 102 using ohci-pci
+[187727.934316] usb 1-7: New USB device found, idVendor=303a, idProduct=1001, bcdDevice= 1.01
+[187727.934328] usb 1-7: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[187727.934332] usb 1-7: Product: USB JTAG/serial debug unit
+[187727.934335] usb 1-7: Manufacturer: Espressif
+[187727.934338] usb 1-7: SerialNumber: [redacted]
+[187727.940446] cdc_acm 1-7:1.0: ttyACM0: USB ACM device
+[187737.046179] usb 1-7: USB disconnect, device number 102
+[188706.764166] Loading firmware: nouveau/nvac_fuc084
+[188714.722293] Loading firmware: nouveau/nvac_fuc084
+[189351.606294] Loading firmware: nouveau/nvac_fuc084
+[190457.874457] Loading firmware: nouveau/nvac_fuc084
+[190464.766533] Loading firmware: nouveau/nvac_fuc084
+[190469.478883] Loading firmware: nouveau/nvac_fuc084
+[190474.827031] Loading firmware: nouveau/nvac_fuc084
+[190515.818771] Loading firmware: nouveau/nvac_fuc084
