@@ -268,3 +268,6 @@
 [90m8:17AM[0m [32mINF[0m 1 commits scanned.
 [90m8:17AM[0m [32mINF[0m scan completed in 52.2ms
 [90m8:17AM[0m [32mINF[0m no leaks found
+[90m9:17AM[0m [32mINF[0m 1 commits scanned.
+[90m9:17AM[0m [32mINF[0m scan completed in 41.3ms
+[90m9:17AM[0m [32mINF[0m no leaks found
