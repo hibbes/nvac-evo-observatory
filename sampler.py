@@ -63,6 +63,7 @@ def main():
     header = "ts," + ",".join(name for _, name in REGS)
     stuck = {c[3]: 0 for c in CHANS}
     bit31n = {c[3]: 0 for c in CHANS}
+    frozen = {c[3]: 0 for c in CHANS}   # GET unchanged for N samples, regardless of PUT
     last_get = {c[3]: None for c in CHANS}
     in_wedge = False
     cur_day = None
@@ -90,14 +91,18 @@ def main():
             c, p, g = rd(ctrl), rd(put), rd(get)
             bit31 = (c & 0x80000000) != 0
             bit31n[name] = bit31n[name] + 1 if bit31 else 0
+            frozen[name] = frozen[name] + 1 if g == last_get[name] else 0
             if p != g and g == last_get[name]:
                 stuck[name] += 1
             else:
                 stuck[name] = 0
             last_get[name] = g
-            # wedge = the fetch-park ctrl-bit31 latched for >=2 samples (the
-            # proven base-park signature), or GET frozen behind PUT for >=K.
-            if bit31n[name] >= 2 or stuck[name] >= STUCK_K:
+            # wedge = ctrl-bit31 latched AND the GET pointer frozen, both for >=2
+            # samples. Requiring frozen GET (not bit31 alone) covers both the
+            # GET-behind-PUT park AND the drained-but-latched case (06-28), while
+            # EXCLUDING gr-engine-fault false-positives where bit31 blips but GET
+            # keeps advancing (the channel is live -- 2/5 old events were this).
+            if bit31n[name] >= 2 and frozen[name] >= 2:
                 wedged.append((name, c, p, g, bit31, stuck[name]))
 
         if wedged and not in_wedge:
@@ -114,18 +119,29 @@ def main():
 def capture_event(rd, wedged, ts):
     safe = ts.replace(":", "").replace("-", "")
     path = os.path.join(EVENTDIR, "wedge-%s.txt" % safe)
-    try:
-        dmesg = subprocess.run(["dmesg"], capture_output=True, text=True, timeout=5).stdout
-        lines = dmesg.splitlines()
-        ctx = "\n".join(l for l in lines
-                        if any(k in l for k in ("nv50_dmac_wait", "base-1: timeout",
-                                                "MMIO read", "nv50_bus_intr", "notifier timeout")))[-4000:]
-        full = "\n".join(lines[-300:])   # full tail: do not lose the compositor/modeset context
-    except Exception as e:
-        ctx = full = "(dmesg failed: %s)" % e
+    # Keyword set INCLUDES the disp-trap line (ERROR/mthd/chid/nv50_disp_intr_error):
+    # its presence/absence is THE method-error-vs-fetch-park discriminator and must
+    # never be lost to the 300-line tail scrolling off (the bug that risked
+    # mis-decoding a real method-error episode as a fetch-park).
+    KW = ("nv50_dmac_wait", "base-1: timeout", "base-0: timeout", "core: timeout",
+          "MMIO read", "nv50_bus_intr", "notifier timeout",
+          "ERROR", "mthd", "chid", "nv50_disp_intr_error")
+    # Drop early-boot cert/IMA noise from the full tail: the X.509 module-signing
+    # key FINGERPRINT (public, but gitleaks false-positives it as a generic-api-key
+    # and blocks the auto-push to the public repo). Irrelevant to the EVO wedge.
+    NOISE = ("X.509", "Signing Key", "ima:", "certificate", "blacklist")
+    def grab():
+        try:
+            ls = subprocess.run(["dmesg"], capture_output=True, text=True, timeout=5).stdout.splitlines()
+            ctx = "\n".join(l for l in ls if any(k in l for k in KW))[-12000:]
+            full = "\n".join(l for l in ls[-300:] if not any(n in l for n in NOISE))
+            return (ctx, full)
+        except Exception as ex:
+            return ("(dmesg failed: %s)" % ex, "")
+    ctx, full = grab()
     with open(path, "w") as e:
         e.write("# WEDGE episode begin %s\n" % ts)
-        e.write("# wedged channels (PUT advanced, GET frozen >= %d samples):\n" % STUCK_K)
+        e.write("# wedged channels (bit31 latched AND GET frozen >= 2 samples):\n")
         for name, c, p, g, bit31, st in wedged:
             e.write("#   %-5s ctrl=%08x put=%08x get=%08x bit31=%s stuck=%d\n"
                     % (name, c, p, g, bit31, st))
@@ -134,8 +150,11 @@ def capture_event(rd, wedged, ts):
             line = " ".join("%s=%08x" % (name, rd(o)) for o, name in REGS)
             e.write("+%.1fs %s\n" % (i * 0.1, line))
             time.sleep(0.1)
-        e.write("\n# dmesg wedge keyword lines:\n")
+        ctx2, _ = grab()   # bracket the window: a disp trap predates detection, re-grab after the burst too
+        e.write("\n# dmesg trap/timeout lines AT DETECTION:\n")
         e.write(ctx + "\n")
+        e.write("\n# dmesg trap/timeout lines AFTER burst (bracket):\n")
+        e.write(ctx2 + "\n")
         e.write("\n# dmesg full tail (last 300 lines, for compositor/modeset correlation):\n")
         e.write(full + "\n")
 

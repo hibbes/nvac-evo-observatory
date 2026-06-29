@@ -295,3 +295,168 @@
 [90m5:17PM[0m [32mINF[0m 1 commits scanned.
 [90m5:17PM[0m [32mINF[0m scan completed in 53.7ms
 [90m5:17PM[0m [32mINF[0m no leaks found
+[90m6:17PM[0m [32mINF[0m 1 commits scanned.
+[90m6:17PM[0m [32mINF[0m scan completed in 66.9ms
+[90m6:17PM[0m [32mINF[0m no leaks found
+[90m7:17PM[0m [32mINF[0m 1 commits scanned.
+[90m7:17PM[0m [32mINF[0m scan completed in 85.4ms
+[90m7:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m8:17PM[0m [32mINF[0m 1 commits scanned.
+[90m8:17PM[0m [32mINF[0m scan completed in 87.6ms
+[90m8:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m9:17PM[0m [32mINF[0m 1 commits scanned.
+[90m9:17PM[0m [32mINF[0m scan completed in 107ms
+[90m9:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m10:17PM[0m [32mINF[0m 1 commits scanned.
+[90m10:17PM[0m [32mINF[0m scan completed in 119ms
+[90m10:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m11:17PM[0m [32mINF[0m 1 commits scanned.
+[90m11:17PM[0m [32mINF[0m scan completed in 91.4ms
+[90m11:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m12:17AM[0m [32mINF[0m 1 commits scanned.
+[90m12:17AM[0m [32mINF[0m scan completed in 78.9ms
+[90m12:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m1:17AM[0m [32mINF[0m 1 commits scanned.
+[90m1:17AM[0m [32mINF[0m scan completed in 78ms
+[90m1:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m2:17AM[0m [32mINF[0m 1 commits scanned.
+[90m2:17AM[0m [32mINF[0m scan completed in 79.3ms
+[90m2:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m3:17AM[0m [32mINF[0m 1 commits scanned.
+[90m3:17AM[0m [32mINF[0m scan completed in 82.4ms
+[90m3:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m4:17AM[0m [32mINF[0m 1 commits scanned.
+[90m4:17AM[0m [32mINF[0m scan completed in 84.2ms
+[90m4:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m5:17AM[0m [32mINF[0m 1 commits scanned.
+[90m5:17AM[0m [32mINF[0m scan completed in 94.7ms
+[90m5:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m6:17AM[0m [32mINF[0m 1 commits scanned.
+[90m6:17AM[0m [32mINF[0m scan completed in 81.5ms
+[90m6:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m7:17AM[0m [32mINF[0m 1 commits scanned.
+[90m7:17AM[0m [32mINF[0m scan completed in 87ms
+[90m7:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m8:17AM[0m [32mINF[0m 1 commits scanned.
+[90m8:17AM[0m [32mINF[0m scan completed in 79.6ms
+[90m8:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m9:17AM[0m [32mINF[0m 1 commits scanned.
+[90m9:17AM[0m [32mINF[0m scan completed in 84.1ms
+[90m9:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m10:17AM[0m [32mINF[0m 1 commits scanned.
+[90m10:17AM[0m [32mINF[0m scan completed in 116ms
+[90m10:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m11:17AM[0m [32mINF[0m 1 commits scanned.
+[90m11:17AM[0m [32mINF[0m scan completed in 85.7ms
+[90m11:17AM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m12:17PM[0m [32mINF[0m 1 commits scanned.
+[90m12:17PM[0m [32mINF[0m scan completed in 84.8ms
+[90m12:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m1:17PM[0m [32mINF[0m 1 commits scanned.
+[90m1:17PM[0m [32mINF[0m scan completed in 75.1ms
+[90m1:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m2:17PM[0m [32mINF[0m 1 commits scanned.
+[90m2:17PM[0m [32mINF[0m scan completed in 80.4ms
+[90m2:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m3:17PM[0m [32mINF[0m 1 commits scanned.
+[90m3:17PM[0m [32mINF[0m scan completed in 85.5ms
+[90m3:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m4:17PM[0m [32mINF[0m 1 commits scanned.
+[90m4:17PM[0m [32mINF[0m scan completed in 78.9ms
+[90m4:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m5:17PM[0m [32mINF[0m 1 commits scanned.
+[90m5:17PM[0m [32mINF[0m scan completed in 76.6ms
+[90m5:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m6:17PM[0m [32mINF[0m 1 commits scanned.
+[90m6:17PM[0m [32mINF[0m scan completed in 84.6ms
+[90m6:17PM[0m [31mWRN[0m leaks found: 1
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m7:17PM[0m [32mINF[0m 1 commits scanned.
+[90m7:17PM[0m [32mINF[0m scan completed in 83ms
+[90m7:17PM[0m [31mWRN[0m leaks found: 2
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m8:17PM[0m [32mINF[0m 1 commits scanned.
+[90m8:17PM[0m [32mINF[0m scan completed in 150ms
+[90m8:17PM[0m [31mWRN[0m leaks found: 2
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
+[90m9:17PM[0m [32mINF[0m 1 commits scanned.
+[90m9:17PM[0m [32mINF[0m scan completed in 81ms
+[90m9:17PM[0m [31mWRN[0m leaks found: 2
+
+pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
+            Fix the leak or use --no-verify (with a clear reason in your head).
