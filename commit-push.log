@@ -460,3 +460,6 @@ pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
 
 pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
             Fix the leak or use --no-verify (with a clear reason in your head).
+[90m12:17AM[0m [32mINF[0m 0 commits scanned.
+[90m12:17AM[0m [32mINF[0m scan completed in 54.5ms
+[90m12:17AM[0m [32mINF[0m no leaks found
