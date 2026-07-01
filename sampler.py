@@ -12,7 +12,7 @@
 # samples, i.e. the channel stopped draining), it captures a dense burst
 # snapshot + the dmesg context into events/, once per wedge episode. The next
 # clean boot / sample resets the episode.
-import mmap, os, struct, time, signal, subprocess, sys
+import mmap, os, re, struct, time, signal, subprocess, sys
 
 PCI = "/sys/bus/pci/devices/0000:02:00.0/resource0"
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -130,11 +130,20 @@ def capture_event(rd, wedged, ts):
     # key FINGERPRINT (public, but gitleaks false-positives it as a generic-api-key
     # and blocks the auto-push to the public repo). Irrelevant to the EVO wedge.
     NOISE = ("X.509", "Signing Key", "ima:", "certificate", "blacklist")
+    # Scrub host/device identifiers before the dmesg tail lands in the PUBLIC repo:
+    # MAC/BSSID addresses, USB SerialNumbers and the login username are irrelevant
+    # to the EVO wedge but are personally / hardware identifying. Mask in place so
+    # the USB-enumeration context (e.g. the DHT22/NodeMCU reset episodes) survives.
+    def scrub(line):
+        line = re.sub(r"([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}", "xx:xx:xx:xx:xx:xx", line)
+        line = re.sub(r"(SerialNumber:\s*)\S+", r"\1[redacted]", line)
+        line = re.sub(r"(of user )\S+", r"\1[redacted]", line)
+        return line
     def grab():
         try:
             ls = subprocess.run(["dmesg"], capture_output=True, text=True, timeout=5).stdout.splitlines()
-            ctx = "\n".join(l for l in ls if any(k in l for k in KW))[-12000:]
-            full = "\n".join(l for l in ls[-300:] if not any(n in l for n in NOISE))
+            ctx = "\n".join(scrub(l) for l in ls if any(k in l for k in KW))[-12000:]
+            full = "\n".join(scrub(l) for l in ls[-300:] if not any(n in l for n in NOISE))
             return (ctx, full)
         except Exception as ex:
             return ("(dmesg failed: %s)" % ex, "")

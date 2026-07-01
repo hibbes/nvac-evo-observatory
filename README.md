@@ -82,4 +82,4 @@ for what a cold POST does to the display engine that a runtime reset cannot.
 - `analysis/`     notes, correlations, hypotheses
 - `vbios.rom`     board VBIOS reference
 
-No personal data is recorded, only GPU register values.
+Only GPU register values are analysed. Wedge captures include a short dmesg tail, from which host/device identifiers (MAC addresses, USB serial numbers, the login username) are scrubbed before commit.
