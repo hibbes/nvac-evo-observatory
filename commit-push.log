@@ -1954,3 +1954,6 @@ pre-commit: 1 suspicious finding(s) in staged changes — commit BLOCKED.
 [90m7:17PM[0m [32mINF[0m 1 commits scanned.
 [90m7:17PM[0m [32mINF[0m scan completed in 61ms
 [90m7:17PM[0m [32mINF[0m no leaks found
+[90m8:17PM[0m [32mINF[0m 1 commits scanned.
+[90m8:17PM[0m [32mINF[0m scan completed in 60ms
+[90m8:17PM[0m [32mINF[0m no leaks found
