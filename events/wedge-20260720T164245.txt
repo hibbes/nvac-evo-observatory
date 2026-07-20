@@ -1,0 +1,359 @@
+# WEDGE episode begin 2026-07-20T16:42:45
+# wedged channels (bit31 latched AND GET frozen >= 2 samples):
+#   core  ctrl=8f0e001b put=0000014c get=000000e8 bit31=True stuck=2
+#   base1 ctrl=8e07001b put=00000200 get=000000b8 bit31=True stuck=2
+
+# dense burst (full register set, ~100ms cadence):
++0.0s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.1s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.2s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.3s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.4s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.5s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.6s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.7s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.8s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.9s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++1.0s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++1.1s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++1.2s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000001 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000270 base1_get=00000270
++1.3s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000001 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000270 base1_get=00000270
++1.4s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000001 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000270 base1_get=00000270
++1.5s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000001 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000270 base1_get=00000270
++1.6s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++1.7s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++1.8s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++1.9s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++2.0s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++2.1s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++2.2s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++2.3s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000390 base1_get=00000390
++2.4s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000390 base1_get=00000390
++2.5s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000390 base1_get=00000390
++2.6s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000390 base1_get=00000390
++2.7s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=000003d8 base1_get=000003d8
++2.8s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=000003d8 base1_get=000003d8
++2.9s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=000003d8 base1_get=000003d8
++3.0s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=000003d8 base1_get=000003d8
++3.1s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000420 base1_get=00000420
++3.2s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000420 base1_get=00000420
++3.3s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000420 base1_get=00000420
++3.4s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000420 base1_get=00000420
++3.5s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000420 base1_get=00000420
++3.6s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000420 base1_get=00000420
++3.7s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000420 base1_get=00000420
++3.8s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000420 base1_get=00000420
++3.9s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000420 base1_get=00000420
+
+# dmesg trap/timeout lines AT DETECTION:
+[    6.366118] nouveau 0000:02:00.0: drm: core notifier timeout
+[   46.897271] nouveau 0000:02:00.0: drm: base-1: timeout
+[   49.637622] nouveau 0000:02:00.0: drm: base-1: timeout
+[   53.168600] nouveau 0000:02:00.0: drm: base-1: timeout
+[   55.623222] nouveau 0000:02:00.0: drm: base-1: timeout
+[   58.053310] nouveau 0000:02:00.0: drm: core notifier timeout
+[   60.483281] nouveau 0000:02:00.0: drm: base-1: timeout
+
+# dmesg trap/timeout lines AFTER burst (bracket):
+[    6.366118] nouveau 0000:02:00.0: drm: core notifier timeout
+[   46.897271] nouveau 0000:02:00.0: drm: base-1: timeout
+[   49.637622] nouveau 0000:02:00.0: drm: base-1: timeout
+[   53.168600] nouveau 0000:02:00.0: drm: base-1: timeout
+[   55.623222] nouveau 0000:02:00.0: drm: base-1: timeout
+[   58.053310] nouveau 0000:02:00.0: drm: core notifier timeout
+[   60.483281] nouveau 0000:02:00.0: drm: base-1: timeout
+[   62.917766] nouveau 0000:02:00.0: drm: base-1: timeout
+[   65.347812] nouveau 0000:02:00.0: drm: core notifier timeout
+
+# dmesg full tail (last 300 lines, for compositor/modeset correlation):
+[    1.167543] ehci-pci 0000:00:06.1: EHCI Host Controller
+[    1.167753] ehci-pci 0000:00:06.1: new USB bus registered, assigned bus number 4
+[    1.167846] ehci-pci 0000:00:06.1: debug port 1
+[    1.167990] ehci-pci 0000:00:06.1: irq 20, io mem 0xd3489100
+[    1.175435] ehci-pci 0000:00:06.1: USB 2.0 started, EHCI 1.00
+[    1.175684] usb usb4: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 7.01
+[    1.175768] usb usb4: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    1.175848] usb usb4: Product: EHCI Host Controller
+[    1.175915] usb usb4: Manufacturer: Linux 7.1.4-gentoo-dist-bin ehci_hcd
+[    1.175983] usb usb4: SerialNumber: [redacted]
+[    1.176406] hub 4-0:1.0: USB hub found
+[    1.176498] hub 4-0:1.0: 5 ports detected
+[    1.196360] Demotion targets for Node 0: null
+[    1.196478] page_owner is disabled
+[    1.196844] Key type .fscrypt registered
+[    1.196912] Key type fscrypt-provisioning registered
+[    1.199974] Btrfs loaded, zoned=yes, fsverity=yes
+[    1.200137] Key type big_key registered
+[    1.235106] hub 2-0:1.0: USB hub found
+[    1.235225] hub 2-0:1.0: 5 ports detected
+[    1.291823] ata2: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+[    1.291935] ata1: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+[    1.292179] ata1.00: Model 'Samsung SSD 850 EVO 500GB', rev 'EMT02B6Q', applying quirks: noncqtrim zeroaftertrim
+[    1.292313] ata1.00: supports DRM functions and may not be fully accessible
+[    1.292383] ata1.00: ATA-9: Samsung SSD 850 EVO 500GB, EMT02B6Q, max UDMA/133
+[    1.292979] ata1.00: 976773168 sectors, multi 1: LBA48 NCQ (depth 32)
+[    1.294445] ata1.00: Features: Trust Dev-Sleep DIPM NCQ-sndrcv
+[    1.294810] ata1.00: supports DRM functions and may not be fully accessible
+[    1.295317] ata1.00: Invalid log directory version 0x0000
+[    1.297957] ata1.00: configured for UDMA/133
+[    1.304313] ata2.00: ATAPI: PIONEER DVD-RW  DVRTS08, Q81D, max UDMA/33
+[    1.304411] ata2.00: Features: HIPM DIPM
+[    1.308530] scsi 0:0:0:0: Direct-Access     ATA      Samsung SSD 850  2B6Q PQ: 0 ANSI: 5
+[    1.309628] sd 0:0:0:0: Attached scsi generic sg0 type 0
+[    1.309869] sd 0:0:0:0: [sda] 976773168 512-byte logical blocks: (500 GB/466 GiB)
+[    1.309974] sd 0:0:0:0: [sda] Write Protect is off
+[    1.310043] sd 0:0:0:0: [sda] Mode Sense: 00 3a 00 00
+[    1.310087] sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[    1.310285] sd 0:0:0:0: [sda] Preferred minimum I/O size 512 bytes
+[    1.319578] ata2.00: configured for UDMA/33
+[    1.322362]  sda: sda1 sda2 sda3
+[    1.323720] sd 0:0:0:0: [sda] supports TCG Opal
+[    1.323806] sd 0:0:0:0: [sda] Attached SCSI disk
+[    1.325505] Freeing initrd memory: 16876K
+[    1.348287] usb 3-1: new high-speed USB device number 2 using ehci-pci
+[    1.354813] Key type encrypted registered
+[    1.357389] evm: Initialising EVM extended attributes:
+[    1.357455] evm: security.selinux
+[    1.357519] evm: security.SMACK64 (disabled)
+[    1.357583] evm: security.SMACK64EXEC (disabled)
+[    1.357647] evm: security.SMACK64TRANSMUTE (disabled)
+[    1.357712] evm: security.SMACK64MMAP (disabled)
+[    1.357776] evm: security.apparmor
+[    1.357839] evm: security.ima
+[    1.357901] evm: security.capability
+[    1.357964] evm: HMAC attrs: 0x1
+[    1.368587] alg: No test for 842 (842-scomp)
+[    1.381019] scsi 1:0:0:0: CD-ROM            PIONEER  DVD-RW  DVRTS08  Q81D PQ: 0 ANSI: 5
+[    1.391216] PM:   Magic number: 2:128:688
+[    1.391731] RAS: Correctable Errors collector initialized.
+[    1.392289] Unstable clock detected, switching default tracing clock to "global"
+               If you want to keep using the local clock, then add:
+                 "trace_clock=local"
+               on the kernel command line
+[    1.401208] clk: Disabling unused clocks
+[    1.401277] PM: genpd: Disabling unused power domains
+[    1.491942] usb 3-1: New USB device found, idVendor=058f, idProduct=6254, bcdDevice= 1.00
+[    1.492029] usb 3-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[    1.492755] hub 3-1:1.0: USB hub found
+[    1.492983] hub 3-1:1.0: 4 ports detected
+[    1.514784] sr 1:0:0:0: [sr0] scsi3-mmc drive: 24x/24x writer cd/rw xa/form2 cdda caddy
+[    1.559930] cdrom: Uniform CD-ROM driver Revision: 3.20
+[    1.613459] sr 1:0:0:0: Attached scsi CD-ROM sr0
+[    1.613597] sr 1:0:0:0: Attached scsi generic sg1 type 5
+[    1.634928] Freeing unused decrypted memory: 2028K
+[    1.638188] Freeing unused kernel image (initmem) memory: 5488K
+[    1.638578] Write protecting the kernel read-only data: 47104k
+[    1.640523] Freeing unused kernel image (text/rodata gap) memory: 1944K
+[    1.641049] Freeing unused kernel image (rodata/data gap) memory: 556K
+[    1.709638] usb 2-1: new full-speed USB device number 2 using ohci-pci
+[    1.746107] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+[    1.746206] x86/mm: Checking user space page tables
+[    1.846301] usb 1-5: new low-speed USB device number 2 using ohci-pci
+[    1.861638] x86/mm: Checked W+X mappings: passed, no W+X pages found.
+[    1.861715] Run /init as init process
+[    1.861780]   with arguments:
+[    1.861783]     /init
+[    1.861785]   with environment:
+[    1.861787]     HOME=/
+[    1.861790]     TERM=linux
+[    1.927585] usb 2-1: New USB device found, idVendor=0a5c, idProduct=4500, bcdDevice= 1.00
+[    1.928704] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[    1.928775] usb 2-1: Product: BRCM2046 Hub
+[    1.928840] usb 2-1: Manufacturer: Apple Inc.
+[    1.932681] hub 2-1:1.0: USB hub found
+[    1.935579] hub 2-1:1.0: 3 ports detected
+[    2.018775] dracut: dracut-111
+[    2.059988] usb 1-5: New USB device found, idVendor=05ac, idProduct=8242, bcdDevice= 0.16
+[    2.060080] usb 1-5: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[    2.060150] usb 1-5: Product: IR Receiver
+[    2.060215] usb 1-5: Manufacturer: Apple Computer, Inc.
+[    2.234914] random: crng init done
+[    2.239647] usb 2-1.1: new full-speed USB device number 3 using ohci-pci
+[    2.301587] usb 4-2: new high-speed USB device number 3 using ehci-pci
+[    2.321597] usb 3-1.1: new low-speed USB device number 4 using ehci-pci
+[    2.360590] usb 2-1.1: New USB device found, idVendor=05ac, idProduct=8216, bcdDevice= 2.08
+[    2.360677] usb 2-1.1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    2.360756] usb 2-1.1: Product: Bluetooth USB Host Controller
+[    2.360824] usb 2-1.1: Manufacturer: Apple Inc.
+[    2.360889] usb 2-1.1: SerialNumber: [redacted]
+[    2.441086] usb 3-1.1: New USB device found, idVendor=046a, idProduct=010d, bcdDevice= 1.00
+[    2.441180] usb 3-1.1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[    2.457882] input: HID 046a:010d as /devices/pci0000:00/0000:00:04.1/usb3/3-1/3-1.1/3-1.1:1.0/0003:046A:010D.0002/input/input3
+[    2.541821] hid-generic 0003:046A:010D.0002: input,hidraw0: USB HID v1.11 Keyboard [HID 046a:010d] on usb-0000:00:04.1-1.1/input0
+[    2.547014] input: HID 046a:010d as /devices/pci0000:00/0000:00:04.1/usb3/3-1/3-1.1/3-1.1:1.1/0003:046A:010D.0003/input/input4
+[    2.601351] hid-generic 0003:046A:010D.0003: input,hidraw1: USB HID v1.11 Device [HID 046a:010d] on usb-0000:00:04.1-1.1/input1
+[    2.618614] nouveau: loading out-of-tree module taints kernel.
+[    2.620445] nouveau: module verification failed: signature and/or required key missing - tainting kernel
+[    2.688260] usb 3-1.2: new low-speed USB device number 5 using ehci-pci
+[    2.792493] usb 3-1.2: New USB device found, idVendor=046a, idProduct=000c, bcdDevice= 1.00
+[    2.792587] usb 3-1.2: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[    2.792667] usb 3-1.2: Product: USB Optical Mouse
+[    2.792733] usb 3-1.2: Manufacturer: PixArt
+[    2.949367] input: PixArt USB Optical Mouse as /devices/pci0000:00/0000:00:04.1/usb3/3-1/3-1.2/3-1.2:1.0/0003:046A:000C.0004/input/input5
+[    2.954964] hid-generic 0003:046A:000C.0004: input,hidraw2: USB HID v1.11 Mouse [PixArt USB Optical Mouse] on usb-0000:00:04.1-1.2/input0
+[    3.034932] usb 3-1.3: new full-speed USB device number 6 using ehci-pci
+[    3.144702] usb 3-1.3: New USB device found, idVendor=046d, idProduct=c21d, bcdDevice=40.14
+[    3.144787] usb 3-1.3: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    3.144866] usb 3-1.3: Product: Gamepad F310
+[    3.144952] usb 3-1.3: Manufacturer: Logitech
+[    3.145016] usb 3-1.3: SerialNumber: [redacted]
+[    3.228267] usb 3-1.4: new high-speed USB device number 7 using ehci-pci
+[    3.425956] usb 3-1.4: New USB device found, idVendor=046d, idProduct=0825, bcdDevice= 0.21
+[    3.426048] usb 3-1.4: New USB device strings: Mfr=0, Product=1, SerialNumber=2
+[    3.426126] usb 3-1.4: Product: C270 HD WEBCAM
+[    3.426191] usb 3-1.4: SerialNumber: [redacted]
+[    3.643199] ACPI: \_SB_.PCI0.IXVE.IGPU: failed to evaluate _DSM
+[    3.643734] ACPI: \_SB_.PCI0.LGPU: Enabled at IRQ 16
+[    3.643874] nouveau 0000:02:00.0: NVIDIA MCP79/MCP7A (0ac080b1)
+[    3.660872] nouveau 0000:02:00.0: bios: version 62.79.4e.00.01
+[    3.661469] nouveau 0000:02:00.0: vgaarb: deactivate vga console
+[    3.662499] Console: switching to colour dummy device 80x25
+[    3.768275] nouveau 0000:02:00.0: fb: 256 MiB stolen system memory
+[    3.847239] nouveau 0000:02:00.0: drm: VRAM: 256 MiB
+[    3.847251] nouveau 0000:02:00.0: drm: GART: 1048576 MiB
+[    3.847261] nouveau 0000:02:00.0: drm: TMDS table version 2.0
+[    3.849917] nouveau 0000:02:00.0: drm: MM: using M2MF for buffer copies
+[    3.851647] nouveau 0000:02:00.0: [drm] Registered 2 planes with drm panic
+[    3.861729] [drm] Initialized nouveau 1.4.2 for 0000:02:00.0 on minor 0
+[    3.934468] fbcon: nouveaudrmfb (fb0) is primary device
+[    6.366118] nouveau 0000:02:00.0: drm: core notifier timeout
+[    6.366179] Console: switching to colour frame buffer device 240x67
+[    6.372665] nouveau 0000:02:00.0: [drm] fb0: nouveaudrmfb frame buffer device
+[    6.415736] dracut: Starting plymouth daemon
+[    7.213779] nv_tco: NV TCO WatchDog Timer Driver v0.01
+[    7.235724] nv_tco: Watchdog reboot detected
+[    7.258741] nv_tco: initialized (0x0540). heartbeat=30 sec (nowayout=0)
+[    7.297867] input: Apple Computer, Inc. IR Receiver as /devices/pci0000:00/0000:00:04.0/usb1/1-5/1-5:1.0/0003:05AC:8242.0001/input/input6
+[    7.356197] appleir 0003:05AC:8242.0001: input,hiddev96,hidraw3: USB HID v1.11 Device [Apple Computer, Inc. IR Receiver] on usb-0000:00:04.0-5/input0
+[    7.527115] usb 4-2: unable to read config index 0 descriptor/all
+[    7.527160] usb 4-2: can't read configurations, error -110
+[    7.641604] usb 4-2: new high-speed USB device number 4 using ehci-pci
+[    7.674980] firewire_ohci 0000:04:00.0: added OHCI v1.10 device as card 0, 8 IR + 8 IT contexts, quirks 0x0, physUB
+[    7.780349] usb 4-2: New USB device found, idVendor=03f0, idProduct=3917, bcdDevice= 1.00
+[    7.780397] usb 4-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    7.780424] usb 4-2: Product: HP LaserJet P2014
+[    7.780443] usb 4-2: Manufacturer: Hewlett-Packard
+[    7.780463] usb 4-2: SerialNumber: [redacted]
+[    8.138361] usb 2-4: new full-speed USB device number 4 using ohci-pci
+[    8.192004] firewire_core 0000:04:00.0: created device fw0: GUID 0023dffffe7eee0a, S800, quirks 00000000
+[    8.362688] usb 2-4: New USB device found, idVendor=0483, idProduct=5740, bcdDevice= 2.00
+[    8.362738] usb 2-4: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[    8.362765] usb 2-4: Product: STM32 Virtual ComPort
+[    8.362785] usb 2-4: Manufacturer: STMicroelectronics
+[    8.362805] usb 2-4: SerialNumber: [redacted]
+[    9.053681] EXT4-fs (sda3): orphan cleanup on readonly fs
+[    9.054607] EXT4-fs (sda3): mounted filesystem 57ece08a-4d7f-4201-b33e-9cd499dcebe2 ro with ordered data mode. Quota mode: none.
+[    9.102526] dracut: Remounting /dev/disk/by-uuid/57ece08a-4d7f-4201-b33e-9cd499dcebe2 with -o noatime,discard,ro
+[    9.118405] EXT4-fs (sda3): re-mounted 57ece08a-4d7f-4201-b33e-9cd499dcebe2.
+[    9.153080] dracut: Mounted root filesystem /dev/sda3
+[    9.245572] dracut: Switching root
+[   11.148265] i2c i2c-8: nForce2 SMBus adapter at 0x2140
+[   11.148315] i2c i2c-9: nForce2 SMBus adapter at 0x2100
+[   11.169952] forcedeth: Reverse Engineered nForce ethernet driver. Version 0.64.
+[   11.171692] ACPI: \_SB_.PCI0.LMAC: Enabled at IRQ 23
+[   11.242187] forcedeth 0000:00:0a.0: ifname eth0, PHY OUI 0x732 @ 1, addr xx:xx:xx:xx:xx:xx
+[   11.242202] forcedeth 0000:00:0a.0: highdma csum pwrctl gbit lnktim msi desc-v3
+[   11.540970] usbcore: registered new device driver apple-mfi-fastcharge
+[   11.654729] usblp 4-2:1.0: usblp0: USB Bidirectional printer dev 4 if 0 alt 0 proto 2 vid 0x03F0 pid 0x3917
+[   11.654822] usbcore: registered new interface driver usblp
+[   11.698351] input: Logitech Gamepad F310 as /devices/pci0000:00/0000:00:04.1/usb3/3-1/3-1.3/3-1.3:1.0/input/input7
+[   11.698528] usbcore: registered new interface driver xpad
+[   11.730624] cdc_acm 2-4:1.0: ttyACM0: USB ACM device
+[   11.733770] usbcore: registered new interface driver cdc_acm
+[   11.733779] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+[   11.737337] mc: Linux media interface: v0.10
+[   11.747554] ACPI: \_SB_.PCI0.LAZA: Enabled at IRQ 22
+[   11.747577] snd_hda_intel 0000:00:08.0: Disabling MSI
+[   11.861911] videodev: Linux video capture interface: v2.00
+[   11.884490] snd_hda_codec_alc882 hdaudioC0D0: ALC889A: picked fixup  for codec SSID 106b:4100
+[   11.884507] snd_hda_codec_alc882 hdaudioC0D0: ALC889A: SKU not ready 0x400000f0
+[   11.885051] snd_hda_codec_alc882 hdaudioC0D0: autoconfig for ALC889A: line_outs=1 (0x18/0x0/0x0/0x0/0x0) type:speaker
+[   11.885060] snd_hda_codec_alc882 hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+[   11.885065] snd_hda_codec_alc882 hdaudioC0D0:    hp_outs=1 (0x14/0x0/0x0/0x0/0x0)
+[   11.885069] snd_hda_codec_alc882 hdaudioC0D0:    mono: mono_out=0x0
+[   11.885073] snd_hda_codec_alc882 hdaudioC0D0:    dig-out=0x1e/0x0
+[   11.885076] snd_hda_codec_alc882 hdaudioC0D0:    inputs:
+[   11.885080] snd_hda_codec_alc882 hdaudioC0D0:      Line=0x15
+[   11.885083] snd_hda_codec_alc882 hdaudioC0D0:    dig-in=0x1f
+[   11.886083] usb 3-1.4: current rate 16000 is different from the runtime rate 32000
+[   11.892999] usb 3-1.4: current rate 24000 is different from the runtime rate 16000
+[   11.898700] usb 3-1.4: 3:3: cannot set freq 24000 to ep 0x82
+[   11.913346] input: HDA NVidia Line as /devices/pci0000:00/0000:00:08.0/sound/card0/input8
+[   11.914172] input: HDA NVidia Headphone as /devices/pci0000:00/0000:00:08.0/sound/card0/input9
+[   12.007168] ssb: Found chip with id 0x4321, rev 0x05 and package 0x00
+[   12.092641] Bluetooth: Core ver 2.22
+[   12.092702] NET: Registered PF_BLUETOOTH protocol family
+[   12.092706] Bluetooth: HCI device and connection manager initialized
+[   12.092714] Bluetooth: HCI socket layer initialized
+[   12.092719] Bluetooth: L2CAP socket layer initialized
+[   12.092728] Bluetooth: SCO socket layer initialized
+[   12.131803] b43-pci-bridge 0000:03:00.0: Sonics Silicon Backplane found on PCI device 0000:03:00.0
+[   12.165283] usbcore: registered new interface driver btusb
+[   12.230370] input: PC Speaker as /devices/platform/pcspkr/input/input10
+[   12.288678] usb 3-1.4: set resolution quirk: cval->res = 384
+[   12.291624] usbcore: registered new interface driver snd-usb-audio
+[   12.302608] uvcvideo 3-1.4:1.0: Found UVC 1.00 device C270 HD WEBCAM (046d:0825)
+[   12.339328] usbcore: registered new interface driver uvcvideo
+[   12.627357] EXT4-fs (sda3): re-mounted 57ece08a-4d7f-4201-b33e-9cd499dcebe2 r/w.
+[   12.675034] EXT4-fs (sda3): re-mounted 57ece08a-4d7f-4201-b33e-9cd499dcebe2.
+[   12.732924] intel_powerclamp: No package C-state available
+[   12.756042] forcedeth 0000:00:0a.0 enp0s10: renamed from eth0
+[   12.950605] Adding 8388604k swap on /swapfile.  Priority:-1 extents:19 across:11739132k SS
+[   13.054967] applesmc: key=154 fan=1 temp=8 index=8 acc=0 lux=0 kbd=0
+[   13.055067] applesmc applesmc.768: hwmon_device_register() is deprecated. Please convert the driver to use hwmon_device_register_with_info().
+[   13.096072] EXT4-fs (sda2): mounting ext2 file system using the ext4 subsystem
+[   13.099504] EXT4-fs (sda2): mounted filesystem 64634617-119e-4e7e-9ade-7f6d7c1cb5a2 r/w without journal. Quota mode: none.
+[   13.139961] Loading firmware: regulatory.db
+[   13.143627] Loading firmware: regulatory.db.p7s
+[   13.373935] b43-phy0: Broadcom 4321 WLAN found (core revision 12)
+[   13.398635] b43-phy0: Found PHY: Analog 5, Type 4 (N), Revision 2
+[   13.398658] b43-phy0: Found Radio: Manuf 0x17F, ID 0x2055, Revision 4, Version 0
+[   13.409754] Broadcom 43xx driver loaded [ Features: PNLS ]
+[   13.409870] Loading firmware: b43/ucode11.fw
+[   13.411254] Loading firmware: b43/n0initvals11.fw
+[   13.411511] Loading firmware: b43/n0bsinitvals11.fw
+[   13.411920] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+[   32.718965] elogind-daemon[2782]: New seat seat0.
+[   32.723724] elogind-daemon[2782]: Watching system buttons on /dev/input/event3 (HID 046a:010d)
+[   32.723789] elogind-daemon[2782]: Watching system buttons on /dev/input/event4 (HID 046a:010d)
+[   32.725065] elogind-daemon[2782]: Watching system buttons on /dev/input/event2 (Power Button)
+[   32.725112] elogind-daemon[2782]: Watching system buttons on /dev/input/event0 (Power Button)
+[   32.725159] elogind-daemon[2782]: Watching system buttons on /dev/input/event1 (Sleep Button)
+[   34.091802] b43-phy0: Loading firmware version 666.2 (2011-02-23 01:15:07)
+[   34.370915] 8021q: 802.1Q VLAN Support v1.8
+[   34.428998] forcedeth 0000:00:0a.0 enp0s10: MSI enabled
+[   35.003314] tun: Universal TUN/TAP device driver, 1.6
+[   36.236147] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[   36.236158] Bluetooth: BNEP filters: protocol multicast
+[   36.236166] Bluetooth: BNEP socket layer initialized
+[   36.245895] Bluetooth: MGMT ver 1.23
+[   40.524727] evm: overlay not supported
+[   41.085529] elogind-daemon[2782]: New session 6 of user [redacted]
+[   41.979200] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[   43.055333] wlan0: authenticate with xx:xx:xx:xx:xx:xx (local address=xx:xx:xx:xx:xx:xx)
+[   43.055345] wlan0: send auth to xx:xx:xx:xx:xx:xx (try 1/3)
+[   43.152407] docker0: port 1(vethbb18908) entered blocking state
+[   43.152419] docker0: port 1(vethbb18908) entered disabled state
+[   43.152446] vethbb18908: entered allmulticast mode
+[   43.152545] vethbb18908: entered promiscuous mode
+[   43.181194] eth0: renamed from veth1ac2a4f
+[   43.185116] docker0: port 1(vethbb18908) entered blocking state
+[   43.185130] docker0: port 1(vethbb18908) entered forwarding state
+[   43.261808] wlan0: send auth to xx:xx:xx:xx:xx:xx (try 2/3)
+[   43.464933] wlan0: send auth to xx:xx:xx:xx:xx:xx (try 3/3)
+[   43.470507] wlan0: authenticated
+[   43.474949] wlan0: associate with xx:xx:xx:xx:xx:xx (try 1/3)
+[   43.482920] wlan0: RX AssocResp from xx:xx:xx:xx:xx:xx (capab=0x1111 status=0 aid=4)
+[   43.483343] wlan0: associated
+[   43.510052] wlan0: Limiting TX power to 20 (23 - 3) dBm as advertised by xx:xx:xx:xx:xx:xx
+[   46.897271] nouveau 0000:02:00.0: drm: base-1: timeout
+[   49.637622] nouveau 0000:02:00.0: drm: base-1: timeout
+[   53.168600] nouveau 0000:02:00.0: drm: base-1: timeout
+[   53.222840] usb 3-1.4: reset high-speed USB device number 7 using ehci-pci
+[   53.265377] fuse: init (API version 7.45)
+[   55.623222] nouveau 0000:02:00.0: drm: base-1: timeout
+[   56.133000] Bluetooth: RFCOMM TTY layer initialized
+[   56.133012] Bluetooth: RFCOMM socket layer initialized
+[   56.133023] Bluetooth: RFCOMM ver 1.11
+[   58.053310] nouveau 0000:02:00.0: drm: core notifier timeout
+[   60.483281] nouveau 0000:02:00.0: drm: base-1: timeout

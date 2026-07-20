@@ -1,0 +1,146 @@
+# nvac-s3-unwedge: pre-S3 wedge capture 2026-07-20T16:42:45
+
+# register burst (~100ms cadence) -- GET frozen behind PUT = fetch-park:
++0.0s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.1s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.2s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.3s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.4s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.5s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.6s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
++0.7s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000200 base1_get=000000b8
+
+# decode (chid core=0, base1=2):
+#   core : valid=0 type=0 mthd=0x080 pend=0
+#   base1: valid=0 type=0 mthd=0x080 pend=0
+#   intr0=00000000 supervisor=00000550  (intr0 & 0x001f0000 != 0 => real EVO exception latched -> method-error, not fetch-park)
+
+# dmesg trap/timeout lines (presence of 'ERROR ... mthd' => method-error):
+[    6.366118] nouveau 0000:02:00.0: drm: core notifier timeout
+[   46.897271] nouveau 0000:02:00.0: drm: base-1: timeout
+[   49.637622] nouveau 0000:02:00.0: drm: base-1: timeout
+[   53.168600] nouveau 0000:02:00.0: drm: base-1: timeout
+[   55.623222] nouveau 0000:02:00.0: drm: base-1: timeout
+[   58.053310] nouveau 0000:02:00.0: drm: core notifier timeout
+
+# dmesg tail (last 120):
+[    8.362785] usb 2-4: Manufacturer: STMicroelectronics
+[    8.362805] usb 2-4: SerialNumber: 208132703432
+[    9.053681] EXT4-fs (sda3): orphan cleanup on readonly fs
+[    9.054607] EXT4-fs (sda3): mounted filesystem 57ece08a-4d7f-4201-b33e-9cd499dcebe2 ro with ordered data mode. Quota mode: none.
+[    9.102526] dracut: Remounting /dev/disk/by-uuid/57ece08a-4d7f-4201-b33e-9cd499dcebe2 with -o noatime,discard,ro
+[    9.118405] EXT4-fs (sda3): re-mounted 57ece08a-4d7f-4201-b33e-9cd499dcebe2.
+[    9.153080] dracut: Mounted root filesystem /dev/sda3
+[    9.245572] dracut: Switching root
+[   11.148265] i2c i2c-8: nForce2 SMBus adapter at 0x2140
+[   11.148315] i2c i2c-9: nForce2 SMBus adapter at 0x2100
+[   11.169952] forcedeth: Reverse Engineered nForce ethernet driver. Version 0.64.
+[   11.171692] ACPI: \_SB_.PCI0.LMAC: Enabled at IRQ 23
+[   11.242187] forcedeth 0000:00:0a.0: ifname eth0, PHY OUI 0x732 @ 1, addr 00:23:df:7e:ee:0a
+[   11.242202] forcedeth 0000:00:0a.0: highdma csum pwrctl gbit lnktim msi desc-v3
+[   11.540970] usbcore: registered new device driver apple-mfi-fastcharge
+[   11.654729] usblp 4-2:1.0: usblp0: USB Bidirectional printer dev 4 if 0 alt 0 proto 2 vid 0x03F0 pid 0x3917
+[   11.654822] usbcore: registered new interface driver usblp
+[   11.698351] input: Logitech Gamepad F310 as /devices/pci0000:00/0000:00:04.1/usb3/3-1/3-1.3/3-1.3:1.0/input/input7
+[   11.698528] usbcore: registered new interface driver xpad
+[   11.730624] cdc_acm 2-4:1.0: ttyACM0: USB ACM device
+[   11.733770] usbcore: registered new interface driver cdc_acm
+[   11.733779] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+[   11.737337] mc: Linux media interface: v0.10
+[   11.747554] ACPI: \_SB_.PCI0.LAZA: Enabled at IRQ 22
+[   11.747577] snd_hda_intel 0000:00:08.0: Disabling MSI
+[   11.861911] videodev: Linux video capture interface: v2.00
+[   11.884490] snd_hda_codec_alc882 hdaudioC0D0: ALC889A: picked fixup  for codec SSID 106b:4100
+[   11.884507] snd_hda_codec_alc882 hdaudioC0D0: ALC889A: SKU not ready 0x400000f0
+[   11.885051] snd_hda_codec_alc882 hdaudioC0D0: autoconfig for ALC889A: line_outs=1 (0x18/0x0/0x0/0x0/0x0) type:speaker
+[   11.885060] snd_hda_codec_alc882 hdaudioC0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+[   11.885065] snd_hda_codec_alc882 hdaudioC0D0:    hp_outs=1 (0x14/0x0/0x0/0x0/0x0)
+[   11.885069] snd_hda_codec_alc882 hdaudioC0D0:    mono: mono_out=0x0
+[   11.885073] snd_hda_codec_alc882 hdaudioC0D0:    dig-out=0x1e/0x0
+[   11.885076] snd_hda_codec_alc882 hdaudioC0D0:    inputs:
+[   11.885080] snd_hda_codec_alc882 hdaudioC0D0:      Line=0x15
+[   11.885083] snd_hda_codec_alc882 hdaudioC0D0:    dig-in=0x1f
+[   11.886083] usb 3-1.4: current rate 16000 is different from the runtime rate 32000
+[   11.892999] usb 3-1.4: current rate 24000 is different from the runtime rate 16000
+[   11.898700] usb 3-1.4: 3:3: cannot set freq 24000 to ep 0x82
+[   11.913346] input: HDA NVidia Line as /devices/pci0000:00/0000:00:08.0/sound/card0/input8
+[   11.914172] input: HDA NVidia Headphone as /devices/pci0000:00/0000:00:08.0/sound/card0/input9
+[   12.007168] ssb: Found chip with id 0x4321, rev 0x05 and package 0x00
+[   12.092641] Bluetooth: Core ver 2.22
+[   12.092702] NET: Registered PF_BLUETOOTH protocol family
+[   12.092706] Bluetooth: HCI device and connection manager initialized
+[   12.092714] Bluetooth: HCI socket layer initialized
+[   12.092719] Bluetooth: L2CAP socket layer initialized
+[   12.092728] Bluetooth: SCO socket layer initialized
+[   12.131803] b43-pci-bridge 0000:03:00.0: Sonics Silicon Backplane found on PCI device 0000:03:00.0
+[   12.165283] usbcore: registered new interface driver btusb
+[   12.230370] input: PC Speaker as /devices/platform/pcspkr/input/input10
+[   12.288678] usb 3-1.4: set resolution quirk: cval->res = 384
+[   12.291624] usbcore: registered new interface driver snd-usb-audio
+[   12.302608] uvcvideo 3-1.4:1.0: Found UVC 1.00 device C270 HD WEBCAM (046d:0825)
+[   12.339328] usbcore: registered new interface driver uvcvideo
+[   12.627357] EXT4-fs (sda3): re-mounted 57ece08a-4d7f-4201-b33e-9cd499dcebe2 r/w.
+[   12.675034] EXT4-fs (sda3): re-mounted 57ece08a-4d7f-4201-b33e-9cd499dcebe2.
+[   12.732924] intel_powerclamp: No package C-state available
+[   12.756042] forcedeth 0000:00:0a.0 enp0s10: renamed from eth0
+[   12.950605] Adding 8388604k swap on /swapfile.  Priority:-1 extents:19 across:11739132k SS
+[   13.054967] applesmc: key=154 fan=1 temp=8 index=8 acc=0 lux=0 kbd=0
+[   13.055067] applesmc applesmc.768: hwmon_device_register() is deprecated. Please convert the driver to use hwmon_device_register_with_info().
+[   13.096072] EXT4-fs (sda2): mounting ext2 file system using the ext4 subsystem
+[   13.099504] EXT4-fs (sda2): mounted filesystem 64634617-119e-4e7e-9ade-7f6d7c1cb5a2 r/w without journal. Quota mode: none.
+[   13.138944] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[   13.139440] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[   13.139839] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[   13.139961] Loading firmware: regulatory.db
+[   13.143627] Loading firmware: regulatory.db.p7s
+[   13.373935] b43-phy0: Broadcom 4321 WLAN found (core revision 12)
+[   13.398635] b43-phy0: Found PHY: Analog 5, Type 4 (N), Revision 2
+[   13.398658] b43-phy0: Found Radio: Manuf 0x17F, ID 0x2055, Revision 4, Version 0
+[   13.409754] Broadcom 43xx driver loaded [ Features: PNLS ]
+[   13.409870] Loading firmware: b43/ucode11.fw
+[   13.411254] Loading firmware: b43/n0initvals11.fw
+[   13.411511] Loading firmware: b43/n0bsinitvals11.fw
+[   13.411920] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+[   32.718965] elogind-daemon[2782]: New seat seat0.
+[   32.723724] elogind-daemon[2782]: Watching system buttons on /dev/input/event3 (HID 046a:010d)
+[   32.723789] elogind-daemon[2782]: Watching system buttons on /dev/input/event4 (HID 046a:010d)
+[   32.725065] elogind-daemon[2782]: Watching system buttons on /dev/input/event2 (Power Button)
+[   32.725112] elogind-daemon[2782]: Watching system buttons on /dev/input/event0 (Power Button)
+[   32.725159] elogind-daemon[2782]: Watching system buttons on /dev/input/event1 (Sleep Button)
+[   34.091802] b43-phy0: Loading firmware version 666.2 (2011-02-23 01:15:07)
+[   34.370915] 8021q: 802.1Q VLAN Support v1.8
+[   34.428998] forcedeth 0000:00:0a.0 enp0s10: MSI enabled
+[   35.003314] tun: Universal TUN/TAP device driver, 1.6
+[   36.236147] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[   36.236158] Bluetooth: BNEP filters: protocol multicast
+[   36.236166] Bluetooth: BNEP socket layer initialized
+[   36.245895] Bluetooth: MGMT ver 1.23
+[   40.524727] evm: overlay not supported
+[   41.085529] elogind-daemon[2782]: New session 6 of user neo.
+[   41.979200] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[   43.055333] wlan0: authenticate with 9a:2a:6f:0e:71:28 (local address=00:24:36:eb:86:bf)
+[   43.055345] wlan0: send auth to 9a:2a:6f:0e:71:28 (try 1/3)
+[   43.152407] docker0: port 1(vethbb18908) entered blocking state
+[   43.152419] docker0: port 1(vethbb18908) entered disabled state
+[   43.152446] vethbb18908: entered allmulticast mode
+[   43.152545] vethbb18908: entered promiscuous mode
+[   43.181194] eth0: renamed from veth1ac2a4f
+[   43.185116] docker0: port 1(vethbb18908) entered blocking state
+[   43.185130] docker0: port 1(vethbb18908) entered forwarding state
+[   43.261808] wlan0: send auth to 9a:2a:6f:0e:71:28 (try 2/3)
+[   43.464933] wlan0: send auth to 9a:2a:6f:0e:71:28 (try 3/3)
+[   43.470507] wlan0: authenticated
+[   43.474949] wlan0: associate with 9a:2a:6f:0e:71:28 (try 1/3)
+[   43.482920] wlan0: RX AssocResp from 9a:2a:6f:0e:71:28 (capab=0x1111 status=0 aid=4)
+[   43.483343] wlan0: associated
+[   43.510052] wlan0: Limiting TX power to 20 (23 - 3) dBm as advertised by 9a:2a:6f:0e:71:28
+[   46.897271] nouveau 0000:02:00.0: drm: base-1: timeout
+[   49.637622] nouveau 0000:02:00.0: drm: base-1: timeout
+[   53.168600] nouveau 0000:02:00.0: drm: base-1: timeout
+[   53.222840] usb 3-1.4: reset high-speed USB device number 7 using ehci-pci
+[   53.265377] fuse: init (API version 7.45)
+[   55.623222] nouveau 0000:02:00.0: drm: base-1: timeout
+[   56.133000] Bluetooth: RFCOMM TTY layer initialized
+[   56.133012] Bluetooth: RFCOMM socket layer initialized
+[   56.133023] Bluetooth: RFCOMM ver 1.11
+[   58.053310] nouveau 0000:02:00.0: drm: core notifier timeout
