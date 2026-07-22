@@ -1,0 +1,145 @@
+# nvac-s3-unwedge: pre-S3 wedge capture 2026-07-22T20:38:34
+
+# register burst (~100ms cadence) -- GET frozen behind PUT = fetch-park:
++0.0s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000008a8 core_get=00000868 base0_put=00000000 base0_get=00000000 base1_put=000009f4 base1_get=000008f4
++0.1s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000008a8 core_get=00000868 base0_put=00000000 base0_get=00000000 base1_put=000009f4 base1_get=000008f4
++0.2s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000008a8 core_get=00000868 base0_put=00000000 base0_get=00000000 base1_put=000009f4 base1_get=000008f4
++0.3s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000008a8 core_get=00000868 base0_put=00000000 base0_get=00000000 base1_put=000009f4 base1_get=000008f4
++0.4s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000008a8 core_get=00000868 base0_put=00000000 base0_get=00000000 base1_put=000009f4 base1_get=000008f4
++0.5s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000008a8 core_get=00000868 base0_put=00000000 base0_get=00000000 base1_put=000009f4 base1_get=000008f4
++0.6s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000008a8 core_get=00000868 base0_put=00000000 base0_get=00000000 base1_put=000009f4 base1_get=000008f4
++0.7s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000008a8 core_get=00000868 base0_put=00000000 base0_get=00000000 base1_put=000009f4 base1_get=000008f4
+
+# decode (chid core=0, base1=2):
+#   core : valid=0 type=0 mthd=0x080 pend=0
+#   base1: valid=0 type=0 mthd=0x080 pend=0
+#   intr0=00000000 supervisor=00000150  (intr0 & 0x001f0000 != 0 => real EVO exception latched -> method-error, not fetch-park)
+
+# dmesg trap/timeout lines (presence of 'ERROR ... mthd' => method-error):
+[ 1211.278168] nouveau 0000:02:00.0: drm: core notifier timeout
+[ 1213.802408] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 1216.236182] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 1218.670346] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 1221.119618] nouveau 0000:02:00.0: drm: base-1: timeout
+
+# dmesg tail (last 120):
+[    9.981951] ssb: Found chip with id 0x4321, rev 0x05 and package 0x00
+[   10.065477] b43-pci-bridge 0000:03:00.0: Sonics Silicon Backplane found on PCI device 0000:03:00.0
+[   10.344040] forcedeth 0000:00:0a.0 enp0s10: renamed from eth0
+[   10.530182] EXT4-fs (sda3): re-mounted 57ece08a-4d7f-4201-b33e-9cd499dcebe2 r/w.
+[   10.535424] applesmc: key=154 fan=1 temp=8 index=8 acc=0 lux=0 kbd=0
+[   10.535530] applesmc applesmc.768: hwmon_device_register() is deprecated. Please convert the driver to use hwmon_device_register_with_info().
+[   10.563396] EXT4-fs (sda3): re-mounted 57ece08a-4d7f-4201-b33e-9cd499dcebe2.
+[   10.864711] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[   10.865223] Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[   10.865626] Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+[   10.865676] Loading firmware: regulatory.db
+[   10.870199] Loading firmware: regulatory.db.p7s
+[   10.902059] Adding 8388604k swap on /swapfile.  Priority:-1 extents:19 across:11739132k SS
+[   10.917828] intel_powerclamp: No package C-state available
+[   11.063897] EXT4-fs (sda2): mounting ext2 file system using the ext4 subsystem
+[   11.070029] EXT4-fs (sda2): mounted filesystem 64634617-119e-4e7e-9ade-7f6d7c1cb5a2 r/w without journal. Quota mode: none.
+[   11.083532] b43-phy0: Broadcom 4321 WLAN found (core revision 12)
+[   11.113257] b43-phy0: Found PHY: Analog 5, Type 4 (N), Revision 2
+[   11.113277] b43-phy0: Found Radio: Manuf 0x17F, ID 0x2055, Revision 4, Version 0
+[   11.122202] Broadcom 43xx driver loaded [ Features: PNLS ]
+[   11.122319] Loading firmware: b43/ucode11.fw
+[   11.123156] Loading firmware: b43/n0initvals11.fw
+[   11.123366] Loading firmware: b43/n0bsinitvals11.fw
+[   11.123764] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+[   11.860400] elogind-daemon[1575]: New seat seat0.
+[   11.864598] elogind-daemon[1575]: Watching system buttons on /dev/input/event3 (HID 046a:010d)
+[   11.864638] elogind-daemon[1575]: Watching system buttons on /dev/input/event4 (HID 046a:010d)
+[   11.865946] elogind-daemon[1575]: Watching system buttons on /dev/input/event2 (Power Button)
+[   11.865992] elogind-daemon[1575]: Watching system buttons on /dev/input/event0 (Power Button)
+[   11.866043] elogind-daemon[1575]: Watching system buttons on /dev/input/event1 (Sleep Button)
+[   12.995279] b43-phy0: Loading firmware version 666.2 (2011-02-23 01:15:07)
+[   13.276603] 8021q: 802.1Q VLAN Support v1.8
+[   13.321940] forcedeth 0000:00:0a.0 enp0s10: MSI enabled
+[   13.733348] tun: Universal TUN/TAP device driver, 1.6
+[   21.925792] wlan0: authenticate with 9a:2a:6f:0e:71:28 (local address=00:24:36:eb:86:bf)
+[   21.925801] wlan0: send auth to 9a:2a:6f:0e:71:28 (try 1/3)
+[   22.128447] wlan0: send auth to 9a:2a:6f:0e:71:28 (try 2/3)
+[   22.134607] wlan0: authenticated
+[   22.138311] wlan0: associate with 9a:2a:6f:0e:71:28 (try 1/3)
+[   22.150611] wlan0: RX AssocResp from 9a:2a:6f:0e:71:28 (capab=0x1111 status=0 aid=5)
+[   22.150973] wlan0: associated
+[   22.240459] wlan0: Limiting TX power to 20 (23 - 3) dBm as advertised by 9a:2a:6f:0e:71:28
+[   27.301672] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[   27.301682] Bluetooth: BNEP filters: protocol multicast
+[   27.301690] Bluetooth: BNEP socket layer initialized
+[   27.311686] Bluetooth: MGMT ver 1.23
+[   30.032714] evm: overlay not supported
+[   31.068565] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[   31.598460] elogind-daemon[1575]: New session 6 of user neo.
+[   32.426732] docker0: port 1(vethab676de) entered blocking state
+[   32.426746] docker0: port 1(vethab676de) entered disabled state
+[   32.426766] vethab676de: entered allmulticast mode
+[   32.426863] vethab676de: entered promiscuous mode
+[   32.499473] eth0: renamed from veth156a02f
+[   32.506187] docker0: port 1(vethab676de) entered blocking state
+[   32.506203] docker0: port 1(vethab676de) entered forwarding state
+[   41.774986] usb 3-1.4: reset high-speed USB device number 7 using ehci-pci
+[   41.971577] fuse: init (API version 7.45)
+[   45.641315] Bluetooth: RFCOMM TTY layer initialized
+[   45.641333] Bluetooth: RFCOMM socket layer initialized
+[   45.641347] Bluetooth: RFCOMM ver 1.11
+[   62.398938] ptrace attach of "spawn-setns                                           "[7542] was attempted by "lsns -t net -p 3611 -o NETNSID -nr"[8046]
+[   62.399078] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 2"[7553] was attempted by "lsns -t net -p 3611 -o NETNSID -nr"[8046]
+[   62.399110] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 2"[7553] was attempted by "lsns -t net -p 3611 -o NETNSID -nr"[8046]
+[   62.402781] ptrace attach of "/usr/libexec/netdata/plugins.d/cgroup-network --cgroup /sys/fs/cgroup/openrc.prometheus"[8017] was attempted by "lsns -t net -p 3611 -o NETNSID -nr"[8046]
+[   62.402953] ptrace attach of "spawn-unnamed                                                                          "[8018] was attempted by "lsns -t net -p 3611 -o NETNSID -nr"[8046]
+[   62.402983] ptrace attach of "spawn-unnamed                                                                          "[8018] was attempted by "lsns -t net -p 3611 -o NETNSID -nr"[8046]
+[   62.765401] ptrace attach of "spawn-setns                                           "[7542] was attempted by "lsns -t net -p 7167 -o NETNSID -nr"[8082]
+[   62.765580] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 2"[7553] was attempted by "lsns -t net -p 7167 -o NETNSID -nr"[8082]
+[   62.765613] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 2"[7553] was attempted by "lsns -t net -p 7167 -o NETNSID -nr"[8082]
+[   62.766283] ptrace attach of "/usr/libexec/netdata/plugins.d/cgroup-network --cgroup /sys/fs/cgroup/openrc.agetty.tty4"[8052] was attempted by "lsns -t net -p 7167 -o NETNSID -nr"[8082]
+[   67.828955] __report_access: 98 callbacks suppressed
+[   67.828962] ptrace attach of "spawn-setns                                           "[7542] was attempted by "lsns -t net -p 4166 -o NETNSID -nr"[8887]
+[   67.829078] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 2"[7553] was attempted by "lsns -t net -p 4166 -o NETNSID -nr"[8887]
+[   67.831372] ptrace attach of "/usr/libexec/netdata/plugins.d/cgroup-network --cgroup /sys/fs/cgroup/openrc.docker"[8856] was attempted by "lsns -t net -p 4166 -o NETNSID -nr"[8887]
+[   67.831561] ptrace attach of "spawn-unnamed                                                                      "[8857] was attempted by "lsns -t net -p 4166 -o NETNSID -nr"[8887]
+[   67.831590] ptrace attach of "spawn-unnamed                                                                      "[8857] was attempted by "lsns -t net -p 4166 -o NETNSID -nr"[8887]
+[   68.087946] ptrace attach of "spawn-setns                                           "[7542] was attempted by "lsns -t net -p 4209 -o NETNSID -nr"[8932]
+[   68.088065] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 2"[7553] was attempted by "lsns -t net -p 4209 -o NETNSID -nr"[8932]
+[   68.090058] ptrace attach of "/usr/libexec/netdata/plugins.d/cgroup-network --cgroup /sys/fs/cgroup/openrc.feinstaub-exporter"[8901] was attempted by "lsns -t net -p 4209 -o NETNSID -nr"[8932]
+[   68.090219] ptrace attach of "spawn-unnamed                                                                                  "[8902] was attempted by "lsns -t net -p 4209 -o NETNSID -nr"[8932]
+[   68.090250] ptrace attach of "spawn-unnamed                                                                                  "[8902] was attempted by "lsns -t net -p 4209 -o NETNSID -nr"[8932]
+[   72.891588] __report_access: 106 callbacks suppressed
+[   72.892294] ptrace attach of "spawn-setns                                           "[7542] was attempted by "lsns -t net -p 3850 -o NETNSID -nr"[9843]
+[   72.892499] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 2"[7553] was attempted by "lsns -t net -p 3850 -o NETNSID -nr"[9843]
+[   72.892545] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 2"[7553] was attempted by "lsns -t net -p 3850 -o NETNSID -nr"[9843]
+[   72.893348] ptrace attach of "/usr/libexec/netdata/plugins.d/cgroup-network --cgroup /sys/fs/cgroup/openrc.dnsmasq"[9814] was attempted by "lsns -t net -p 3850 -o NETNSID -nr"[9843]
+[   72.895610] ptrace attach of "spawn-unnamed                                                                       "[9815] was attempted by "lsns -t net -p 3850 -o NETNSID -nr"[9843]
+[   72.895649] ptrace attach of "spawn-unnamed                                                                       "[9815] was attempted by "lsns -t net -p 3850 -o NETNSID -nr"[9843]
+[   73.125729] ptrace attach of "spawn-setns                                           "[7542] was attempted by "lsns -t net -p 3950 -o NETNSID -nr"[9877]
+[   73.125856] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 2"[7553] was attempted by "lsns -t net -p 3950 -o NETNSID -nr"[9877]
+[   73.125888] ptrace attach of "/usr/libexec/netdata/plugins.d/cups.plugin 2"[7553] was attempted by "lsns -t net -p 3950 -o NETNSID -nr"[9877]
+[   73.128148] ptrace attach of "/usr/libexec/netdata/plugins.d/cgroup-network --cgroup /sys/fs/cgroup/openrc.cronie"[9849] was attempted by "lsns -t net -p 3950 -o NETNSID -nr"[9877]
+[   98.164473] perf: interrupt took too long (2510 > 2500), lowering kernel.perf_event_max_sample_rate to 79500
+[  145.204601] perf: interrupt took too long (3154 > 3137), lowering kernel.perf_event_max_sample_rate to 63300
+[  278.804119] perf: interrupt took too long (3951 > 3942), lowering kernel.perf_event_max_sample_rate to 50400
+[  685.906722] perf: interrupt took too long (4941 > 4938), lowering kernel.perf_event_max_sample_rate to 40200
+[ 1206.727968] nouveau 0000:02:00.0: drm: soft-dpms: head-1 kept armed across DPMS-off
+[ 1206.736778] nouveau 0000:02:00.0: drm: soft-dpms: head-1 blank-suppression latched (lean, no D3)
+[ 1211.278168] nouveau 0000:02:00.0: drm: core notifier timeout
+[ 1211.278179] nouveau: evo-forensics core: ntfy dword=00000000
+[ 1211.278185] nouveau: evo-forensics core: get=212 put=212 cur=212 put_shadow=212 max=3f3 (u32 idx)
+[ 1211.278191] nouveau: evo-pushbuf core get 200: 00100c68 04380780 00101e00 0000cf00 f0000001 00040cc0 00000000 00040d00
+[ 1211.278195] nouveau: evo-pushbuf core get 208: 00000301 00040ca0 00000002 00040ca8 00040000 00040084 80000000 00080080
+[ 1211.278198] nouveau: evo-pushbuf core get 210: 00000200 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 1211.278201] nouveau: evo-pushbuf core get 218: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 1211.278204] nouveau: evo-pushbuf core get 220: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 1211.278207] nouveau: evo-pushbuf core get 228: 00000000 00000000
+[ 1211.367501] nouveau: soft-dpms: blank-suppression released (wake bridge)
+[ 1213.802408] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 1213.802421] nouveau: evo-forensics base-1: get=235 put=235 cur=235 put_shadow=235 max=3f3 (u32 idx)
+[ 1213.802428] nouveau: evo-pushbuf base-1 get 220: 40000000 00040080 00000001 000800a0 000000a0 f0000000 00040084 00000010
+[ 1213.802432] nouveau: evo-pushbuf base-1 get 228: 000400c0 fb00007a 00080110 00000000 00000000 00140800 00014b00 00000000
+[ 1213.802436] nouveau: evo-pushbuf base-1 get 230: 04380780 00007804 0000cf00 00040080 00000000 00140800 00014b00 00000000
+[ 1213.802439] nouveau: evo-pushbuf base-1 get 238: 04380780 00007804 0000cf00 00040080 00000000 000800a0 000000a0 f0000000
+[ 1213.802443] nouveau: evo-pushbuf base-1 get 240: 00040084 00000010 000400c0 fb00007a 00080110 00000000 00000000 00140800
+[ 1213.802446] nouveau: evo-pushbuf base-1 get 248: 0000cb00 00000000 04380780 00007804 0000cf00
+[ 1216.236182] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 1218.670346] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 1221.119618] nouveau 0000:02:00.0: drm: base-1: timeout
