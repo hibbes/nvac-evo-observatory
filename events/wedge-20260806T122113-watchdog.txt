@@ -1,0 +1,145 @@
+# nvac-s3-unwedge: pre-S3 wedge capture 2026-08-06T12:21:13
+
+# register burst (~100ms cadence) -- GET frozen behind PUT = fetch-park:
++0.0s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000170 base1_get=000000b8
++0.1s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000170 base1_get=000000b8
++0.2s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000170 base1_get=000000b8
++0.3s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000170 base1_get=000000b8
++0.4s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000170 base1_get=000000b8
++0.5s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000170 base1_get=000000b8
++0.6s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000170 base1_get=000000b8
++0.7s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000170 base1_get=000000b8
+
+# decode (chid core=0, base1=2):
+#   core : valid=0 type=0 mthd=0x080 pend=0
+#   base1: valid=0 type=0 mthd=0x080 pend=0
+#   intr0=00000000 supervisor=00000550  (intr0 & 0x001f0000 != 0 => real EVO exception latched -> method-error, not fetch-park)
+
+# dmesg trap/timeout lines (presence of 'ERROR ... mthd' => method-error):
+[    6.346093] nouveau 0000:02:00.0: drm: core notifier timeout
+[   41.668316] nouveau 0000:02:00.0: drm: base-1: timeout
+[   44.361871] nouveau 0000:02:00.0: drm: base-1: timeout
+[   47.950444] nouveau 0000:02:00.0: drm: base-1: timeout
+[   50.381761] nouveau 0000:02:00.0: drm: core notifier timeout
+
+# dmesg tail (last 120):
+[   35.042368]  drm_fb_helper_check_var+0x8c0/0xc00 [drm_kms_helper]
+[   35.042387]  process_one_work+0x19d/0x3a0
+[   35.042394]  worker_thread+0x1af/0x320
+[   35.042399]  ? __pfx_worker_thread+0x10/0x10
+[   35.042403]  kthread+0xe3/0x120
+[   35.042410]  ? __pfx_kthread+0x10/0x10
+[   35.042415]  ret_from_fork+0x1a1/0x270
+[   35.042420]  ? __pfx_kthread+0x10/0x10
+[   35.042425]  ret_from_fork_asm+0x1a/0x30
+[   35.042432]  </TASK>
+[   35.042434] ---[ end trace 0000000000000000 ]---
+[   35.304047] docker0: port 1(vethbaab5d4) entered blocking state
+[   35.304060] docker0: port 1(vethbaab5d4) entered disabled state
+[   35.304091] vethbaab5d4: entered allmulticast mode
+[   35.304201] vethbaab5d4: entered promiscuous mode
+[   35.370965] eth0: renamed from veth55cbceb
+[   35.374794] docker0: port 1(vethbaab5d4) entered blocking state
+[   35.374809] docker0: port 1(vethbaab5d4) entered forwarding state
+[   36.081980] ------------[ cut here ]------------
+[   36.081990] nouveau 0000:02:00.0: [drm] vblank wait timed out on crtc 1
+[   36.081995] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x186/0x210, CPU#0: kworker/0:4/97
+[   36.082008] Modules linked in: nf_conntrack_netlink xt_nat iptable_raw veth bridge xt_set ip_set xt_addrtype overlay bnep xt_connmark xt_conntrack ip6table_mangle iptable_mangle xt_MASQUERADE xt_mark tun nf_tables nfnetlink ip6table_nat ip6table_filter ip6_tables iptable_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 iptable_filter ip_tables 8021q garp mrp stp llc b43 cordic bcma mac80211 cfg80211 coretemp libarc4 kvm_intel applesmc kvm irqbypass uvcvideo btusb uvc videobuf2_vmalloc videobuf2_memops btmtk snd_usb_audio btrtl videobuf2_v4l2 snd_usbmidi_lib btbcm videobuf2_common ssb pcspkr btintel snd_ump acpi_cpufreq mmc_core videodev snd_rawmidi joydev bluetooth snd_seq_device mc xpad ff_memless rfkill snd_hda_codec_alc882 binfmt_misc snd_hda_codec_realtek_lib usblp snd_hda_codec_generic cdc_acm apple_mfi_fastcharge snd_hda_intel drivetemp snd_hda_codec snd_hda_core snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep snd_pcm snd_timer snd soundcore forcedeth i2c_nforce2 firewire_ohci firewire_core crc_itu_t
+[   36.082149]  ata_generic hid_appleir pata_acpi nv_tco nouveau(OE) drm_ttm_helper ttm drm_client_lib video gpu_sched i2c_algo_bit drm_gpuvm drm_exec mxm_wmi wmi drm_display_helper drm_kms_helper cec
+[   36.082178] CPU: 0 UID: 0 PID: 97 Comm: kworker/0:4 Tainted: G S      W  OE       7.1.6-gentoo-dist-bin #1 PREEMPT(lazy) 
+[   36.082185] Tainted: [S]=CPU_OUT_OF_SPEC, [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[   36.082187] Hardware name: Apple Inc. Macmini3,1/Mac-F22C86C8, BIOS     MM31.88Z.0081.B06.0904271717 04/27/09
+[   36.082191] Workqueue: events drm_fb_helper_check_var [drm_kms_helper]
+[   36.082218] RIP: 0010:drm_crtc_wait_one_vblank+0x18f/0x210
+[   36.082224] Code: e8 86 64 01 00 48 8b 7b 08 48 8b 6f 50 48 85 ed 75 03 48 8b 2f e8 71 64 01 00 48 8d 3d 5a be 17 02 44 89 e1 48 89 ea 48 89 c6 <67> 48 0f b9 3a 44 89 e6 48 89 df 41 bd 92 ff ff ff e8 9b fc ff ff
+[   36.082227] RSP: 0000:ffffd0c3807b7d28 EFLAGS: 00010286
+[   36.082231] RAX: ffffffffc09c786a RBX: ffff8ab000b80000 RCX: 0000000000000001
+[   36.082234] RDX: ffff8ab0013ca710 RSI: ffffffffc09c786a RDI: ffffffffb5759560
+[   36.082236] RBP: ffff8ab0013ca710 R08: 0000000000000000 R09: ffffd0c3807b7bf8
+[   36.082238] R10: ffff8ab138021780 R11: 0000000000000001 R12: 0000000000000001
+[   36.082241] R13: 0000000000000000 R14: ffff8ab00333f5d0 R15: 00000000000004a0
+[   36.082243] FS:  0000000000000000(0000) GS:ffff8ab181c38000(0000) knlGS:0000000000000000
+[   36.082246] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   36.082249] CR2: 0000560fa7c76000 CR3: 0000000114626000 CR4: 00000000000426f0
+[   36.082252] Call Trace:
+[   36.082257]  <TASK>
+[   36.082261]  ? __pfx_autoremove_wake_function+0x10/0x10
+[   36.082268]  drm_client_modeset_wait_for_vblank+0x5b/0x70
+[   36.082275]  drm_fb_helper_check_var+0x8c0/0xc00 [drm_kms_helper]
+[   36.082294]  process_one_work+0x19d/0x3a0
+[   36.082301]  worker_thread+0x1af/0x320
+[   36.082305]  ? __pfx_worker_thread+0x10/0x10
+[   36.082310]  kthread+0xe3/0x120
+[   36.082316]  ? __pfx_kthread+0x10/0x10
+[   36.082321]  ret_from_fork+0x1a1/0x270
+[   36.082326]  ? __pfx_kthread+0x10/0x10
+[   36.082331]  ret_from_fork_asm+0x1a/0x30
+[   36.082338]  </TASK>
+[   36.082340] ---[ end trace 0000000000000000 ]---
+[   37.096997] ------------[ cut here ]------------
+[   37.097009] nouveau 0000:02:00.0: [drm] vblank wait timed out on crtc 1
+[   37.097014] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x186/0x210, CPU#0: kworker/0:4/97
+[   37.097026] Modules linked in: nf_conntrack_netlink xt_nat iptable_raw veth bridge xt_set ip_set xt_addrtype overlay bnep xt_connmark xt_conntrack ip6table_mangle iptable_mangle xt_MASQUERADE xt_mark tun nf_tables nfnetlink ip6table_nat ip6table_filter ip6_tables iptable_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 iptable_filter ip_tables 8021q garp mrp stp llc b43 cordic bcma mac80211 cfg80211 coretemp libarc4 kvm_intel applesmc kvm irqbypass uvcvideo btusb uvc videobuf2_vmalloc videobuf2_memops btmtk snd_usb_audio btrtl videobuf2_v4l2 snd_usbmidi_lib btbcm videobuf2_common ssb pcspkr btintel snd_ump acpi_cpufreq mmc_core videodev snd_rawmidi joydev bluetooth snd_seq_device mc xpad ff_memless rfkill snd_hda_codec_alc882 binfmt_misc snd_hda_codec_realtek_lib usblp snd_hda_codec_generic cdc_acm apple_mfi_fastcharge snd_hda_intel drivetemp snd_hda_codec snd_hda_core snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep snd_pcm snd_timer snd soundcore forcedeth i2c_nforce2 firewire_ohci firewire_core crc_itu_t
+[   37.097149]  ata_generic hid_appleir pata_acpi nv_tco nouveau(OE) drm_ttm_helper ttm drm_client_lib video gpu_sched i2c_algo_bit drm_gpuvm drm_exec mxm_wmi wmi drm_display_helper drm_kms_helper cec
+[   37.097178] CPU: 0 UID: 0 PID: 97 Comm: kworker/0:4 Tainted: G S      W  OE       7.1.6-gentoo-dist-bin #1 PREEMPT(lazy) 
+[   37.097185] Tainted: [S]=CPU_OUT_OF_SPEC, [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[   37.097187] Hardware name: Apple Inc. Macmini3,1/Mac-F22C86C8, BIOS     MM31.88Z.0081.B06.0904271717 04/27/09
+[   37.097191] Workqueue: events drm_fb_helper_check_var [drm_kms_helper]
+[   37.097224] RIP: 0010:drm_crtc_wait_one_vblank+0x18f/0x210
+[   37.097229] Code: e8 86 64 01 00 48 8b 7b 08 48 8b 6f 50 48 85 ed 75 03 48 8b 2f e8 71 64 01 00 48 8d 3d 5a be 17 02 44 89 e1 48 89 ea 48 89 c6 <67> 48 0f b9 3a 44 89 e6 48 89 df 41 bd 92 ff ff ff e8 9b fc ff ff
+[   37.097232] RSP: 0000:ffffd0c3807b7d28 EFLAGS: 00010286
+[   37.097236] RAX: ffffffffc09c786a RBX: ffff8ab000b80000 RCX: 0000000000000001
+[   37.097239] RDX: ffff8ab0013ca710 RSI: ffffffffc09c786a RDI: ffffffffb5759560
+[   37.097242] RBP: ffff8ab0013ca710 R08: 0000000000000000 R09: ffffd0c3807b7bf8
+[   37.097244] R10: ffff8ab138021780 R11: 0000000000000001 R12: 0000000000000001
+[   37.097247] R13: 0000000000000000 R14: ffff8ab00333f5d0 R15: 00000000000004a0
+[   37.097249] FS:  0000000000000000(0000) GS:ffff8ab181c38000(0000) knlGS:0000000000000000
+[   37.097252] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   37.097255] CR2: 00000786fecd2000 CR3: 0000000106ed8000 CR4: 00000000000426f0
+[   37.097258] Call Trace:
+[   37.097263]  <TASK>
+[   37.097267]  ? __pfx_autoremove_wake_function+0x10/0x10
+[   37.097274]  drm_client_modeset_wait_for_vblank+0x5b/0x70
+[   37.097281]  drm_fb_helper_check_var+0x8c0/0xc00 [drm_kms_helper]
+[   37.097299]  process_one_work+0x19d/0x3a0
+[   37.097306]  worker_thread+0x1af/0x320
+[   37.097311]  ? __pfx_worker_thread+0x10/0x10
+[   37.097315]  kthread+0xe3/0x120
+[   37.097321]  ? __pfx_kthread+0x10/0x10
+[   37.097326]  ret_from_fork+0x1a1/0x270
+[   37.097331]  ? __pfx_kthread+0x10/0x10
+[   37.097336]  ret_from_fork_asm+0x1a/0x30
+[   37.097343]  </TASK>
+[   37.097345] ---[ end trace 0000000000000000 ]---
+[   41.668316] nouveau 0000:02:00.0: drm: base-1: timeout
+[   41.668330] nouveau: evo-forensics base-1: get=026 put=026 cur=026 put_shadow=026 max=3f3 (u32 idx)
+[   41.668337] nouveau: evo-pushbuf base-1 get 010: 000400e0 40000000 00040080 00000001 000800a0 000000b0 f0000000 00040084
+[   41.668341] nouveau: evo-pushbuf base-1 get 018: 00000010 000400c0 fb00007a 00080110 00000000 00000000 00140800 0000cb00
+[   41.668345] nouveau: evo-pushbuf base-1 get 020: 00000000 04380780 00007804 0000cf00 00040080 00000000 00000000 00000000
+[   41.668348] nouveau: evo-pushbuf base-1 get 028: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[   41.668352] nouveau: evo-pushbuf base-1 get 030: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[   41.668355] nouveau: evo-pushbuf base-1 get 038: 00000000 00000000 00000000 00000000 00000000 00000000
+[   44.361871] nouveau 0000:02:00.0: drm: base-1: timeout
+[   45.558265] usb 3-1.4: reset high-speed USB device number 7 using ehci-pci
+[   47.950444] nouveau 0000:02:00.0: drm: base-1: timeout
+[   47.950799] nouveau 0000:02:00.0: disp: sv-snap[pre]: super 00000550 pending 00000020 intr1 00000000 busy 0 core-ctrl 8f0e001b
+[   48.617017] Bluetooth: RFCOMM TTY layer initialized
+[   48.617032] Bluetooth: RFCOMM socket layer initialized
+[   48.617043] Bluetooth: RFCOMM ver 1.11
+[   50.344276] fuse: init (API version 7.45)
+[   50.381761] nouveau 0000:02:00.0: drm: core notifier timeout
+[   50.381770] nouveau: evo-forensics core: ntfy dword=00000000
+[   50.381775] nouveau: evo-forensics core: get=03a put=04b cur=04b put_shadow=04b max=3f3 (u32 idx)
+[   50.381780] nouveau: evo-pushbuf core get 028: 00000301 00040ca0 00000002 00040ca8 00040000 00040084 80000000 00080080
+[   50.381783] nouveau: evo-pushbuf core get 030: 00000200 00000000 00080c80 85000000 0000c070 00040c9c f0000001 00080080
+[   50.381787] nouveau: evo-pushbuf core get 038: 00000000 00000000 00080c80 85000000 0000c0c0 00040c9c f0000001 00080080
+[   50.381790] nouveau: evo-pushbuf core get 040: 00000000 00000000 00040c80 05000000 00040c9c 00000000 00040084 80000000
+[   50.381793] nouveau: evo-pushbuf core get 048: 00080080 00000200 00000000 00000000 00000000 00000000 00000000 00000000
+[   50.381795] nouveau: evo-pushbuf core get 050: 00000000 00000000
+[   50.381803] nouveau 0000:02:00.0: disp: sv-rescue probe: intr0 00000000 intr1 00000000 en 00000378/01ff0000 super 00000550 pending 00000020 busy 0
+[   50.381810] nouveau 0000:02:00.0: disp: sv-rescue: ch0 err 00000080/00000200 ctrl 8f0e001b
+[   50.381816] nouveau 0000:02:00.0: disp: sv-rescue: ch1 err 0000082c/00000000 ctrl 4003001b
+[   50.381821] nouveau 0000:02:00.0: disp: sv-rescue: ch2 err 00000080/00000000 ctrl 8e07001b
+[   50.383261] nouveau 0000:02:00.0: disp: sv-rescue: head-0 rgpos 0,0 -> 0,0
+[   50.384705] nouveau 0000:02:00.0: disp: sv-rescue: head-1 rgpos 1953,335 -> 843,432
+[   50.384723] nouveau 0000:02:00.0: disp: sv-snap[post]: super 00000550 pending 00000020 intr1 00000000 busy 0 core-ctrl 8f0e001b
