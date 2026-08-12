@@ -1,0 +1,369 @@
+# WEDGE episode begin 2026-08-12T12:33:57
+# wedged channels (bit31 latched AND GET frozen >= 2 samples):
+#   core  ctrl=8f0e001b put=0000012c get=000000e8 bit31=True stuck=2
+#   base1 ctrl=8e07001b put=00000170 get=000000b8 bit31=True stuck=2
+
+# dense burst (full register set, ~100ms cadence):
++0.0s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000012c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=00000170 base1_get=000000b8
++0.1s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.2s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.3s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.4s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.5s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.6s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.7s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.8s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++0.9s pmc_enable=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000378 supervisor=00000550 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=0000014c core_get=000000e8 base0_put=00000000 base0_get=00000000 base1_put=000001b8 base1_get=000000b8
++1.0s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000001 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000228 base1_get=00000228
++1.1s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000001 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000228 base1_get=00000228
++1.2s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000001 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000228 base1_get=00000228
++1.3s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000270 base1_get=00000270
++1.4s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000270 base1_get=00000270
++1.5s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=000002b8 base1_get=000002b8
++1.6s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=000002b8 base1_get=000002b8
++1.7s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=000002b8 base1_get=000002b8
++1.8s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=000002b8 base1_get=000002b8
++1.9s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=000002b8 base1_get=000002b8
++2.0s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000300 base1_get=00000300
++2.1s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000300 base1_get=00000300
++2.2s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000000 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++2.3s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++2.4s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++2.5s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++2.6s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++2.7s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++2.8s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++2.9s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++3.0s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++3.1s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++3.2s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++3.3s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++3.4s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++3.5s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000348 base1_get=00000348
++3.6s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000390 base1_get=00000390
++3.7s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000390 base1_get=00000390
++3.8s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000390 base1_get=00000390
++3.9s pmc_enable=dff3d113 core_ctrl=2d0b001b base0_ctrl=4003001b base1_ctrl=0c05001b intr0=00000000 intr1=00000008 chan_awaken_en=01ff0000 intr_en=00000370 supervisor=00000540 core_err_m=00000084 core_err_d=00000000 base1_err_m=00000080 base1_err_d=00000000 disp611014=00824414 disp61102c=002800bf disp611034=0460083f disp61103c=04650898 disp611044=0004002b core_put=00000244 core_get=00000244 base0_put=00000000 base0_get=00000000 base1_put=00000390 base1_get=00000390
+
+# dmesg trap/timeout lines AT DETECTION:
+[    6.646326] nouveau 0000:02:00.0: drm: core notifier timeout
+[   39.901410] nouveau 0000:02:00.0: drm: base-1: timeout
+[   41.132709] nouveau 0000:02:00.0: gr: DATA_ERROR 00000004 [INVALID_VALUE]
+[   41.132725] nouveau 0000:02:00.0: gr: 00100000 [] ch 4 [000f77a000 Xwayland[5553]] subc 3 class 8397 mthd 0204 data 47240aa0
+[   42.575873] nouveau 0000:02:00.0: drm: base-1: timeout
+[   45.835494] nouveau 0000:02:00.0: drm: base-1: timeout
+[   48.267801] nouveau 0000:02:00.0: drm: core notifier timeout
+
+# dmesg trap/timeout lines AFTER burst (bracket):
+[    6.646326] nouveau 0000:02:00.0: drm: core notifier timeout
+[   39.901410] nouveau 0000:02:00.0: drm: base-1: timeout
+[   41.132709] nouveau 0000:02:00.0: gr: DATA_ERROR 00000004 [INVALID_VALUE]
+[   41.132725] nouveau 0000:02:00.0: gr: 00100000 [] ch 4 [000f77a000 Xwayland[5553]] subc 3 class 8397 mthd 0204 data 47240aa0
+[   42.575873] nouveau 0000:02:00.0: drm: base-1: timeout
+[   45.835494] nouveau 0000:02:00.0: drm: base-1: timeout
+[   48.267801] nouveau 0000:02:00.0: drm: core notifier timeout
+[   50.700986] nouveau 0000:02:00.0: drm: base-1: timeout
+[   53.135062] nouveau 0000:02:00.0: drm: base-1: timeout
+[   55.565074] nouveau 0000:02:00.0: drm: core notifier timeout
+
+# dmesg full tail (last 300 lines, for compositor/modeset correlation):
+[   30.138319] nouveau 0000:02:00.0: [drm] vblank wait timed out on crtc 1
+[   30.138324] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x186/0x210, CPU#1: kworker/1:1/36
+[   30.138336] Modules linked in: bnep xt_connmark xt_conntrack ip6table_mangle iptable_mangle xt_MASQUERADE xt_mark tun nf_tables nfnetlink ip6table_nat ip6table_filter ip6_tables iptable_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 iptable_filter ip_tables 8021q garp mrp stp llc b43 cordic bcma mac80211 coretemp kvm_intel btusb btmtk cfg80211 btrtl libarc4 applesmc btbcm kvm irqbypass btintel joydev pcspkr bluetooth snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic acpi_cpufreq binfmt_misc rfkill ssb mmc_core snd_hda_intel xpad snd_hda_codec usblp ff_memless apple_mfi_fastcharge snd_hda_core drivetemp snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep snd_pcm snd_timer snd i2c_nforce2 forcedeth soundcore firewire_ohci firewire_core crc_itu_t ata_generic pata_acpi hid_appleir nv_tco nouveau(OE) drm_ttm_helper ttm drm_client_lib video gpu_sched i2c_algo_bit drm_gpuvm drm_exec mxm_wmi wmi drm_display_helper drm_kms_helper cec
+[   30.138459] CPU: 1 UID: 0 PID: 36 Comm: kworker/1:1 Tainted: G S      W  OE       7.1.8-gentoo-dist-bin #1 PREEMPT(lazy) 
+[   30.138466] Tainted: [S]=CPU_OUT_OF_SPEC, [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[   30.138468] Hardware name: Apple Inc. Macmini3,1/Mac-F22C86C8, BIOS     MM31.88Z.0081.B06.0904271717 04/27/09
+[   30.138471] Workqueue: events drm_fb_helper_check_var [drm_kms_helper]
+[   30.138500] RIP: 0010:drm_crtc_wait_one_vblank+0x18f/0x210
+[   30.138505] Code: e8 86 64 01 00 48 8b 7b 08 48 8b 6f 50 48 85 ed 75 03 48 8b 2f e8 71 64 01 00 48 8d 3d ba bb 17 02 44 89 e1 48 89 ea 48 89 c6 <67> 48 0f b9 3a 44 89 e6 48 89 df 41 bd 92 ff ff ff e8 9b fc ff ff
+[   30.138509] RSP: 0018:ffffd1f34014fd28 EFLAGS: 00010286
+[   30.138513] RAX: ffffffffc09c786a RBX: ffff8ea1403fb000 RCX: 0000000000000001
+[   30.138516] RDX: ffff8ea1413f4810 RSI: ffffffffc09c786a RDI: ffffffff9b959780
+[   30.138519] RBP: ffff8ea1413f4810 R08: ffff8ea278121800 R09: 000000000000000a
+[   30.138521] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+[   30.138523] R13: 0000000000000000 R14: ffff8ea142942dd0 R15: 0000000000000436
+[   30.138526] FS:  0000000000000000(0000) GS:ffff8ea2dbb38000(0000) knlGS:0000000000000000
+[   30.138529] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   30.138532] CR2: 00007fe96c000020 CR3: 00000001147ce000 CR4: 00000000000426f0
+[   30.138535] Call Trace:
+[   30.138539]  <TASK>
+[   30.138543]  ? __pfx_autoremove_wake_function+0x10/0x10
+[   30.138550]  drm_client_modeset_wait_for_vblank+0x5b/0x70
+[   30.138557]  drm_fb_helper_check_var+0x8c0/0xc00 [drm_kms_helper]
+[   30.138575]  process_one_work+0x19d/0x3a0
+[   30.138582]  worker_thread+0x1af/0x320
+[   30.138587]  ? __pfx_worker_thread+0x10/0x10
+[   30.138591]  kthread+0xe3/0x120
+[   30.138595]  ? __pfx_kthread+0x10/0x10
+[   30.138598]  ret_from_fork+0x1a1/0x270
+[   30.138603]  ? __pfx_kthread+0x10/0x10
+[   30.138606]  ret_from_fork_asm+0x1a/0x30
+[   30.138613]  </TASK>
+[   30.138615] ---[ end trace 0000000000000000 ]---
+[   30.171884] usb usb2-port4: attempt power cycle
+[   30.358362] usb 2-4: new full-speed USB device number 16 using ohci-pci
+[   30.764984] usb 2-4: device not accepting address 16, error -62
+[   30.935022] usb 2-4: new full-speed USB device number 17 using ohci-pci
+[   31.148457] ------------[ cut here ]------------
+[   31.148466] nouveau 0000:02:00.0: [drm] vblank wait timed out on crtc 1
+[   31.148470] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x186/0x210, CPU#1: kworker/1:1/36
+[   31.148483] Modules linked in: overlay bnep xt_connmark xt_conntrack ip6table_mangle iptable_mangle xt_MASQUERADE xt_mark tun nf_tables nfnetlink ip6table_nat ip6table_filter ip6_tables iptable_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 iptable_filter ip_tables 8021q garp mrp stp llc b43 cordic bcma mac80211 coretemp kvm_intel btusb btmtk cfg80211 btrtl libarc4 applesmc btbcm kvm irqbypass btintel joydev pcspkr bluetooth snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic acpi_cpufreq binfmt_misc rfkill ssb mmc_core snd_hda_intel xpad snd_hda_codec usblp ff_memless apple_mfi_fastcharge snd_hda_core drivetemp snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep snd_pcm snd_timer snd i2c_nforce2 forcedeth soundcore firewire_ohci firewire_core crc_itu_t ata_generic pata_acpi hid_appleir nv_tco nouveau(OE) drm_ttm_helper ttm drm_client_lib video gpu_sched i2c_algo_bit drm_gpuvm drm_exec mxm_wmi wmi drm_display_helper drm_kms_helper cec
+[   31.148608] CPU: 1 UID: 0 PID: 36 Comm: kworker/1:1 Tainted: G S      W  OE       7.1.8-gentoo-dist-bin #1 PREEMPT(lazy) 
+[   31.148615] Tainted: [S]=CPU_OUT_OF_SPEC, [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[   31.148617] Hardware name: Apple Inc. Macmini3,1/Mac-F22C86C8, BIOS     MM31.88Z.0081.B06.0904271717 04/27/09
+[   31.148620] Workqueue: events drm_fb_helper_check_var [drm_kms_helper]
+[   31.148652] RIP: 0010:drm_crtc_wait_one_vblank+0x18f/0x210
+[   31.148657] Code: e8 86 64 01 00 48 8b 7b 08 48 8b 6f 50 48 85 ed 75 03 48 8b 2f e8 71 64 01 00 48 8d 3d ba bb 17 02 44 89 e1 48 89 ea 48 89 c6 <67> 48 0f b9 3a 44 89 e6 48 89 df 41 bd 92 ff ff ff e8 9b fc ff ff
+[   31.148661] RSP: 0018:ffffd1f34014fd28 EFLAGS: 00010286
+[   31.148665] RAX: ffffffffc09c786a RBX: ffff8ea1403fb000 RCX: 0000000000000001
+[   31.148668] RDX: ffff8ea1413f4810 RSI: ffffffffc09c786a RDI: ffffffff9b959780
+[   31.148670] RBP: ffff8ea1413f4810 R08: ffff8ea278121800 R09: 000000000000000a
+[   31.148673] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+[   31.148675] R13: 0000000000000000 R14: ffff8ea142942dd0 R15: 0000000000000436
+[   31.148677] FS:  0000000000000000(0000) GS:ffff8ea2dbb38000(0000) knlGS:0000000000000000
+[   31.148680] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   31.148683] CR2: 0000559f3fc06008 CR3: 0000000109e26000 CR4: 00000000000426f0
+[   31.148687] Call Trace:
+[   31.148692]  <TASK>
+[   31.148696]  ? __pfx_autoremove_wake_function+0x10/0x10
+[   31.148704]  drm_client_modeset_wait_for_vblank+0x5b/0x70
+[   31.148712]  drm_fb_helper_check_var+0x8c0/0xc00 [drm_kms_helper]
+[   31.148732]  process_one_work+0x19d/0x3a0
+[   31.148738]  worker_thread+0x1af/0x320
+[   31.148743]  ? __pfx_worker_thread+0x10/0x10
+[   31.148748]  kthread+0xe3/0x120
+[   31.148752]  ? __pfx_kthread+0x10/0x10
+[   31.148755]  ret_from_fork+0x1a1/0x270
+[   31.148760]  ? __pfx_kthread+0x10/0x10
+[   31.148763]  ret_from_fork_asm+0x1a/0x30
+[   31.148770]  </TASK>
+[   31.148772] ---[ end trace 0000000000000000 ]---
+[   31.189020] evm: overlay not supported
+[   31.341899] usb 2-4: device not accepting address 17, error -62
+[   31.341951] usb usb2-port4: unable to enumerate USB device
+[   31.355124] usb 2-1: USB disconnect, device number 12
+[   31.355139] usb 2-1.1: USB disconnect, device number 13
+[   31.531635] usb 2-1: new full-speed USB device number 18 using ohci-pci
+[   31.747612] usb 2-1: New USB device found, idVendor=0a5c, idProduct=4500, bcdDevice= 1.00
+[   31.747625] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[   31.747629] usb 2-1: Product: BRCM2046 Hub
+[   31.747632] usb 2-1: Manufacturer: Apple Inc.
+[   31.750725] hub 2-1:1.0: USB hub found
+[   31.755184] hub 2-1:1.0: 3 ports detected
+[   32.058304] usb 2-1.1: new full-speed USB device number 19 using ohci-pci
+[   32.177598] usb 2-1.1: New USB device found, idVendor=05ac, idProduct=8216, bcdDevice= 2.08
+[   32.177611] usb 2-1.1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[   32.177614] usb 2-1.1: Product: Bluetooth USB Host Controller
+[   32.177618] usb 2-1.1: Manufacturer: Apple Inc.
+[   32.177621] usb 2-1.1: SerialNumber: [redacted]
+[   32.189098] ------------[ cut here ]------------
+[   32.189110] nouveau 0000:02:00.0: [drm] vblank wait timed out on crtc 1
+[   32.189115] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x186/0x210, CPU#1: kworker/1:1/36
+[   32.189126] Modules linked in: xt_set ip_set xt_addrtype overlay bnep xt_connmark xt_conntrack ip6table_mangle iptable_mangle xt_MASQUERADE xt_mark tun nf_tables nfnetlink ip6table_nat ip6table_filter ip6_tables iptable_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 iptable_filter ip_tables 8021q garp mrp stp llc b43 cordic bcma mac80211 coretemp kvm_intel btusb btmtk cfg80211 btrtl libarc4 applesmc btbcm kvm irqbypass btintel joydev pcspkr bluetooth snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic acpi_cpufreq binfmt_misc rfkill ssb mmc_core snd_hda_intel xpad snd_hda_codec usblp ff_memless apple_mfi_fastcharge snd_hda_core drivetemp snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep snd_pcm snd_timer snd i2c_nforce2 forcedeth soundcore firewire_ohci firewire_core crc_itu_t ata_generic pata_acpi hid_appleir nv_tco nouveau(OE) drm_ttm_helper ttm drm_client_lib video gpu_sched i2c_algo_bit drm_gpuvm drm_exec mxm_wmi wmi drm_display_helper drm_kms_helper cec
+[   32.189253] CPU: 1 UID: 0 PID: 36 Comm: kworker/1:1 Tainted: G S      W  OE       7.1.8-gentoo-dist-bin #1 PREEMPT(lazy) 
+[   32.189260] Tainted: [S]=CPU_OUT_OF_SPEC, [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[   32.189262] Hardware name: Apple Inc. Macmini3,1/Mac-F22C86C8, BIOS     MM31.88Z.0081.B06.0904271717 04/27/09
+[   32.189266] Workqueue: events drm_fb_helper_check_var [drm_kms_helper]
+[   32.189296] RIP: 0010:drm_crtc_wait_one_vblank+0x18f/0x210
+[   32.189301] Code: e8 86 64 01 00 48 8b 7b 08 48 8b 6f 50 48 85 ed 75 03 48 8b 2f e8 71 64 01 00 48 8d 3d ba bb 17 02 44 89 e1 48 89 ea 48 89 c6 <67> 48 0f b9 3a 44 89 e6 48 89 df 41 bd 92 ff ff ff e8 9b fc ff ff
+[   32.189305] RSP: 0018:ffffd1f34014fd28 EFLAGS: 00010286
+[   32.189309] RAX: ffffffffc09c786a RBX: ffff8ea1403fb000 RCX: 0000000000000001
+[   32.189311] RDX: ffff8ea1413f4810 RSI: ffffffffc09c786a RDI: ffffffff9b959780
+[   32.189314] RBP: ffff8ea1413f4810 R08: ffff8ea278121800 R09: 000000000000000a
+[   32.189316] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+[   32.189318] R13: 0000000000000000 R14: ffff8ea142942dd0 R15: 0000000000000436
+[   32.189321] FS:  0000000000000000(0000) GS:ffff8ea2dbb38000(0000) knlGS:0000000000000000
+[   32.189324] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   32.189327] CR2: 00007fff36ff0bb9 CR3: 0000000115150000 CR4: 00000000000426f0
+[   32.189330] Call Trace:
+[   32.189335]  <TASK>
+[   32.189339]  ? __pfx_autoremove_wake_function+0x10/0x10
+[   32.189347]  drm_client_modeset_wait_for_vblank+0x5b/0x70
+[   32.189354]  drm_fb_helper_check_var+0x8c0/0xc00 [drm_kms_helper]
+[   32.189374]  process_one_work+0x19d/0x3a0
+[   32.189381]  worker_thread+0x1af/0x320
+[   32.189386]  ? __pfx_worker_thread+0x10/0x10
+[   32.189390]  kthread+0xe3/0x120
+[   32.189394]  ? __pfx_kthread+0x10/0x10
+[   32.189397]  ret_from_fork+0x1a1/0x270
+[   32.189402]  ? __pfx_kthread+0x10/0x10
+[   32.189405]  ret_from_fork_asm+0x1a/0x30
+[   32.189412]  </TASK>
+[   32.189414] ---[ end trace 0000000000000000 ]---
+[   32.283894] Bluetooth: MGMT ver 1.23
+[   32.327549] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[   32.798463] elogind-daemon[1591]: New session 6 of user [redacted]
+[   33.229842] ------------[ cut here ]------------
+[   33.229853] nouveau 0000:02:00.0: [drm] vblank wait timed out on crtc 1
+[   33.229858] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x186/0x210, CPU#1: kworker/1:1/36
+[   33.229871] Modules linked in: bridge xt_set ip_set xt_addrtype overlay bnep xt_connmark xt_conntrack ip6table_mangle iptable_mangle xt_MASQUERADE xt_mark tun nf_tables nfnetlink ip6table_nat ip6table_filter ip6_tables iptable_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 iptable_filter ip_tables 8021q garp mrp stp llc b43 cordic bcma mac80211 coretemp kvm_intel btusb btmtk cfg80211 btrtl libarc4 applesmc btbcm kvm irqbypass btintel joydev pcspkr bluetooth snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic acpi_cpufreq binfmt_misc rfkill ssb mmc_core snd_hda_intel xpad snd_hda_codec usblp ff_memless apple_mfi_fastcharge snd_hda_core drivetemp snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep snd_pcm snd_timer snd i2c_nforce2 forcedeth soundcore firewire_ohci firewire_core crc_itu_t ata_generic pata_acpi hid_appleir nv_tco nouveau(OE) drm_ttm_helper ttm drm_client_lib video gpu_sched i2c_algo_bit drm_gpuvm drm_exec mxm_wmi wmi drm_display_helper drm_kms_helper cec
+[   33.230000] CPU: 1 UID: 0 PID: 36 Comm: kworker/1:1 Tainted: G S      W  OE       7.1.8-gentoo-dist-bin #1 PREEMPT(lazy) 
+[   33.230006] Tainted: [S]=CPU_OUT_OF_SPEC, [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[   33.230008] Hardware name: Apple Inc. Macmini3,1/Mac-F22C86C8, BIOS     MM31.88Z.0081.B06.0904271717 04/27/09
+[   33.230012] Workqueue: events drm_fb_helper_check_var [drm_kms_helper]
+[   33.230041] RIP: 0010:drm_crtc_wait_one_vblank+0x18f/0x210
+[   33.230046] Code: e8 86 64 01 00 48 8b 7b 08 48 8b 6f 50 48 85 ed 75 03 48 8b 2f e8 71 64 01 00 48 8d 3d ba bb 17 02 44 89 e1 48 89 ea 48 89 c6 <67> 48 0f b9 3a 44 89 e6 48 89 df 41 bd 92 ff ff ff e8 9b fc ff ff
+[   33.230050] RSP: 0018:ffffd1f34014fd28 EFLAGS: 00010286
+[   33.230054] RAX: ffffffffc09c786a RBX: ffff8ea1403fb000 RCX: 0000000000000001
+[   33.230057] RDX: ffff8ea1413f4810 RSI: ffffffffc09c786a RDI: ffffffff9b959780
+[   33.230059] RBP: ffff8ea1413f4810 R08: ffff8ea278121800 R09: 000000000000000a
+[   33.230062] R10: 0000000000000000 R11: ffffd1f340e07d98 R12: 0000000000000001
+[   33.230064] R13: 0000000000000000 R14: ffff8ea142942dd0 R15: 0000000000000436
+[   33.230067] FS:  0000000000000000(0000) GS:ffff8ea2dbb38000(0000) knlGS:0000000000000000
+[   33.230070] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   33.230073] CR2: 0000557c25e9f410 CR3: 0000000109e3e000 CR4: 00000000000426f0
+[   33.230077] Call Trace:
+[   33.230081]  <TASK>
+[   33.230085]  ? __pfx_autoremove_wake_function+0x10/0x10
+[   33.230093]  drm_client_modeset_wait_for_vblank+0x5b/0x70
+[   33.230100]  drm_fb_helper_check_var+0x8c0/0xc00 [drm_kms_helper]
+[   33.230120]  process_one_work+0x19d/0x3a0
+[   33.230126]  worker_thread+0x1af/0x320
+[   33.230131]  ? __pfx_worker_thread+0x10/0x10
+[   33.230135]  kthread+0xe3/0x120
+[   33.230139]  ? __pfx_kthread+0x10/0x10
+[   33.230142]  ret_from_fork+0x1a1/0x270
+[   33.230148]  ? __pfx_kthread+0x10/0x10
+[   33.230151]  ret_from_fork_asm+0x1a/0x30
+[   33.230158]  </TASK>
+[   33.230160] ---[ end trace 0000000000000000 ]---
+[   33.686506] docker0: port 1(veth306bfd4) entered blocking state
+[   33.686519] docker0: port 1(veth306bfd4) entered disabled state
+[   33.686534] veth306bfd4: entered allmulticast mode
+[   33.686627] veth306bfd4: entered promiscuous mode
+[   33.748133] eth0: renamed from vethddd944e
+[   33.754454] docker0: port 1(veth306bfd4) entered blocking state
+[   33.754466] docker0: port 1(veth306bfd4) entered forwarding state
+[   34.273141] ------------[ cut here ]------------
+[   34.273152] nouveau 0000:02:00.0: [drm] vblank wait timed out on crtc 1
+[   34.273157] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x186/0x210, CPU#1: kworker/1:1/36
+[   34.273170] Modules linked in: nf_conntrack_netlink xt_nat iptable_raw veth bridge xt_set ip_set xt_addrtype overlay bnep xt_connmark xt_conntrack ip6table_mangle iptable_mangle xt_MASQUERADE xt_mark tun nf_tables nfnetlink ip6table_nat ip6table_filter ip6_tables iptable_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 iptable_filter ip_tables 8021q garp mrp stp llc b43 cordic bcma mac80211 coretemp kvm_intel btusb btmtk cfg80211 btrtl libarc4 applesmc btbcm kvm irqbypass btintel joydev pcspkr bluetooth snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic acpi_cpufreq binfmt_misc rfkill ssb mmc_core snd_hda_intel xpad snd_hda_codec usblp ff_memless apple_mfi_fastcharge snd_hda_core drivetemp snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep snd_pcm snd_timer snd i2c_nforce2 forcedeth soundcore firewire_ohci firewire_core crc_itu_t ata_generic pata_acpi hid_appleir nv_tco nouveau(OE) drm_ttm_helper ttm drm_client_lib video gpu_sched i2c_algo_bit drm_gpuvm drm_exec mxm_wmi wmi drm_display_helper
+[   34.273296]  drm_kms_helper cec
+[   34.273305] CPU: 1 UID: 0 PID: 36 Comm: kworker/1:1 Tainted: G S      W  OE       7.1.8-gentoo-dist-bin #1 PREEMPT(lazy) 
+[   34.273311] Tainted: [S]=CPU_OUT_OF_SPEC, [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[   34.273314] Hardware name: Apple Inc. Macmini3,1/Mac-F22C86C8, BIOS     MM31.88Z.0081.B06.0904271717 04/27/09
+[   34.273317] Workqueue: events drm_fb_helper_check_var [drm_kms_helper]
+[   34.273352] RIP: 0010:drm_crtc_wait_one_vblank+0x18f/0x210
+[   34.273358] Code: e8 86 64 01 00 48 8b 7b 08 48 8b 6f 50 48 85 ed 75 03 48 8b 2f e8 71 64 01 00 48 8d 3d ba bb 17 02 44 89 e1 48 89 ea 48 89 c6 <67> 48 0f b9 3a 44 89 e6 48 89 df 41 bd 92 ff ff ff e8 9b fc ff ff
+[   34.273361] RSP: 0018:ffffd1f34014fd28 EFLAGS: 00010286
+[   34.273365] RAX: ffffffffc09c786a RBX: ffff8ea1403fb000 RCX: 0000000000000001
+[   34.273368] RDX: ffff8ea1413f4810 RSI: ffffffffc09c786a RDI: ffffffff9b959780
+[   34.273371] RBP: ffff8ea1413f4810 R08: ffff8ea278121800 R09: 000000000000000a
+[   34.273373] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+[   34.273375] R13: 0000000000000000 R14: ffff8ea142942dd0 R15: 0000000000000436
+[   34.273378] FS:  0000000000000000(0000) GS:ffff8ea2dbb38000(0000) knlGS:0000000000000000
+[   34.273381] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   34.273384] CR2: 00007fffec7d79c8 CR3: 0000000109e3e000 CR4: 00000000000426f0
+[   34.273387] Call Trace:
+[   34.273392]  <TASK>
+[   34.273397]  ? __pfx_autoremove_wake_function+0x10/0x10
+[   34.273404]  drm_client_modeset_wait_for_vblank+0x5b/0x70
+[   34.273412]  drm_fb_helper_check_var+0x8c0/0xc00 [drm_kms_helper]
+[   34.273431]  process_one_work+0x19d/0x3a0
+[   34.273439]  worker_thread+0x1af/0x320
+[   34.273444]  ? __pfx_worker_thread+0x10/0x10
+[   34.273448]  kthread+0xe3/0x120
+[   34.273452]  ? __pfx_kthread+0x10/0x10
+[   34.273455]  ret_from_fork+0x1a1/0x270
+[   34.273460]  ? __pfx_kthread+0x10/0x10
+[   34.273463]  ret_from_fork_asm+0x1a/0x30
+[   34.273471]  </TASK>
+[   34.273473] ---[ end trace 0000000000000000 ]---
+[   35.283800] ------------[ cut here ]------------
+[   35.283810] nouveau 0000:02:00.0: [drm] vblank wait timed out on crtc 1
+[   35.283815] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x186/0x210, CPU#1: kworker/1:1/36
+[   35.283827] Modules linked in: nf_conntrack_netlink xt_nat iptable_raw veth bridge xt_set ip_set xt_addrtype overlay bnep xt_connmark xt_conntrack ip6table_mangle iptable_mangle xt_MASQUERADE xt_mark tun nf_tables nfnetlink ip6table_nat ip6table_filter ip6_tables iptable_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 iptable_filter ip_tables 8021q garp mrp stp llc b43 cordic bcma mac80211 coretemp kvm_intel btusb btmtk cfg80211 btrtl libarc4 applesmc btbcm kvm irqbypass btintel joydev pcspkr bluetooth snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic acpi_cpufreq binfmt_misc rfkill ssb mmc_core snd_hda_intel xpad snd_hda_codec usblp ff_memless apple_mfi_fastcharge snd_hda_core drivetemp snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep snd_pcm snd_timer snd i2c_nforce2 forcedeth soundcore firewire_ohci firewire_core crc_itu_t ata_generic pata_acpi hid_appleir nv_tco nouveau(OE) drm_ttm_helper ttm drm_client_lib video gpu_sched i2c_algo_bit drm_gpuvm drm_exec mxm_wmi wmi drm_display_helper
+[   35.283963]  drm_kms_helper cec
+[   35.283972] CPU: 1 UID: 0 PID: 36 Comm: kworker/1:1 Tainted: G S      W  OE       7.1.8-gentoo-dist-bin #1 PREEMPT(lazy) 
+[   35.283979] Tainted: [S]=CPU_OUT_OF_SPEC, [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[   35.283981] Hardware name: Apple Inc. Macmini3,1/Mac-F22C86C8, BIOS     MM31.88Z.0081.B06.0904271717 04/27/09
+[   35.283985] Workqueue: events drm_fb_helper_check_var [drm_kms_helper]
+[   35.284016] RIP: 0010:drm_crtc_wait_one_vblank+0x18f/0x210
+[   35.284021] Code: e8 86 64 01 00 48 8b 7b 08 48 8b 6f 50 48 85 ed 75 03 48 8b 2f e8 71 64 01 00 48 8d 3d ba bb 17 02 44 89 e1 48 89 ea 48 89 c6 <67> 48 0f b9 3a 44 89 e6 48 89 df 41 bd 92 ff ff ff e8 9b fc ff ff
+[   35.284025] RSP: 0018:ffffd1f34014fd28 EFLAGS: 00010286
+[   35.284029] RAX: ffffffffc09c786a RBX: ffff8ea1403fb000 RCX: 0000000000000001
+[   35.284031] RDX: ffff8ea1413f4810 RSI: ffffffffc09c786a RDI: ffffffff9b959780
+[   35.284034] RBP: ffff8ea1413f4810 R08: ffff8ea278121800 R09: 000000000000000a
+[   35.284036] R10: 0000000000000000 R11: ffff8ea278121db8 R12: 0000000000000001
+[   35.284038] R13: 0000000000000000 R14: ffff8ea142942dd0 R15: 0000000000000436
+[   35.284041] FS:  0000000000000000(0000) GS:ffff8ea2dbb38000(0000) knlGS:0000000000000000
+[   35.284044] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   35.284047] CR2: 000055f8a909b018 CR3: 000000011514e000 CR4: 00000000000426f0
+[   35.284050] Call Trace:
+[   35.284055]  <TASK>
+[   35.284060]  ? __pfx_autoremove_wake_function+0x10/0x10
+[   35.284068]  drm_client_modeset_wait_for_vblank+0x5b/0x70
+[   35.284074]  drm_fb_helper_check_var+0x8c0/0xc00 [drm_kms_helper]
+[   35.284094]  process_one_work+0x19d/0x3a0
+[   35.284101]  worker_thread+0x1af/0x320
+[   35.284106]  ? __pfx_worker_thread+0x10/0x10
+[   35.284110]  kthread+0xe3/0x120
+[   35.284114]  ? __pfx_kthread+0x10/0x10
+[   35.284117]  ret_from_fork+0x1a1/0x270
+[   35.284122]  ? __pfx_kthread+0x10/0x10
+[   35.284125]  ret_from_fork_asm+0x1a/0x30
+[   35.284133]  </TASK>
+[   35.284134] ---[ end trace 0000000000000000 ]---
+[   37.298965] nouveau 0000:02:00.0: disp: outp 00:0006:0242: aux power -> always
+[   37.364978] nouveau 0000:02:00.0: disp: outp 00:0006:0242: aux power -> demand
+[   39.901410] nouveau 0000:02:00.0: drm: base-1: timeout
+[   39.901423] nouveau: evo-forensics base-1: get=026 put=026 cur=026 put_shadow=026 max=3f3 (u32 idx)
+[   39.901431] nouveau: evo-pushbuf base-1 get 010: 000400e0 40000000 00040080 00000001 000800a0 000000b0 f0000000 00040084
+[   39.901436] nouveau: evo-pushbuf base-1 get 018: 00000010 000400c0 fb00007a 00080110 00000000 00000000 00140800 0000cb00
+[   39.901439] nouveau: evo-pushbuf base-1 get 020: 00000000 04380780 00007804 0000cf00 00040080 00000000 00000000 00000000
+[   39.901443] nouveau: evo-pushbuf base-1 get 028: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[   39.901446] nouveau: evo-pushbuf base-1 get 030: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[   39.901449] nouveau: evo-pushbuf base-1 get 038: 00000000 00000000 00000000 00000000 00000000 00000000
+[   41.132709] nouveau 0000:02:00.0: gr: DATA_ERROR 00000004 [INVALID_VALUE]
+[   41.132725] nouveau 0000:02:00.0: gr: 00100000 [] ch 4 [000f77a000 Xwayland[5553]] subc 3 class 8397 mthd 0204 data 47240aa0
+[   42.575873] nouveau 0000:02:00.0: drm: base-1: timeout
+[   44.764975] usb 2-4: new full-speed USB device number 20 using ohci-pci
+[   44.944963] usb 2-4: device descriptor read/64, error -62
+[   45.229793] usb 2-4: device descriptor read/64, error -62
+[   45.514967] usb 2-4: new full-speed USB device number 21 using ohci-pci
+[   45.698321] usb 2-4: device descriptor read/64, error -62
+[   45.835494] nouveau 0000:02:00.0: drm: base-1: timeout
+[   45.835596] nouveau 0000:02:00.0: disp: sv-snap[pre]: super 00000550 pending 00000020 intr1 00000000 busy 0 core-ctrl 8f0e001b
+[   45.989085] usb 2-4: device descriptor read/64, error -62
+[   46.009673] fuse: init (API version 7.45)
+[   46.091714] usb usb2-port4: attempt power cycle
+[   46.281623] usb 2-4: new full-speed USB device number 22 using ohci-pci
+[   46.688313] usb 2-4: device not accepting address 22, error -62
+[   46.858297] usb 2-4: new full-speed USB device number 23 using ohci-pci
+[   47.264964] usb 2-4: device not accepting address 23, error -62
+[   47.265013] usb usb2-port4: unable to enumerate USB device
+[   47.278309] usb 2-1: USB disconnect, device number 18
+[   47.278322] usb 2-1.1: USB disconnect, device number 19
+[   47.468308] usb 2-1: new full-speed USB device number 24 using ohci-pci
+[   47.690337] usb 2-1: New USB device found, idVendor=0a5c, idProduct=4500, bcdDevice= 1.00
+[   47.690347] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[   47.690350] usb 2-1: Product: BRCM2046 Hub
+[   47.690353] usb 2-1: Manufacturer: Apple Inc.
+[   47.694273] hub 2-1:1.0: USB hub found
+[   47.696312] hub 2-1:1.0: 3 ports detected
+[   47.998297] usb 2-1.1: new full-speed USB device number 25 using ohci-pci
+[   48.117304] usb 2-1.1: New USB device found, idVendor=05ac, idProduct=8216, bcdDevice= 2.08
+[   48.117313] usb 2-1.1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[   48.117316] usb 2-1.1: Product: Bluetooth USB Host Controller
+[   48.117319] usb 2-1.1: Manufacturer: Apple Inc.
+[   48.117321] usb 2-1.1: SerialNumber: [redacted]
+[   48.220539] Bluetooth: MGMT ver 1.23
+[   48.263573] Bluetooth: RFCOMM TTY layer initialized
+[   48.263590] Bluetooth: RFCOMM socket layer initialized
+[   48.263603] Bluetooth: RFCOMM ver 1.11
+[   48.267801] nouveau 0000:02:00.0: drm: core notifier timeout
+[   48.267809] nouveau: evo-forensics core: ntfy dword=00000000
+[   48.267814] nouveau: evo-forensics core: get=03a put=04b cur=04b put_shadow=04b max=3f3 (u32 idx)
+[   48.267819] nouveau: evo-pushbuf core get 028: 00000301 00040ca0 00000002 00040ca8 00040000 00040084 80000000 00080080
+[   48.267823] nouveau: evo-pushbuf core get 030: 00000200 00000000 00080c80 85000000 0000c070 00040c9c f0000001 00080080
+[   48.267826] nouveau: evo-pushbuf core get 038: 00000000 00000000 00080c80 85000000 0000c0c0 00040c9c f0000001 00080080
+[   48.267829] nouveau: evo-pushbuf core get 040: 00000000 00000000 00040c80 05000000 00040c9c 00000000 00040084 80000000
+[   48.267832] nouveau: evo-pushbuf core get 048: 00080080 00000200 00000000 00000000 00000000 00000000 00000000 00000000
+[   48.267834] nouveau: evo-pushbuf core get 050: 00000000 00000000
+[   48.267843] nouveau 0000:02:00.0: disp: sv-rescue probe: intr0 00000000 intr1 00000000 en 00000378/01ff0000 super 00000550 pending 00000020 busy 0
+[   48.267850] nouveau 0000:02:00.0: disp: sv-rescue: ch0 err 00000080/00000200 ctrl 8f0e001b
+[   48.267856] nouveau 0000:02:00.0: disp: sv-rescue: ch1 err 0000082c/00000000 ctrl 4003001b
+[   48.267862] nouveau 0000:02:00.0: disp: sv-rescue: ch2 err 00000080/00000000 ctrl 8e07001b
+[   48.269387] nouveau 0000:02:00.0: disp: sv-rescue: head-0 rgpos 0,0 -> 0,0
+[   48.270510] nouveau 0000:02:00.0: disp: sv-rescue: head-1 rgpos 1446,898 -> 1684,973
+[   48.270526] nouveau 0000:02:00.0: disp: sv-snap[post]: super 00000550 pending 00000020 intr1 00000000 busy 0 core-ctrl 8f0e001b
