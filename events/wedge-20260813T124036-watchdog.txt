@@ -1,0 +1,147 @@
+# nvac-s3-unwedge: pre-S3 wedge capture 2026-08-13T12:40:36
+
+# register burst (~100ms cadence) -- GET frozen behind PUT = fetch-park:
++0.0s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000001fc core_get=0000019c base0_put=00000000 base0_get=00000000 base1_put=000003c4 base1_get=000002c4
++0.1s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000001fc core_get=0000019c base0_put=00000000 base0_get=00000000 base1_put=000003c4 base1_get=000002c4
++0.2s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000001fc core_get=0000019c base0_put=00000000 base0_get=00000000 base1_put=000003c4 base1_get=000002c4
++0.3s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000001fc core_get=0000019c base0_put=00000000 base0_get=00000000 base1_put=000003c4 base1_get=000002c4
++0.4s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000001fc core_get=0000019c base0_put=00000000 base0_get=00000000 base1_put=000003c4 base1_get=000002c4
++0.5s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000001fc core_get=0000019c base0_put=00000000 base0_get=00000000 base1_put=000003c4 base1_get=000002c4
++0.6s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000001fc core_get=0000019c base0_put=00000000 base0_get=00000000 base1_put=000003c4 base1_get=000002c4
++0.7s pmc=dff3d113 core_ctrl=8f0e001b base0_ctrl=4003001b base1_ctrl=8e07001b intr0=00000000 intr1=00000000 intr_en=00000378 supervisor=00000150 core_err_m=00000080 core_err_d=00000200 base1_err_m=00000080 base1_err_d=00000000 core_put=000001fc core_get=0000019c base0_put=00000000 base0_get=00000000 base1_put=000003c4 base1_get=000002c4
+
+# decode (chid core=0, base1=2):
+#   core : valid=0 type=0 mthd=0x080 pend=0
+#   base1: valid=0 type=0 mthd=0x080 pend=0
+#   intr0=00000000 supervisor=00000150  (intr0 & 0x001f0000 != 0 => real EVO exception latched -> method-error, not fetch-park)
+
+# dmesg trap/timeout lines (presence of 'ERROR ... mthd' => method-error):
+[   33.346826] nouveau 0000:02:00.0: gr: DATA_ERROR 00000004 [INVALID_VALUE]
+[   33.346841] nouveau 0000:02:00.0: gr: 00100000 [] ch 4 [000f77a000 Xwayland[4950]] subc 3 class 8397 mthd 0204 data 7ce8fee0
+[ 4106.544427] nouveau 0000:02:00.0: drm: core notifier timeout
+[ 4108.992324] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 4111.432093] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 4113.872764] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 4116.313282] nouveau 0000:02:00.0: drm: base-1: timeout
+
+# dmesg tail (last 120):
+[ 4104.104384] nouveau 0000:02:00.0: disp: 	0800: 00000000              
+[ 4104.104390] nouveau 0000:02:00.0: disp: 	0804: 00000000              
+[ 4104.104396] nouveau 0000:02:00.0: disp: 	0808: 00000000              
+[ 4104.104401] nouveau 0000:02:00.0: disp: 	080c: 00000000              
+[ 4104.104406] nouveau 0000:02:00.0: disp: 	0810: 00000000              
+[ 4104.104411] nouveau 0000:02:00.0: disp: 	0814: 00050008              
+[ 4104.104417] nouveau 0000:02:00.0: disp: 	0818: 00000001              
+[ 4104.104422] nouveau 0000:02:00.0: disp: 	081c: 00010003              
+[ 4104.104427] nouveau 0000:02:00.0: disp: 	0820: 00030004              
+[ 4104.104432] nouveau 0000:02:00.0: disp: 	0824: 00000001              
+[ 4104.104510] nouveau 0000:02:00.0: disp: 	0828: 00000000              
+[ 4104.104516] nouveau 0000:02:00.0: disp: 	082c: 00000000              
+[ 4104.104521] nouveau 0000:02:00.0: disp: 	0830: 00000000              
+[ 4104.104526] nouveau 0000:02:00.0: disp: 	0838: 00000000              
+[ 4104.104533] nouveau 0000:02:00.0: disp: 	0840: 00000000              
+[ 4104.104538] nouveau 0000:02:00.0: disp: 	0844: 00000000              
+[ 4104.104543] nouveau 0000:02:00.0: disp: 	0848: 00000000              
+[ 4104.104548] nouveau 0000:02:00.0: disp: 	084c: 00000000              
+[ 4104.104555] nouveau 0000:02:00.0: disp: 	085c: 00000000              
+[ 4104.104560] nouveau 0000:02:00.0: disp: 	0860: 00000000              
+[ 4104.104564] nouveau 0000:02:00.0: disp: 	0864: 00000000              
+[ 4104.104569] nouveau 0000:02:00.0: disp: 	0868: 00000000              
+[ 4104.104576] nouveau 0000:02:00.0: disp: 	086c: 00000000              
+[ 4104.104581] nouveau 0000:02:00.0: disp: 	0870: 0000e900              
+[ 4104.104588] nouveau 0000:02:00.0: disp: 	0874: 00000000              
+[ 4104.104593] nouveau 0000:02:00.0: disp: 	0878: 00000000              
+[ 4104.104599] nouveau 0000:02:00.0: disp: 	0880: 20000000              
+[ 4104.104604] nouveau 0000:02:00.0: disp: 	0884: 00000000              
+[ 4104.104610] nouveau 0000:02:00.0: disp: 	089c: 00000000              
+[ 4104.104615] nouveau 0000:02:00.0: disp: 	08a0: 00000000              
+[ 4104.104620] nouveau 0000:02:00.0: disp: 	08a4: 00000000              
+[ 4104.104625] nouveau 0000:02:00.0: disp: 	08a8: 00040000              
+[ 4104.104632] nouveau 0000:02:00.0: disp: 	08c0: 00000000              
+[ 4104.104637] nouveau 0000:02:00.0: disp: 	08c4: 00000000              
+[ 4104.104642] nouveau 0000:02:00.0: disp: 	08c8: 00000000              
+[ 4104.104647] nouveau 0000:02:00.0: disp: 	08d4: 00000000              
+[ 4104.104654] nouveau 0000:02:00.0: disp: 	08d8: 00000000              
+[ 4104.104659] nouveau 0000:02:00.0: disp: 	08dc: 00000000              
+[ 4104.104666] nouveau 0000:02:00.0: disp: 	0900: 00000300              
+[ 4104.104671] nouveau 0000:02:00.0: disp: 	0904: 00000100              
+[ 4104.104676] nouveau 0000:02:00.0: disp: 	0910: 00000000              
+[ 4104.104681] nouveau 0000:02:00.0: disp: 	0914: 00000000              
+[ 4104.104685] nouveau 0000:02:00.0: disp: Core - HEAD 1:
+[ 4104.104691] nouveau 0000:02:00.0: disp: 	0c00: 00000000              
+[ 4104.104696] nouveau 0000:02:00.0: disp: 	0c04: 00824414              
+[ 4104.104701] nouveau 0000:02:00.0: disp: 	0c08: 00000000              
+[ 4104.104707] nouveau 0000:02:00.0: disp: 	0c0c: 00000000              
+[ 4104.104714] nouveau 0000:02:00.0: disp: 	0c10: 00000000              
+[ 4104.104719] nouveau 0000:02:00.0: disp: 	0c14: 04650898              
+[ 4104.104725] nouveau 0000:02:00.0: disp: 	0c18: 0004002b              
+[ 4104.104732] nouveau 0000:02:00.0: disp: 	0c1c: 002800bf              
+[ 4104.104739] nouveau 0000:02:00.0: disp: 	0c20: 0460083f              
+[ 4104.104745] nouveau 0000:02:00.0: disp: 	0c24: 00000001              
+[ 4104.104752] nouveau 0000:02:00.0: disp: 	0c28: 0000027d              
+[ 4104.104758] nouveau 0000:02:00.0: disp: 	0c2c: 00000000              
+[ 4104.104763] nouveau 0000:02:00.0: disp: 	0c30: 00000000              
+[ 4104.104770] nouveau 0000:02:00.0: disp: 	0c38: 00000000              
+[ 4104.104776] nouveau 0000:02:00.0: disp: 	0c40: 00000000              
+[ 4104.104783] nouveau 0000:02:00.0: disp: 	0c44: 00000000              
+[ 4104.104790] nouveau 0000:02:00.0: disp: 	0c48: 00000000              
+[ 4104.104796] nouveau 0000:02:00.0: disp: 	0c4c: 00000000              
+[ 4104.104803] nouveau 0000:02:00.0: disp: 	0c5c: 00000000              
+[ 4104.104809] nouveau 0000:02:00.0: disp: 	0c60: 00000000              
+[ 4104.104816] nouveau 0000:02:00.0: disp: 	0c64: 00000000              
+[ 4104.104823] nouveau 0000:02:00.0: disp: 	0c68: 04380780              
+[ 4104.104830] nouveau 0000:02:00.0: disp: 	0c6c: 00101e00              
+[ 4104.104837] nouveau 0000:02:00.0: disp: 	0c70: 0000cf00              
+[ 4104.104844] nouveau 0000:02:00.0: disp: 	0c74: 00000000 -> f0000001
+[ 4104.104850] nouveau 0000:02:00.0: disp: 	0c78: 00000000              
+[ 4104.104857] nouveau 0000:02:00.0: disp: 	0c80: 05000000              
+[ 4104.104863] nouveau 0000:02:00.0: disp: 	0c84: 0001cb10              
+[ 4104.104869] nouveau 0000:02:00.0: disp: 	0c9c: 00000000              
+[ 4104.104874] nouveau 0000:02:00.0: disp: 	0ca0: 00000002              
+[ 4104.104879] nouveau 0000:02:00.0: disp: 	0ca4: 00000000              
+[ 4104.104884] nouveau 0000:02:00.0: disp: 	0ca8: 00040000              
+[ 4104.104890] nouveau 0000:02:00.0: disp: 	0cc0: 00000000              
+[ 4104.104897] nouveau 0000:02:00.0: disp: 	0cc4: 00000000              
+[ 4104.104902] nouveau 0000:02:00.0: disp: 	0cc8: 04380780              
+[ 4104.104909] nouveau 0000:02:00.0: disp: 	0cd4: 00000000              
+[ 4104.104915] nouveau 0000:02:00.0: disp: 	0cd8: 04380780              
+[ 4104.104920] nouveau 0000:02:00.0: disp: 	0cdc: 04380780              
+[ 4104.104925] nouveau 0000:02:00.0: disp: 	0d00: 00000301              
+[ 4104.104930] nouveau 0000:02:00.0: disp: 	0d04: 00000100              
+[ 4104.104935] nouveau 0000:02:00.0: disp: 	0d10: 00000000              
+[ 4104.104940] nouveau 0000:02:00.0: disp: 	0d14: 00000000              
+[ 4104.104965] nouveau 0000:02:00.0: disp: head-1: supervisor 1.0
+[ 4104.104968] nouveau 0000:02:00.0: disp: head-1: nothing attached
+[ 4104.104988] nouveau 0000:02:00.0: disp: supervisor 00000020 00000150
+[ 4104.104992] nouveau 0000:02:00.0: disp: head-1: supervisor 2.0
+[ 4104.104995] nouveau 0000:02:00.0: disp: head-1: nothing attached
+[ 4104.104998] nouveau 0000:02:00.0: disp: head-1: supervisor 2.2
+[ 4104.105001] nouveau 0000:02:00.0: disp: head-1: to SOR-1
+[ 4106.544427] nouveau 0000:02:00.0: drm: core notifier timeout
+[ 4106.544465] nouveau: evo-forensics core: ntfy dword=00000000
+[ 4106.544471] nouveau: evo-forensics core: get=05f put=05f cur=05f put_shadow=05f max=3f3 (u32 idx)
+[ 4106.544477] nouveau: evo-pushbuf core get 048: 0000027d 00040c2c 00000000 00040c60 00000000 00100c68 04380780 00101e00
+[ 4106.544481] nouveau: evo-pushbuf core get 050: 0000cf00 f0000001 00040cc0 00000000 00040d00 00000301 00040ca0 00000002
+[ 4106.544485] nouveau: evo-pushbuf core get 058: 00040ca8 00040000 00040084 80000000 00080080 00000200 00000000 f0000001
+[ 4106.544489] nouveau: evo-pushbuf core get 060: 00080080 00000000 00000000 00080c80 85000000 0000c070 00040c9c f0000001
+[ 4106.544492] nouveau: evo-pushbuf core get 068: 00080080 00000000 00000000 00080c80 85000000 0000c0c0 00040c9c f0000001
+[ 4106.544496] nouveau: evo-pushbuf core get 070: 00080080 00000000 00000000 00080c80 85000000 0000c070 00040c9c
+[ 4106.544506] nouveau 0000:02:00.0: disp: sv-rescue probe: intr0 00000000 intr1 00000000 en 00000378/01ff0000 super 00000150 pending 00000020 busy 0
+[ 4106.544514] nouveau 0000:02:00.0: disp: sv-rescue: ch0 err 00000080/00000200 ctrl 8f0d001b
+[ 4106.544520] nouveau 0000:02:00.0: disp: sv-rescue: ch1 err 0000082c/00000000 ctrl 4003001b
+[ 4106.544526] nouveau 0000:02:00.0: disp: sv-rescue: ch2 err 00000080/00000001 ctrl 0c05001b
+[ 4106.545840] nouveau 0000:02:00.0: disp: sv-rescue: head-0 rgpos 0,0 -> 0,0
+[ 4106.547181] nouveau 0000:02:00.0: disp: sv-rescue: head-1 rgpos 2058,492 -> 1047,582
+[ 4106.547201] nouveau 0000:02:00.0: disp: sv-snap[post]: super 00000150 pending 00000020 intr1 00000000 busy 0 core-ctrl 8f0d001b
+[ 4106.960059] nouveau: soft-dpms: blank-suppression released (wake bridge)
+[ 4108.992324] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 4108.992338] nouveau: evo-forensics base-1: get=0a9 put=0a9 cur=0a9 put_shadow=0a9 max=3f3 (u32 idx)
+[ 4108.992372] nouveau: evo-pushbuf base-1 get 098: 000000a0 f0000000 00040084 00000010 000400c0 fb00007a 00080110 00000000
+[ 4108.992377] nouveau: evo-pushbuf base-1 get 0a0: 00000000 00140800 00030800 00000000 04380780 00007804 0000cf00 00040080
+[ 4108.992381] nouveau: evo-pushbuf base-1 get 0a8: 00000000 00140800 00014b00 00000000 04380780 00007804 0000cf00 00040080
+[ 4108.992384] nouveau: evo-pushbuf base-1 get 0b0: 00000000 000800a0 000000a0 f0000000 00040084 00000010 000400c0 fb00007a
+[ 4108.992388] nouveau: evo-pushbuf base-1 get 0b8: 00080110 00000000 00000000 00140800 0000cb00 00000000 04380780 00007804
+[ 4108.992390] nouveau: evo-pushbuf base-1 get 0c0: 0000cf00
+[ 4111.432093] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 4113.872764] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 4116.313282] nouveau 0000:02:00.0: drm: base-1: timeout
