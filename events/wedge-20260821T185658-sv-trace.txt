@@ -1,0 +1,279 @@
+# SV-Spur zum Wedge 2026-08-21T18:56:58, Kernel 7.2.0-gentoo-nvac-soak, nouveau.debug=disp=debug
+# Fenster: Kernel-Uptime 1985 s bis 2040 s (Boot 18:23:05, also ~18:56:10 bis 18:57:05)
+# Ausloeser sichtbar: acquire SOR-1 auf head-1, SV1 -> SV2.0 -> SV2.2 -> to SOR-1, SV3 kommt NIE. = PATH-2C.
+
+[ 2019.830793] nouveau 0000:02:00.0: disp: outp 03:0002:0242: acquire SOR-1
+[ 2019.832525] nouveau 0000:02:00.0: disp: sv-snap[pre]: super 00000140 pending 00000040 intr1 00000000 busy 0 core-ctrl 490a001b
+[ 2019.833465] nouveau 0000:02:00.0: disp: supervisor 00000010 00000140
+[ 2019.833856] nouveau 0000:02:00.0: disp: Core:
+[ 2019.834198] nouveau 0000:02:00.0: disp: 	0084: 019e02e2 -> 80000000
+[ 2019.834540] nouveau 0000:02:00.0: disp: 	0088: f0000000              
+[ 2019.835655] nouveau 0000:02:00.0: disp: Core - DAC 0:
+[ 2019.836069] nouveau 0000:02:00.0: disp: 	0400: 00000000              
+[ 2019.836435] nouveau 0000:02:00.0: disp: 	0404: 00000000              
+[ 2019.836783] nouveau 0000:02:00.0: disp: 	0420: 00010000              
+[ 2019.839125] nouveau 0000:02:00.0: disp: Core - DAC 1:
+[ 2019.839622] nouveau 0000:02:00.0: disp: 	0480: 00000000              
+[ 2019.840008] nouveau 0000:02:00.0: disp: 	0484: 00000000              
+[ 2019.840392] nouveau 0000:02:00.0: disp: 	04a0: 00010000              
+[ 2019.840790] nouveau 0000:02:00.0: disp: Core - DAC 2:
+[ 2019.841173] nouveau 0000:02:00.0: disp: 	0500: 00000000              
+[ 2019.842504] nouveau 0000:02:00.0: disp: 	0504: 00000000              
+[ 2019.842977] nouveau 0000:02:00.0: disp: 	0520: 00010000              
+[ 2019.843365] nouveau 0000:02:00.0: disp: Core - SOR 0:
+[ 2019.843755] nouveau 0000:02:00.0: disp: 	0600: 00000000              
+[ 2019.844414] nouveau 0000:02:00.0: disp: Core - SOR 1:
+[ 2019.845443] nouveau 0000:02:00.0: disp: 	0640: 00000000 -> 00000102
+[ 2019.845925] nouveau 0000:02:00.0: disp: Core - SOR 2:
+[ 2019.846340] nouveau 0000:02:00.0: disp: 	0680: 00000000              
+[ 2019.847131] nouveau 0000:02:00.0: disp: Core - SOR 3:
+[ 2019.847518] nouveau 0000:02:00.0: disp: 	06c0: 00000000              
+[ 2019.847921] nouveau 0000:02:00.0: disp: Core - PIOR 0:
+[ 2019.849471] nouveau 0000:02:00.0: disp: 	0700: 00000000              
+[ 2019.849966] nouveau 0000:02:00.0: disp: Core - PIOR 1:
+[ 2019.850359] nouveau 0000:02:00.0: disp: 	0740: 00000000              
+[ 2019.850761] nouveau 0000:02:00.0: disp: Core - PIOR 2:
+[ 2019.853075] nouveau 0000:02:00.0: disp: 	0780: 00000000              
+[ 2019.853688] nouveau 0000:02:00.0: disp: Core - HEAD 0:
+[ 2019.854111] nouveau 0000:02:00.0: disp: 	0800: 00000000              
+[ 2019.855861] nouveau 0000:02:00.0: disp: 	0804: 00000000              
+[ 2019.856406] nouveau 0000:02:00.0: disp: 	0808: 00000000              
+[ 2019.856808] nouveau 0000:02:00.0: disp: 	080c: 00000000              
+[ 2019.857189] nouveau 0000:02:00.0: disp: 	0810: 00000000              
+[ 2019.858899] nouveau 0000:02:00.0: disp: 	0814: 00050008              
+[ 2019.859469] nouveau 0000:02:00.0: disp: 	0818: 00000001              
+[ 2019.859921] nouveau 0000:02:00.0: disp: 	081c: 00010003              
+[ 2019.861958] nouveau 0000:02:00.0: disp: 	0820: 00030004              
+[ 2019.862522] nouveau 0000:02:00.0: disp: 	0824: 00000001              
+[ 2019.862990] nouveau 0000:02:00.0: disp: 	0828: 00000000              
+[ 2019.865333] nouveau 0000:02:00.0: disp: 	082c: 00000000              
+[ 2019.865947] nouveau 0000:02:00.0: disp: 	0830: 00000000              
+[ 2019.866396] nouveau 0000:02:00.0: disp: 	0838: 00000000              
+[ 2019.867503] nouveau 0000:02:00.0: disp: 	0840: 00000000              
+[ 2019.868697] nouveau 0000:02:00.0: disp: 	0844: 00000000              
+[ 2019.869243] nouveau 0000:02:00.0: disp: 	0848: 00000000              
+[ 2019.869743] nouveau 0000:02:00.0: disp: 	084c: 00000000              
+[ 2019.870158] nouveau 0000:02:00.0: disp: 	085c: 00000000              
+[ 2019.870565] nouveau 0000:02:00.0: disp: 	0860: 00000000              
+[ 2019.871006] nouveau 0000:02:00.0: disp: 	0864: 00000000              
+[ 2019.873785] nouveau 0000:02:00.0: disp: 	0868: 00000000              
+[ 2019.874369] nouveau 0000:02:00.0: disp: 	086c: 00000000              
+[ 2019.875421] nouveau 0000:02:00.0: disp: 	0870: 0000e900              
+[ 2019.875946] nouveau 0000:02:00.0: disp: 	0874: 00000000              
+[ 2019.876345] nouveau 0000:02:00.0: disp: 	0878: 00000000              
+[ 2019.876733] nouveau 0000:02:00.0: disp: 	0880: 20000000              
+[ 2019.877181] nouveau 0000:02:00.0: disp: 	0884: 00000000              
+[ 2019.877612] nouveau 0000:02:00.0: disp: 	089c: 00000000              
+[ 2019.878884] nouveau 0000:02:00.0: disp: 	08a0: 00000000              
+[ 2019.879374] nouveau 0000:02:00.0: disp: 	08a4: 00000000              
+[ 2019.879762] nouveau 0000:02:00.0: disp: 	08a8: 00040000              
+[ 2019.880218] nouveau 0000:02:00.0: disp: 	08c0: 00000000              
+[ 2019.880564] nouveau 0000:02:00.0: disp: 	08c4: 00000000              
+[ 2019.880935] nouveau 0000:02:00.0: disp: 	08c8: 00000000              
+[ 2019.881251] nouveau 0000:02:00.0: disp: 	08d4: 00000000              
+[ 2019.883271] nouveau 0000:02:00.0: disp: 	08d8: 00000000              
+[ 2019.883691] nouveau 0000:02:00.0: disp: 	08dc: 00000000              
+[ 2019.884006] nouveau 0000:02:00.0: disp: 	0900: 00000300              
+[ 2019.884298] nouveau 0000:02:00.0: disp: 	0904: 00000100              
+[ 2019.884594] nouveau 0000:02:00.0: disp: 	0910: 00000000              
+[ 2019.886609] nouveau 0000:02:00.0: disp: 	0914: 00000000              
+[ 2019.887003] nouveau 0000:02:00.0: disp: Core - HEAD 1:
+[ 2019.887311] nouveau 0000:02:00.0: disp: 	0c00: 00000000              
+[ 2019.887613] nouveau 0000:02:00.0: disp: 	0c04: 00824414              
+[ 2019.887962] nouveau 0000:02:00.0: disp: 	0c08: 00000000              
+[ 2019.889083] nouveau 0000:02:00.0: disp: 	0c0c: 00000000              
+[ 2019.889376] nouveau 0000:02:00.0: disp: 	0c10: 00000000              
+[ 2019.889648] nouveau 0000:02:00.0: disp: 	0c14: 04650898              
+[ 2019.889922] nouveau 0000:02:00.0: disp: 	0c18: 0004002b              
+[ 2019.890213] nouveau 0000:02:00.0: disp: 	0c1c: 002800bf              
+[ 2019.890485] nouveau 0000:02:00.0: disp: 	0c20: 0460083f              
+[ 2019.890752] nouveau 0000:02:00.0: disp: 	0c24: 00000001              
+[ 2019.891048] nouveau 0000:02:00.0: disp: 	0c28: 0000027d              
+[ 2019.892954] nouveau 0000:02:00.0: disp: 	0c2c: 00000000              
+[ 2019.893280] nouveau 0000:02:00.0: disp: 	0c30: 00000000              
+[ 2019.893543] nouveau 0000:02:00.0: disp: 	0c38: 00000000              
+[ 2019.893800] nouveau 0000:02:00.0: disp: 	0c40: 00000000              
+[ 2019.894059] nouveau 0000:02:00.0: disp: 	0c44: 00000000              
+[ 2019.894312] nouveau 0000:02:00.0: disp: 	0c48: 00000000              
+[ 2019.894561] nouveau 0000:02:00.0: disp: 	0c4c: 00000000              
+[ 2019.895610] nouveau 0000:02:00.0: disp: 	0c5c: 00000000              
+[ 2019.895898] nouveau 0000:02:00.0: disp: 	0c60: 00000000              
+[ 2019.896147] nouveau 0000:02:00.0: disp: 	0c64: 00000000              
+[ 2019.896395] nouveau 0000:02:00.0: disp: 	0c68: 04380780              
+[ 2019.896639] nouveau 0000:02:00.0: disp: 	0c6c: 00101e00              
+[ 2019.898603] nouveau 0000:02:00.0: disp: 	0c70: 0000cf00              
+[ 2019.898911] nouveau 0000:02:00.0: disp: 	0c74: 00000000 -> f0000001
+[ 2019.899160] nouveau 0000:02:00.0: disp: 	0c78: 00000000              
+[ 2019.899409] nouveau 0000:02:00.0: disp: 	0c80: 05000000              
+[ 2019.899659] nouveau 0000:02:00.0: disp: 	0c84: 000214d0              
+[ 2019.899913] nouveau 0000:02:00.0: disp: 	0c9c: 00000000              
+[ 2019.900181] nouveau 0000:02:00.0: disp: 	0ca0: 00000002              
+[ 2019.900432] nouveau 0000:02:00.0: disp: 	0ca4: 00000000              
+[ 2019.900679] nouveau 0000:02:00.0: disp: 	0ca8: 00040000              
+[ 2019.900954] nouveau 0000:02:00.0: disp: 	0cc0: 00000000              
+[ 2019.901202] nouveau 0000:02:00.0: disp: 	0cc4: 00000000              
+[ 2019.902513] nouveau 0000:02:00.0: disp: 	0cc8: 04380780              
+[ 2019.902793] nouveau 0000:02:00.0: disp: 	0cd4: 00000000              
+[ 2019.903084] nouveau 0000:02:00.0: disp: 	0cd8: 04380780              
+[ 2019.903337] nouveau 0000:02:00.0: disp: 	0cdc: 04380780              
+[ 2019.903586] nouveau 0000:02:00.0: disp: 	0d00: 00000301              
+[ 2019.903838] nouveau 0000:02:00.0: disp: 	0d04: 00000100              
+[ 2019.904094] nouveau 0000:02:00.0: disp: 	0d10: 00000000              
+[ 2019.905577] nouveau 0000:02:00.0: disp: 	0d14: 00000000              
+[ 2019.905930] nouveau 0000:02:00.0: disp: head-1: supervisor 1.0
+[ 2019.906197] nouveau 0000:02:00.0: disp: head-1: nothing attached
+[ 2019.908497] nouveau 0000:02:00.0: disp: supervisor 00000020 00000150
+[ 2019.908806] nouveau 0000:02:00.0: disp: head-1: supervisor 2.0
+[ 2019.909094] nouveau 0000:02:00.0: disp: head-1: nothing attached
+[ 2019.909359] nouveau 0000:02:00.0: disp: head-1: supervisor 2.2
+[ 2019.909620] nouveau 0000:02:00.0: disp: head-1: to SOR-1
+[ 2022.263282] nouveau 0000:02:00.0: drm: core notifier timeout
+[ 2022.263700] nouveau: evo-forensics core: ntfy dword=00000000
+[ 2022.263992] nouveau: evo-forensics core: get=0d2 put=0d2 cur=0d2 put_shadow=0d2 max=3f3 (u32 idx)
+[ 2022.264289] nouveau: evo-pushbuf core get 0c0: 00100c68 04380780 00101e00 0000cf00 f0000001 00040cc0 00000000 00040d00
+[ 2022.264596] nouveau: evo-pushbuf core get 0c8: 00000301 00040ca0 00000002 00040ca8 00040000 00040084 80000000 00080080
+[ 2022.265560] nouveau: evo-pushbuf core get 0d0: 00000200 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 2022.265979] nouveau: evo-pushbuf core get 0d8: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 2022.266314] nouveau: evo-pushbuf core get 0e0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[ 2022.266650] nouveau: evo-pushbuf core get 0e8: 00000000 00000000
+[ 2022.267018] nouveau 0000:02:00.0: disp: sv-rescue probe: intr0 00000000 intr1 00000000 en 00000378/01ff0000 super 00000150 pending 00000020 busy 0
+[ 2022.267377] nouveau 0000:02:00.0: disp: sv-rescue: ch0 err 00000080/00000200 ctrl 8f0d001b
+[ 2022.267728] nouveau 0000:02:00.0: disp: sv-rescue: ch1 err 0000082c/00000000 ctrl 4003001b
+[ 2022.268813] nouveau 0000:02:00.0: disp: sv-rescue: ch2 err 00000080/00000001 ctrl 0c05001b
+[ 2022.270849] nouveau 0000:02:00.0: disp: sv-rescue: head-0 rgpos 0,0 -> 0,0
+[ 2022.272838] nouveau 0000:02:00.0: disp: sv-rescue: head-1 rgpos 1038,753 -> 1702,857
+[ 2022.273347] nouveau 0000:02:00.0: disp: sv-snap[post]: super 00000150 pending 00000020 intr1 00000000 busy 0 core-ctrl 8f0d001b
+[ 2022.388108] nouveau: soft-dpms: blank-suppression released (wake bridge)
+[ 2024.717955] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 2024.721910] nouveau: evo-forensics base-1: get=085 put=085 cur=085 put_shadow=085 max=3f3 (u32 idx)
+[ 2024.722637] nouveau: evo-pushbuf base-1 get 070: 40000000 00040080 00000001 000800a0 000000a0 f0000000 00040084 00000010
+[ 2024.723148] nouveau: evo-pushbuf base-1 get 078: 000400c0 fb00007a 00080110 00000000 00000000 00140800 00014b00 00000000
+[ 2024.723731] nouveau: evo-pushbuf base-1 get 080: 04380780 00007804 0000cf00 00040080 00000000 00140800 00014b00 00000000
+[ 2024.724332] nouveau: evo-pushbuf base-1 get 088: 04380780 00007804 0000cf00 00040080 00000000 000800a0 000000a0 f0000000
+[ 2024.726987] nouveau: evo-pushbuf base-1 get 090: 00040084 00000010 000400c0 fb00007a 00080110 00000000 00000000 00140800
+[ 2024.727819] nouveau: evo-pushbuf base-1 get 098: 0000cb00 00000000 04380780 00007804 0000cf00
+[ 2027.167991] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 2029.607013] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 2032.047301] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 2034.034036] PM: suspend entry (deep)
+[ 2034.038183] Filesystems sync: 0.001 seconds
+[ 2034.039268] Loading firmware: b43/ucode11.fw
+[ 2034.040151] Loading firmware: b43/n0initvals11.fw
+[ 2034.040719] Loading firmware: b43/n0bsinitvals11.fw
+[ 2034.043085] Freezing user space processes
+[ 2034.048736] Freezing user space processes completed (elapsed 0.004 seconds)
+[ 2034.049418] OOM killer disabled.
+[ 2034.052038] Freezing remaining freezable tasks
+[ 2034.054729] Freezing remaining freezable tasks completed (elapsed 0.002 seconds)
+[ 2034.057719] printk: Suspending console(s) (use no_console_suspend to debug)
+[ 2034.071922] wlan0: deauthenticating from 9a:2a:6f:0e:71:28 by local choice (Reason: 3=DEAUTH_LEAVING)
+[ 2034.181265] queueing ieee80211 work while going to suspend
+[ 2034.216269] ------------[ cut here ]------------
+[ 2034.216275] UBSAN: array-index-out-of-bounds in drivers/net/ethernet/nvidia/forcedeth.c:6225:25
+[ 2034.216280] index 385 is out of range for type 'u32 [385]'
+[ 2034.216285] CPU: 1 UID: 0 PID: 40438 Comm: kworker/u8:22 Tainted: G S         OE       7.2.0-gentoo-nvac-soak #1 PREEMPT(lazy) 
+[ 2034.216291] Tainted: [S]=CPU_OUT_OF_SPEC, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[ 2034.216293] Hardware name: Apple Inc. Macmini3,1/Mac-F22C86C8, BIOS     MM31.88Z.0081.B06.0904271717 04/27/09
+[ 2034.216295] Workqueue: async async_run_entry_fn
+[ 2034.216305] Call Trace:
+[ 2034.216307]  <TASK>
+[ 2034.216311]  dump_stack_lvl+0x6e/0xa0
+[ 2034.216320]  ubsan_epilogue+0x5/0x2b
+[ 2034.216326]  __ubsan_handle_out_of_bounds.cold+0x54/0x59
+[ 2034.216332]  nv_suspend+0x8c/0xa0 [forcedeth]
+[ 2034.216342]  pci_pm_suspend+0x80/0x170
+[ 2034.216348]  ? __pfx_pci_pm_suspend+0x10/0x10
+[ 2034.216352]  dpm_run_callback+0x66/0x1f0
+[ 2034.216360]  device_suspend+0x1aa/0x650
+[ 2034.216364]  ? trace_hardirqs_on+0x18/0xf0
+[ 2034.216371]  async_suspend+0x21/0x30
+[ 2034.216375]  async_run_entry_fn+0x34/0x150
+[ 2034.216380]  process_one_work+0x24b/0x610
+[ 2034.216386]  ? process_one_work+0x271/0x610
+[ 2034.216390]  ? lock_acquire+0x11a/0x140
+[ 2034.216397]  worker_thread+0x1ee/0x3d0
+[ 2034.216402]  ? __pfx_worker_thread+0x10/0x10
+[ 2034.216407]  kthread+0xf4/0x130
+[ 2034.216411]  ? __pfx_kthread+0x10/0x10
+[ 2034.216416]  ret_from_fork+0x247/0x360
+[ 2034.216421]  ? __pfx_kthread+0x10/0x10
+[ 2034.216425]  ret_from_fork_asm+0x1a/0x30
+[ 2034.216433]  </TASK>
+[ 2034.216664] ---[ end trace ]---
+[ 2034.231397] sd 0:0:0:0: [sda] Synchronizing SCSI cache
+[ 2034.234272] ata1.00: Entering standby power mode
+[ 2034.484521] nouveau 0000:02:00.0: drm: base-1: timeout
+[ 2034.484622] nouveau 0000:02:00.0: disp: sv-snap[pre]: super 00000150 pending 00000020 intr1 00000000 busy 0 core-ctrl 8f0e001b
+[ 2036.914596] nouveau 0000:02:00.0: drm: core notifier timeout
+[ 2036.914601] nouveau: evo-forensics core: ntfy dword=00000000
+[ 2036.914606] nouveau: evo-forensics core: get=0da put=0ff cur=0ff put_shadow=0ff max=3f3 (u32 idx)
+[ 2036.914611] nouveau: evo-pushbuf core get 0c8: 00000301 00040ca0 00000002 00040ca8 00040000 00040084 80000000 00080080
+[ 2036.914615] nouveau: evo-pushbuf core get 0d0: 00000200 00000000 00080c80 85000000 0000c0a0 00040c9c f0000001 00080080
+[ 2036.914618] nouveau: evo-pushbuf core get 0d8: 00000000 00000000 00080c80 85000000 00021490 00040c9c f0000001 00080080
+[ 2036.914621] nouveau: evo-pushbuf core get 0e0: 00000000 00000000 00080c80 85000000 0001f700 00040c9c f0000001 00080080
+[ 2036.914625] nouveau: evo-pushbuf core get 0e8: 00000000 00000000 00080c80 85000000 0000c0a0 00040c9c f0000001 00080080
+[ 2036.914627] nouveau: evo-pushbuf core get 0f0: 00000000 00000000
+[ 2036.914645] nouveau 0000:02:00.0: disp: sv-rescue probe: intr0 00000000 intr1 00000000 en 00000370/01ff0000 super 00000150 pending 00000020 busy 0
+[ 2036.914653] nouveau 0000:02:00.0: disp: sv-rescue: ch0 err 00000080/00000200 ctrl 8f0e001b
+[ 2036.914659] nouveau 0000:02:00.0: disp: sv-rescue: ch1 err 0000082c/00000000 ctrl 4003001b
+[ 2036.914664] nouveau 0000:02:00.0: disp: sv-rescue: ch2 err 00000080/00000000 ctrl 8e07001b
+[ 2036.916260] nouveau 0000:02:00.0: disp: sv-rescue: head-0 rgpos 0,0 -> 0,0
+[ 2036.917851] nouveau 0000:02:00.0: disp: sv-rescue: head-1 rgpos 932,429 -> 562,536
+[ 2036.917862] nouveau 0000:02:00.0: disp: sv-snap[post]: super 00000150 pending 00000020 intr1 00000000 busy 0 core-ctrl 8f0e001b
+[ 2036.917870] nouveau 0000:02:00.0: disp: outp 03:0002:0242: release SOR-1
+[ 2039.385045] ------------[ cut here ]------------
+[ 2039.385051] nouveau 0000:02:00.0: timeout
+[ 2039.385054] WARNING: nvkm/engine/disp/nv50.c:643 at nv50_disp_dmac_fini+0x17f/0x1e0 [nouveau], CPU#0: kworker/u8:2/36
+[ 2039.385418] Modules linked in: rfcomm(E) snd_seq_dummy(E) snd_hrtimer(E) snd_seq(E) snd_seq_device(E) fuse(E) nf_conntrack_netlink(E) xt_nat(E) iptable_raw(E) veth(E) bridge(E) xt_set(E) ip_set(E) xt_addrtype(E) overlay(E) bnep(E) xt_connmark(E) xt_conntrack(E) ip6table_mangle(E) iptable_mangle(E) xt_MASQUERADE(E) xt_mark(E) tun(E) nf_tables(E) ip6table_nat(E) ip6table_filter(E) ip6_tables(E) iptable_nat(E) nf_nat(E) nf_conntrack(E) nf_defrag_ipv6(E) nf_defrag_ipv4(E) iptable_filter(E) ip_tables(E) 8021q(E) garp(E) mrp(E) stp(E) llc(E) b43(E) cordic(E) bcma(E) mac80211(E) cfg80211(E) libarc4(E) coretemp(E) kvm_intel(E) btusb(E) btmtk(E) applesmc(E) btrtl(E) kvm(E) irqbypass(E) btbcm(E) btintel(E) joydev(E) bluetooth(E) xpad(E) ff_memless(E) rfkill(E) binfmt_misc(E) acpi_cpufreq(E) pcspkr(E) ssb(E) apple_mfi_fastcharge(E) cdc_acm(E) usblp(E) mmc_core(E) snd_hda_codec_alc882(E) snd_hda_codec_realtek_lib(E) snd_hda_codec_generic(E) snd_hda_intel(E) snd_hda_codec(E) snd_hda_core(E) snd_intel_dspcfg(E)
+[ 2039.385521]  snd_intel_sdw_acpi(E) snd_hwdep(E) snd_pcm(E) drivetemp(E) snd_timer(E) snd(E) soundcore(E) forcedeth(E) i2c_nforce2(E) firewire_ohci(E) hid_appleir(E) firewire_core(E) crc_itu_t(E) ata_generic(E) pata_acpi(E) nv_tco(E) nouveau(OE) drm_ttm_helper(E) ttm(E) drm_client_lib(E) video(E) gpu_sched(E) i2c_algo_bit(E) drm_gpuvm(E) drm_exec(E) mxm_wmi(E) wmi(E) drm_display_helper(E) drm_kms_helper(E) cec(E)
+[ 2039.385561] Unloaded tainted modules: intel_powerclamp(E):1 fjes(E):2 padlock_aes(E):2
+[ 2039.385573] CPU: 0 UID: 0 PID: 36 Comm: kworker/u8:2 Tainted: G S         OE       7.2.0-gentoo-nvac-soak #1 PREEMPT(lazy) 
+[ 2039.385579] Tainted: [S]=CPU_OUT_OF_SPEC, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[ 2039.385580] Hardware name: Apple Inc. Macmini3,1/Mac-F22C86C8, BIOS     MM31.88Z.0081.B06.0904271717 04/27/09
+[ 2039.385583] Workqueue: async async_run_entry_fn
+[ 2039.385592] RIP: 0010:nv50_disp_dmac_fini+0x185/0x1e0 [nouveau]
+[ 2039.385890] Code: a3 cc 48 8b 44 24 08 48 8b 40 10 48 8b 78 10 4c 8b 7f 50 4d 85 ff 74 56 e8 58 e6 a3 cc 48 8d 3d c1 47 10 00 4c 89 fa 48 89 c6 <67> 48 0f b9 3a 41 8b 46 38 85 c0 0f 84 6e ff ff ff 48 8b bb e0 00
+[ 2039.385893] RSP: 0018:ffffd36ac014fb18 EFLAGS: 00010286
+[ 2039.385897] RAX: ffffffffc07e4213 RBX: ffff8bc043c97800 RCX: ffff8bc041cf2e00
+[ 2039.385899] RDX: ffff8bc041850170 RSI: ffffffffc07e4213 RDI: ffffffffc061cac0
+[ 2039.385902] RBP: 0000000000610220 R08: 0000000000000001 R09: 0000000000000000
+[ 2039.385904] R10: ffff8bc041df0a38 R11: 0000000000000000 R12: 0000000000000002
+[ 2039.385906] R13: ffff8bc041df0b40 R14: ffff8bc0484f4000 R15: ffff8bc041850170
+[ 2039.385908] FS:  0000000000000000(0000) GS:ffff8bc1e8691000(0000) knlGS:0000000000000000
+[ 2039.385911] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 2039.385914] CR2: 00007f466d606004 CR3: 00000001d4446000 CR4: 00000000000426f0
+[ 2039.385916] Call Trace:
+[ 2039.385919]  <TASK>
+[ 2039.385926]  nvkm_disp_chan_fini+0x22/0x40 [nouveau]
+[ 2039.386224]  nvkm_object_fini+0xc0/0x150 [nouveau]
+[ 2039.386446]  nvkm_object_fini+0x7a/0x150 [nouveau]
+[ 2039.386668]  nvkm_object_fini+0x7a/0x150 [nouveau]
+[ 2039.386889]  nvkm_object_fini+0x7a/0x150 [nouveau]
+[ 2039.387111]  nvkm_object_fini+0x7a/0x150 [nouveau]
+[ 2039.387332]  nouveau_do_suspend+0xef/0x180 [nouveau]
+[ 2039.387618]  nouveau_pmops_suspend+0x3d/0x90 [nouveau]
+[ 2039.387904]  pci_pm_suspend+0x80/0x170
+[ 2039.387911]  ? __pfx_pci_pm_suspend+0x10/0x10
+[ 2039.387915]  dpm_run_callback+0x66/0x1f0
+[ 2039.387923]  device_suspend+0x1aa/0x650
+[ 2039.387928]  ? trace_hardirqs_on+0x18/0xf0
+[ 2039.387935]  async_suspend+0x21/0x30
+[ 2039.387940]  async_run_entry_fn+0x34/0x150
+[ 2039.387945]  process_one_work+0x24b/0x610
+[ 2039.387951]  ? process_one_work+0x271/0x610
+[ 2039.387956]  ? __schedule+0x674/0x800
+[ 2039.387976]  worker_thread+0x1ee/0x3d0
+[ 2039.387983]  ? __pfx_worker_thread+0x10/0x10
+[ 2039.387988]  kthread+0xf4/0x130
+[ 2039.387993]  ? __pfx_kthread+0x10/0x10
+[ 2039.387998]  ret_from_fork+0x247/0x360
+[ 2039.388004]  ? __pfx_kthread+0x10/0x10
+[ 2039.388008]  ret_from_fork_asm+0x1a/0x30
+[ 2039.388017]  </TASK>
+[ 2039.388019] irq event stamp: 14708
+[ 2039.388021] hardirqs last  enabled at (14707): [<ffffffff8bc0160a>] asm_sysvec_apic_timer_interrupt+0x1a/0x20
+[ 2039.388027] hardirqs last disabled at (14708): [<ffffffff8d6153ba>] __schedule+0x66a/0x800
+[ 2039.388031] softirqs last  enabled at (13932): [<ffffffff8c00bf07>] handle_softirqs+0x367/0x490
+[ 2039.388035] softirqs last disabled at (13921): [<ffffffff8c00c123>] __irq_exit_rcu+0xe3/0x160
+[ 2039.388040] ---[ end trace 0000000000000000 ]---
+[ 2039.388045] nouveau 0000:02:00.0: disp: ch 2 fini timeout, 8e071008
