@@ -7031,3 +7031,12 @@ Schwerwiegend: konnte nicht auf 'https://github.com/hibbes/nvac-evo-observatory.
 [90m2:17PM[0m [32mINF[0m 1 commits scanned.
 [90m2:17PM[0m [32mINF[0m scan completed in 40.8ms
 [90m2:17PM[0m [32mINF[0m no leaks found
+[90m3:17PM[0m [32mINF[0m 1 commits scanned.
+[90m3:17PM[0m [32mINF[0m scan completed in 39.5ms
+[90m3:17PM[0m [32mINF[0m no leaks found
+remote: Internal Server Error        
+remote: Request ID ED18:161835:7FEBC54:7EEB798:6ABBBA4D        
+remote: Time 2026-09-29T13:17:02Z
+To https://github.com/hibbes/nvac-evo-observatory.git
+ ! [remote rejected] master -> master (Internal Server Error)
+Fehler: Fehler beim Versenden einiger Referenzen nach 'https://github.com/hibbes/nvac-evo-observatory.git'
