@@ -7178,3 +7178,6 @@ Fehler: Fehler beim Versenden einiger Referenzen nach 'https://github.com/hibbes
 [90m1:17PM[0m [32mINF[0m 1 commits scanned.
 [90m1:17PM[0m [32mINF[0m scan completed in 40.9ms
 [90m1:17PM[0m [32mINF[0m no leaks found
+[90m2:17PM[0m [32mINF[0m 1 commits scanned.
+[90m2:17PM[0m [32mINF[0m scan completed in 40.4ms
+[90m2:17PM[0m [32mINF[0m no leaks found
